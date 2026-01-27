@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MM Arts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MM Arts is an independent art project supporting young artists and contemporary creation.">
+
+  <style>
+    /* ---------- RESET ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      color: #222222;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      z-index: 1000;
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    .menu a {
+      margin-left: 20px;
+      font-size: 0.9rem;
+      color: #555555;
+    }
+
+    .menu a:hover {
+      color: #000000;
+    }
+
+    /* ---------- SECTIONS ---------- */
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 120px 20px;
+    }
+
+    .hero {
+      text-align: center;
+      padding-top: 160px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: auto;
+      color: #555555;
+      font-size: 1.1rem;
+    }
+
+    .buttons {
+      margin-top: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 30px;
+      border: 1px solid #222222;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    .btn.secondary {
+      border-color: #aaaaaa;
+      color: #555555;
+    }
+
+    /* ---------- CONTENT ---------- */
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .section-text {
+      max-width: 700px;
+      color: #555555;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .card {
+      border: 1px solid #e5e5e5;
+      padding: 30px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      border-top: 1px solid #e5e5e5;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777777;
+    }
+
+    footer a {
+      margin: 0 10px;
+      color: #555555;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav">
+      <div class="logo">MM ARTS</div>
+      <nav class="menu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#collections">Collections</a>
+        <a href="#shop">Shop</a>
+        <a href="#videos">Videos</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HOME -->
+  <section id="home" class="hero">
+    <h1>MM ARTS</h1>
+    <p>
+      Independent art project supporting young artists and contemporary creation.
+    </p>
+
+    <div class="buttons">
+      <a href="#collections" class="btn">Explore Collections</a>
+      <a href="#videos" class="btn secondary">Watch Videos</a>
+      <a href="https://instagram.com" target="_blank" class="btn secondary">Instagram</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About</h2>
+    <p class="section-text">
+      MM Arts is an independent art project focused on supporting and promoting young artists.
+      We believe in emotional, non-realistic and free artistic expression.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Why we exist</h3>
+        <p>
+          Many young artists lack recognition, platforms and opportunities to present their work professionally.
+        </p>
+      </div>
+      <div class="card">
+        <h3>What we do</h3>
+        <p>
+          We curate collections, create visual content and develop tools for artists to gain visibility.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section>
+    <h2>Mission & Vision</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Mission</h3>
+        <p>
+          To support young artists by providing visibility, creative freedom and professional presentation.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Vision</h3>
+        <p>
+          To build a future where art is valued for expression and emotion, not age or status.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTIONS -->
+  <section id="collections">
+    <h2>Collections</h2>
+    <p class="section-text">
+      Curated artistic collections presented with clarity and respect for the artwork.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Collection I</h3>
+        <p>
+          A personal exploration of identity, emotion and abstraction beyond realism.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Future Collections</h3>
+        <p>
+          New curated collections will be presented as the project evolves.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP -->
+  <section id="shop">
+    <h2>Shop</h2>
+    <p class="section-text">
+      Selected artworks, prints and future products will be available here.
+    </p>
+
+    <div class="grid">
+      <div class="card">Original Artworks — Coming soon</div>
+      <div class="card">Prints — Coming soon</div>
+      <div class="card">Digital Works — Coming soon</div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="videos">
+    <h2>Videos</h2>
+    <p class="section-text">
+      Visual content presenting the project, collections and artistic process.
+    </p>
+
+    <div class="grid">
+      <div class="card">Project Introduction — Coming soon</div>
+      <div class="card">Collection Videos — Coming soon</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p class="section-text">
+      For collaborations, inquiries or information.
+    </p>
+
+    <p class="section-text">
+      Email: contact@mmarts.com<br>
+      Instagram: @mmarts
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>MM Arts</p>
+    <p>© MM Arts — All rights reserved</p>
+    <p>
+      <a href="#about">About</a>
+      <a href="#collections">Collections</a>
+      <a href="#shop">Shop</a>
+      <a href="#contact">Contact</a>
+    </p>
+  </footer>
+
+</body>
+</html>
