@@ -2,307 +2,312 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MM Arts | Contemporary Art Platform</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="MM Arts is an independent contemporary art platform supporting young artists, artistic freedom and curated collections.">
-
+<title>MM Arts — Independent Art Platform</title>
 <style>
-:root{
-  --black:#0f0f0f;
-  --white:#ffffff;
-  --gray:#f2f2f2;
-  --dark-gray:#b5b5b5;
-  --blue:#0a1a3a;
-  --green:#0f3d2e;
-}
-
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
 }
-
 body{
-  font-family: Arial, Helvetica, sans-serif;
-  background:var(--white);
-  color:var(--black);
-  line-height:1.8;
+background:#ffffff;
+color:#111111;
+line-height:1.6;
 }
-
-/* HEADER */
 header{
-  position:fixed;
-  top:0;
-  width:100%;
-  background:rgba(255,255,255,0.95);
-  border-bottom:1px solid #ddd;
-  z-index:1000;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#ffffff;
+border-bottom:1px solid #dddddd;
+z-index:1000;
 }
-
-.nav{
-  max-width:1300px;
-  margin:auto;
-  padding:20px 30px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.header-container{
+max-width:1200px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
 }
-
-.nav img{
-  height:50px;
+header img{
+height:40px;
 }
-
-.menu a{
-  margin-left:28px;
-  font-size:0.85rem;
-  letter-spacing:2px;
-  color:#333;
+nav ul{
+list-style:none;
+display:flex;
+gap:30px;
 }
-
-.menu a:hover{
-  color:var(--blue);
+nav a{
+text-decoration:none;
+color:#111111;
+font-weight:500;
 }
-
-/* SECTIONS */
+nav a:hover{
+color:#0b3d91;
+}
 section{
-  max-width:1300px;
-  margin:auto;
-  padding:140px 30px;
+max-width:1200px;
+margin:auto;
+padding:120px 20px 80px 20px;
 }
-
 .hero{
-  padding-top:200px;
-  text-align:center;
-  background:linear-gradient(180deg,var(--gray),var(--white));
+text-align:center;
+padding-top:160px;
 }
-
-.hero img{
-  width:260px;
-  margin-bottom:40px;
-}
-
 .hero h1{
-  font-size:3.4rem;
-  letter-spacing:6px;
-  color:var(--blue);
+font-size:64px;
+color:#0b3d91;
+letter-spacing:4px;
 }
-
+.hero h2{
+font-size:20px;
+margin:20px 0;
+font-weight:400;
+color:#333333;
+}
 .hero p{
-  max-width:900px;
-  margin:35px auto;
-  font-size:1.25rem;
-  color:#444;
+max-width:700px;
+margin:20px auto;
+color:#555555;
 }
-
-.btn{
-  display:inline-block;
-  margin:12px;
-  padding:16px 44px;
-  border:1px solid var(--blue);
-  color:var(--blue);
-  font-size:0.8rem;
-  letter-spacing:3px;
+.hero-buttons{
+margin-top:40px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
 }
-
-.btn.secondary{
-  border-color:var(--green);
-  color:var(--green);
+.hero-buttons a{
+padding:12px 28px;
+border:1px solid #0b3d91;
+text-decoration:none;
+color:#0b3d91;
+font-weight:500;
 }
-
-h2{
-  font-size:2.6rem;
-  color:var(--blue);
-  margin-bottom:35px;
+.hero-buttons a:hover{
+background:#0b3d91;
+color:#ffffff;
 }
-
-.section-text{
-  max-width:900px;
-  font-size:1.1rem;
-  color:#444;
+.section-title{
+font-size:36px;
+margin-bottom:30px;
+color:#0b3d91;
 }
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:50px;
-  margin-top:60px;
+.text-block{
+max-width:800px;
+color:#444444;
 }
-
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+margin-top:40px;
+}
 .card{
-  background:var(--white);
-  border:1px solid #e1e1e1;
-  padding:50px;
+border:1px solid #dddddd;
+padding:30px;
 }
-
 .card h3{
-  color:var(--green);
-  margin-bottom:18px;
-  font-size:1.3rem;
+margin-bottom:20px;
+color:#0b3d91;
 }
-
-/* DIVIDERS */
-.divider{
-  height:1px;
-  background:#ddd;
-  margin:120px 0;
+.values-list{
+list-style:none;
+margin:20px 0;
 }
-
-/* FOOTER */
+.values-list li{
+margin-bottom:10px;
+color:#333333;
+}
+.collections-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+margin-top:40px;
+}
+.collection-card{
+border:1px solid #dddddd;
+padding:30px;
+}
+.collection-card h3{
+color:#0b3d91;
+margin-bottom:15px;
+}
+.shop-list{
+list-style:none;
+margin-top:20px;
+}
+.shop-list li{
+margin-bottom:10px;
+color:#444444;
+}
+.contact-info{
+margin-top:20px;
+}
+.contact-info p{
+margin-bottom:10px;
+}
 footer{
-  background:var(--black);
-  color:#ccc;
-  padding:80px 30px;
-  text-align:center;
+background:#f5f5f5;
+padding:40px 20px;
 }
-
-footer img{
-  width:180px;
-  margin-bottom:30px;
+.footer-container{
+max-width:1200px;
+margin:auto;
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
 }
-
-footer p{
-  margin:10px 0;
-  font-size:0.85rem;
+.footer-links{
+margin:20px 0;
+display:flex;
+gap:20px;
+flex-wrap:wrap;
 }
-
-footer a{
-  color:#ccc;
-  margin:0 12px;
-  letter-spacing:1px;
+.footer-links a{
+text-decoration:none;
+color:#111111;
+}
+.footer-links a:hover{
+color:#0b3d91;
 }
 </style>
 </head>
-
 <body>
 
 <header>
-  <div class="nav">
-    <img src="assets/MM Arts.png" alt="MM Arts Logo">
-    <nav class="menu">
-      <a href="#about">ABOUT</a>
-      <a href="#mission">MISSION</a>
-      <a href="#collections">COLLECTIONS</a>
-      <a href="#shop">SHOP</a>
-      <a href="#videos">VIDEOS</a>
-      <a href="#contact">CONTACT</a>
-    </nav>
-  </div>
+<div class="header-container">
+<img src="MM Arts.png" alt="MM Arts Logo">
+<nav>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#mission">Mission</a></li>
+<li><a href="#collections">Collections</a></li>
+<li><a href="#shop">Shop</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
 </header>
 
-<section class="hero">
-  <img src="assets/MM Arts.png" alt="MM Arts">
-  <h1>MM ARTS</h1>
-  <p>
-    An independent contemporary art platform dedicated to artistic freedom, emotional expression
-    and the elevation of a new generation of creators.
-  </p>
-  <a href="#collections" class="btn">EXPLORE COLLECTIONS</a>
-  <a href="#videos" class="btn secondary">WATCH VISUALS</a>
+<section id="home" class="hero">
+<h1>MM ARTS</h1>
+<h2>An independent art platform dedicated to contemporary creation and emerging artistic voices.</h2>
+<p>MM Arts exists to support young artists, experimental work and emotional, non-realistic visual expression.</p>
+<div class="hero-buttons">
+<a href="#collections">Explore Collections</a>
+<a href="#">View Videos</a>
+<a href="#">Instagram</a>
+</div>
 </section>
 
 <section id="about">
-  <h2>What Is MM Arts</h2>
-  <p class="section-text">
-    MM Arts is an independent, curator-driven art platform created to challenge traditional structures
-    of recognition in the art world. We operate at the intersection of contemporary creation, visual
-    storytelling and cultural independence, offering artists a space that values expression over status.
-  </p>
-</section>
+<h2 class="section-title">About MM Arts</h2>
+<div class="text-block">
+<p>MM Arts is an independent creative project focused on the development, presentation and visibility of young and emerging artists.</p>
+<br>
+<p>The platform was created to give structure, direction and professional presence to artistic work that is often overlooked due to age, lack of exposure or non-traditional style.</p>
+<br>
+<p>MM Arts does not follow trends. It supports artistic freedom, emotional expression and experimental approaches that go beyond realism and conventional expectations.</p>
+</div>
 
-<div class="divider"></div>
+<div class="cards">
+<div class="card">
+<h3>What We Are</h3>
+<p>A curated platform.<br>A long-term project.<br>A space for contemporary artistic development and visibility.</p>
+</div>
+<div class="card">
+<h3>What We Are Not</h3>
+<p>We are not a social media trend.<br>We are not a mass marketplace.<br>We are not driven by algorithms or instant popularity.</p>
+</div>
+</div>
+</section>
 
 <section id="mission">
-  <h2>Mission, Vision & Values</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Mission</h3>
-      <p>
-        To provide emerging artists with a professional, independent platform that amplifies their work
-        without creative compromise, fostering visibility, legitimacy and long-term growth.
-      </p>
-    </div>
-    <div class="card">
-      <h3>Vision</h3>
-      <p>
-        To build a future where contemporary art is evaluated through emotion, intention and impact,
-        rather than age, background or institutional approval.
-      </p>
-    </div>
-    <div class="card">
-      <h3>Values</h3>
-      <p>
-        Artistic freedom, authenticity, independence, emotional honesty, cultural relevance
-        and respect for the creative process.
-      </p>
-    </div>
-  </div>
+<h2 class="section-title">Mission</h2>
+<div class="text-block">
+<p>Our mission is to support young artists by providing a professional platform where their work can be presented with clarity, respect and intention.</p>
+<br>
+<p>MM Arts creates structure, visual identity and visibility for artists who are often underestimated due to age or lack of institutional access.</p>
+</div>
 </section>
 
-<div class="divider"></div>
+<section id="vision">
+<h2 class="section-title">Vision</h2>
+<div class="text-block">
+<p>Our vision is to build a sustainable and independent artistic ecosystem where talent is valued for expression, depth and emotion — not age, status or external validation.</p>
+<br>
+<p>MM Arts aims to grow into a recognized international platform that connects artists, audiences and future opportunities.</p>
+</div>
+</section>
+
+<section id="values">
+<h2 class="section-title">Values</h2>
+<ul class="values-list">
+<li>Creative Freedom</li>
+<li>Artistic Integrity</li>
+<li>Long-Term Vision</li>
+<li>Discipline and Structure</li>
+<li>Emotional Expression</li>
+</ul>
+<p class="text-block">These values guide every decision, collaboration and collection presented by MM Arts.</p>
+</section>
 
 <section id="collections">
-  <h2>Collections</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Collection I</h3>
-      <p>
-        A foundational collection exploring identity, abstraction and emotional states beyond realism.
-        Each piece operates as an individual statement within a unified visual language.
-      </p>
-    </div>
-    <div class="card">
-      <h3>Future Collections</h3>
-      <p>
-        Upcoming curated releases expanding the platform’s artistic dialogue and international presence.
-      </p>
-    </div>
-  </div>
+<h2 class="section-title">Collections</h2>
+<p class="text-block">MM Arts presents curated collections that explore specific themes, emotions and visual directions.</p>
+<div class="collections-grid">
+<div class="collection-card">
+<h3>Collection I</h3>
+<p>A personal and experimental exploration of identity, emotion and abstraction beyond realism.</p>
+</div>
+<div class="collection-card">
+<h3>Future Collections</h3>
+<p>New collections will be developed as the project evolves, introducing new artistic directions and voices.</p>
+</div>
+</div>
 </section>
-
-<div class="divider"></div>
 
 <section id="shop">
-  <h2>Shop</h2>
-  <div class="grid">
-    <div class="card">Original Artworks — Launching Soon</div>
-    <div class="card">Limited Prints — Launching Soon</div>
-    <div class="card">Digital Editions — Launching Soon</div>
-  </div>
+<h2 class="section-title">Shop</h2>
+<p class="text-block">Selected artworks, limited editions and future products will be available through the MM Arts platform.</p>
+<ul class="shop-list">
+<li>Original Artworks — Coming Soon</li>
+<li>Limited Prints — Coming Soon</li>
+<li>Digital Works — Coming Soon</li>
+</ul>
 </section>
-
-<div class="divider"></div>
-
-<section id="videos">
-  <h2>Videos</h2>
-  <div class="grid">
-    <div class="card">Project Introduction Film — Coming Soon</div>
-    <div class="card">Collection Visual Narratives — Coming Soon</div>
-  </div>
-</section>
-
-<div class="divider"></div>
 
 <section id="contact">
-  <h2>Contact</h2>
-  <p class="section-text">
-    For collaborations, exhibitions, press or inquiries.
-    <br><br>
-    Email: contact@mmarts.com<br>
-    Instagram: @mmarts
-  </p>
+<h2 class="section-title">Contact</h2>
+<p class="text-block">For collaborations, partnerships or general inquiries, please use the official channels below.</p>
+<div class="contact-info">
+<p>Email: enterprise.mm.arts@gmail.com</p>
+<p>Instagram: @mmarts.global</p>
+<p>TikTok: @enterprise.mm.arts</p>
+<p>YouTube: @mmarts.global</p>
+</div>
 </section>
 
 <footer>
-  <img src="assets/MM Arts.png" alt="MM Arts">
-  <p>© MM Arts — All rights reserved</p>
-  <p>
-    <a href="#about">About</a>
-    <a href="#collections">Collections</a>
-    <a href="#shop">Shop</a>
-    <a href="#contact">Contact</a>
-  </p>
+<div class="footer-container">
+<p>MM Arts — Independent Art Platform</p>
+<div class="footer-links">
+<a href="#about">About</a>
+<a href="#mission">Mission</a>
+<a href="#collections">Collections</a>
+<a href="#shop">Shop</a>
+<a href="#contact">Contact</a>
+</div>
+<p>© MM Arts — All rights reserved</p>
+</div>
 </footer>
 
 </body>
 </html>
-
