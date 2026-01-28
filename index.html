@@ -527,6 +527,25 @@ section.style.display = 'block';
 section.scrollIntoView({ behavior: 'smooth' });
 }
 }
-</script>  </body>
+</script>  
 
-    </html>
+<!-- BACKGROUND MUSIC -->
+<audio id="bg-music" loop>
+  <source src="assets/audio/chopin-nocturne-op9-no2.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      const audio = document.getElementById("bg-music");
+      audio.volume = 0.3;
+      audio.play().catch(() => {
+        console.log("Autoplay bloqueado pelo browser");
+      });
+    }, 10000); // 10 segundos
+  });
+</script>
+
+</body>
+
+</html>
