@@ -9,17 +9,25 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Space+Grotesk:wght@400;500;600&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* =====================================================================
+     COLOR TOKENS
+     Paper = gallery-wall neutral (kept close to the original but pushed
+     cooler, away from a generic "warm cream" background).
+     Indigo + forest are pulled directly from the MM Arts logo (#1800AD
+     blue, #006632 green) so the palette reads as the brand, not a
+     random pairing.
+  ===================================================================== */
   :root{
-    --paper:      #F1EFE7;
-    --paper-2:    #E7E4D8;
-    --ink:        #16150F;
+    --paper:      #F0F0EA;
+    --paper-2:    #E3E1D7;
+    --ink:        #14130E;
     --ink-soft:   #55534A;
-    --indigo:     #23225E;
-    --indigo-br:  #3C3BA8;
-    --forest:     #2F5233;
-    --forest-br:  #4C7A54;
-    --line:       rgba(22,21,15,0.14);
-    --line-hi:    rgba(22,21,15,0.30);
+    --indigo:     #1B0FA0;
+    --indigo-br:  #4A3EE0;
+    --forest:     #145C34;
+    --forest-br:  #3C9767;
+    --line:       rgba(20,19,14,0.14);
+    --line-hi:    rgba(20,19,14,0.30);
   }
 
   *{margin:0; padding:0; box-sizing:border-box;}
@@ -43,6 +51,7 @@
   a{color:inherit;}
   ul{list-style:none;}
   img{display:block; max-width:100%;}
+  strong{color:var(--ink); font-weight:600;}
 
   .eyebrow{
     font-family:'Space Grotesk', sans-serif;
@@ -58,7 +67,7 @@
   /* ---------------- HEADER ---------------- */
   .site-header{
     position:fixed; top:0; left:0; right:0; z-index:900;
-    background:rgba(241,239,231,0.9);
+    background:rgba(240,240,234,0.92);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
     transition:box-shadow 0.25s ease;
@@ -69,7 +78,7 @@
     display:flex; align-items:center; justify-content:space-between;
   }
   .brand-logo{height:38px; width:auto;}
-  .site-nav{display:flex; gap:2.2rem;}
+  .site-nav{display:flex; gap:1.7rem;}
   .site-nav a{
     font-family:'Space Grotesk', sans-serif;
     font-size:0.8rem;
@@ -84,13 +93,17 @@
     background:var(--forest); transition:width 0.25s ease;
   }
   .site-nav a:hover::after{width:100%;}
+  .site-nav a:focus-visible, .btn:focus-visible, .collection-card:focus-visible,
+  .close-collection:focus-visible, .sound-toggle:focus-visible{
+    outline:2px solid var(--indigo); outline-offset:3px;
+  }
 
   #nav-toggle{display:none;}
   .nav-burger{
     display:none; width:38px; height:38px; border:1px solid var(--line-hi);
     align-items:center; justify-content:center; cursor:pointer; font-size:1.1rem;
   }
-  @media (max-width:760px){
+  @media (max-width:800px){
     .site-nav{
       position:absolute; top:100%; left:0; right:0;
       flex-direction:column; gap:0;
@@ -99,8 +112,8 @@
       max-height:0; overflow:hidden;
       transition:max-height 0.3s ease;
     }
-    .site-nav a{padding:1rem clamp(1.25rem,4vw,3rem); border-top:1px solid var(--line);}
-    #nav-toggle:checked ~ .site-nav{max-height:300px;}
+    .site-nav a{padding:1rem clamp(1.25rem,4vw,3rem); border-top:1px solid var(--line); display:block;}
+    #nav-toggle:checked ~ .site-nav{max-height:340px;}
     .nav-burger{display:flex;}
   }
 
@@ -139,6 +152,7 @@
     padding:0.9rem 1.8rem;
     border:1px solid var(--ink);
     transition:background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+    cursor:pointer;
   }
   .btn-solid{background:var(--ink); color:var(--paper);}
   .btn-solid:hover{background:var(--indigo); border-color:var(--indigo); transform:translateY(-2px);}
@@ -182,7 +196,6 @@
   .room-lede{max-width:70ch; color:var(--ink-soft); margin-top:1rem;}
 
   .about-copy{max-width:70ch; display:grid; gap:1.1rem; color:var(--ink-soft); margin-bottom:2.8rem;}
-  .about-copy strong{color:var(--ink); font-weight:600;}
 
   .cards-2{
     display:grid; grid-template-columns:1fr 1fr; gap:1.6rem;
@@ -212,7 +225,7 @@
   }
   .sub-room p{color:var(--ink-soft);}
 
-  /* ---------------- COLLECTIONS ---------------- */
+  /* ---------------- COLLECTIONS / EXHIBITIONS CARDS ---------------- */
   .collections-grid{
     display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
     gap:1.6rem; margin-top:2.4rem;
@@ -236,9 +249,9 @@
     color:var(--indigo); margin-top:1rem; display:inline-block;
   }
 
-  /* ---------------- COLLECTION DETAIL ---------------- */
-  .collection-detail{padding-top:clamp(6rem,10vw,7.5rem);}
-  .collection-detail[hidden]{display:none;}
+  /* ---------------- DETAIL VIEWS (collection + exhibition) ---------------- */
+  .detail-view{padding-top:clamp(6rem,10vw,7.5rem);}
+  .detail-view[hidden]{display:none;}
   .close-collection{
     font-family:'Space Grotesk', sans-serif;
     font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em;
@@ -252,17 +265,33 @@
     color:var(--forest); max-width:60ch; margin:1.6rem 0;
   }
 
+  .meta-row{
+    display:flex; gap:2.2rem; flex-wrap:wrap;
+    margin:1.6rem 0 0.4rem;
+    padding-top:1.4rem; border-top:1px solid var(--line);
+  }
+  .meta-row div{font-size:0.86rem;}
+  .meta-row span.label{
+    display:block; font-family:'Space Grotesk', sans-serif;
+    font-size:0.68rem; text-transform:uppercase; letter-spacing:0.1em;
+    color:var(--forest); margin-bottom:0.3rem;
+  }
+  .meta-row span.value{color:var(--ink-soft);}
+
   .gallery{
     display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:2.2rem 1.6rem; margin-top:2.6rem;
   }
   figure.artwork{margin:0;}
   .frame{
-    aspect-ratio:4/5; width:100%;
+    width:100%;
     border:1px solid var(--line-hi);
     overflow:hidden; position:relative;
     background:var(--paper-2);
+    aspect-ratio:4/5; /* default: portrait-leaning frame */
   }
+  .frame.landscape{aspect-ratio:4/3;}
+  .frame.portrait{aspect-ratio:3/4;}
   .frame img{width:100%; height:100%; object-fit:cover;}
   .frame .placeholder{
     position:absolute; inset:0;
@@ -273,7 +302,7 @@
     font-family:'Newsreader', serif; font-style:italic; font-size:2.2rem;
     color:var(--line-hi);
   }
-  .frame .placeholder span{
+  .frame .placeholder span.tag{
     font-family:'Space Grotesk', sans-serif; font-size:0.68rem;
     text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-soft); opacity:0.7;
   }
@@ -333,7 +362,7 @@
   .footer-links a{opacity:0.75;}
   .footer-links a:hover{opacity:1;}
   .footer-bottom{
-    border-top:1px solid rgba(241,239,231,0.15); padding-top:1.5rem;
+    border-top:1px solid rgba(240,240,234,0.15); padding-top:1.5rem;
     font-size:0.75rem; opacity:0.55; font-family:'Space Grotesk', sans-serif;
   }
 
@@ -343,11 +372,17 @@
     background:var(--ink); color:var(--paper);
     font-family:'Space Grotesk', sans-serif;
     font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em;
-    border:none; padding:0.75rem 1.1rem;
+    border:none; border-radius:999px;
+    padding:0.75rem 1.2rem;
     display:flex; align-items:center; gap:0.5rem; cursor:pointer;
-    opacity:0.85; transition:opacity 0.2s ease;
+    opacity:0.9; transition:opacity 0.2s ease, background 0.2s ease;
   }
-  .sound-toggle:hover{opacity:1;}
+  .sound-toggle:hover{opacity:1; background:var(--indigo);}
+  .sound-toggle .dot{
+    width:6px; height:6px; border-radius:50%; background:var(--forest-br);
+    transition:background 0.2s ease;
+  }
+  .sound-toggle[data-playing="true"] .dot{background:#7CE3A6;}
 
   .reveal{opacity:0; transform:translateY(16px); transition:opacity 0.6s ease, transform 0.6s ease;}
   .reveal.in{opacity:1; transform:none;}
@@ -364,6 +399,7 @@
     <nav class="site-nav">
       <a href="#about">About</a>
       <a href="#collections">Collections</a>
+      <a href="#exhibitions">Exhibitions</a>
       <a href="#shop">Shop</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -379,7 +415,7 @@
       <h1>MM ARTS</h1>
       <p class="hero-sub">Art Without Limits</p>
       <p class="hero-lede">An independent contemporary art platform supporting emerging artists worldwide.</p>
-      <p class="hero-body">MM Arts is a long-term cultural initiative dedicated to the development, presentation and visibility of contemporary artistic work. We support emerging artists by creating professional structure, curatorial direction and access to new audiences. Our focus is not trends or instant exposure, but clarity, consistency and sustainable artistic growth.</p>
+      <p class="hero-body">MM Arts is a long-term cultural initiative dedicated to the development, presentation and visibility of contemporary artistic work. We support emerging artists by creating professional structure, curatorial direction and access to new audiences. Our focus is not trends or instant exposure, but <strong>clarity, consistency and sustainable artistic growth</strong>.</p>
       <div class="hero-actions">
         <a href="#collections" class="btn btn-solid">Collections</a>
         <a href="#shop" class="btn btn-line">Shop</a>
@@ -406,7 +442,7 @@
         <h2>About MM Arts</h2>
       </div>
       <div class="about-copy">
-        <p>MM Arts is an independent initiative created to respond to a recurring problem in the contemporary art landscape: the lack of professional structure and visibility for emerging artists.</p>
+        <p>MM Arts is an independent initiative created to respond to a recurring problem in the contemporary art landscape: <strong>the lack of professional structure and visibility for emerging artists</strong>.</p>
         <p>Many creators produce serious, meaningful work but remain unseen due to age, limited exposure, or non-traditional artistic language. MM Arts exists to bridge this gap.</p>
         <p>The platform was founded with the intention of offering artists a <strong>clear, professional and accessible</strong> environment where their work can be presented with respect, coherence and long-term vision.</p>
         <p>MM Arts operates independently, prioritising quality, curatorial intention and sustainable development over short-term visibility or algorithmic trends.</p>
@@ -437,12 +473,12 @@
 
       <div class="sub-room">
         <h3 class="sub-title">Our Mission</h3>
-        <p>Our mission is to support emerging artists by providing structure, visibility and professional presentation for contemporary artistic work. We aim to create opportunities for artists to develop their practice, reach new audiences and present their work within a serious and respectful framework.</p>
+        <p>Our mission is to support emerging artists by providing structure, visibility and professional presentation for contemporary artistic work. We aim to create opportunities for artists to <strong>develop their practice, reach new audiences</strong> and present their work within a serious and respectful framework.</p>
       </div>
 
       <div class="sub-room">
         <h3 class="sub-title">Our Vision</h3>
-        <p>We envision a future where artistic value is not defined by age, status or institutional access, but by expression, intention and creative depth. MM Arts seeks to contribute to a more open, accessible and sustainable contemporary art ecosystem.</p>
+        <p>We envision a future where artistic value is not defined by age, status or institutional access, but by <strong>expression, intention and creative depth</strong>. MM Arts seeks to contribute to a more open, accessible and sustainable contemporary art ecosystem.</p>
       </div>
     </div>
   </section>
@@ -462,9 +498,9 @@
       <p class="room-lede">MM Arts presents curated collections developed around specific themes, emotions and visual research. Each collection reflects a distinct artistic direction and brings together works that engage in dialogue through form, concept and expression.</p>
 
       <div class="collections-grid">
-        <button class="collection-card" onclick="openCollection()">
+        <button class="collection-card" onclick="openDetail('collection-one')">
           <h3>Collection "Eu" / "I (me)"</h3>
-          <p>The debut collection by Migma — 12 original works forming an open visual narrative.</p>
+          <p>The debut collection by Migma — <strong>12 original works</strong> forming an open visual narrative.</p>
           <span class="view">View collection →</span>
         </button>
         <div class="collection-card static">
@@ -475,17 +511,17 @@
     </div>
   </section>
 
-  <section id="collection-one" class="collection-detail" hidden>
+  <section id="collection-one" class="detail-view" hidden>
     <div class="wrap">
-      <button class="close-collection" onclick="closeCollection()">← Back to Collections</button>
+      <button class="close-collection" onclick="closeDetail('collection-one','collections')">← Back to Collections</button>
       <div class="room-head">
         <span class="room-index">Collection</span>
         <h2>&ldquo;EU&rdquo; / &ldquo;I (me)&rdquo;</h2>
       </div>
       <p class="manifesto">The Brush Will Paint What Cannot Be Told.</p>
-      <p class="room-lede">&ldquo;EU&rdquo; or &ldquo;I (me)&rdquo; is the debut collection by Migma, a 16-year-old Portuguese contemporary artist and founder of MM Arts. The collection presents 12 original works that construct an open visual narrative. More than a collection, it asserts itself as a manifesto for authentic art.</p>
+      <p class="room-lede">&ldquo;EU&rdquo; or &ldquo;I (me)&rdquo; is the debut collection by Migma, a <strong>16-year-old Portuguese contemporary artist</strong> and founder of MM Arts. The collection presents <strong>12 original works</strong> that construct an open visual narrative. More than a collection, it asserts itself as a manifesto for authentic art.</p>
 
-      <div class="gallery" id="gallery-grid"></div>
+      <div class="gallery" id="collection-gallery"></div>
     </div>
   </section>
 
@@ -495,19 +531,46 @@
     <span class="line"></span>
   </div>
 
-  <section id="shop" class="room reveal">
+  <section id="exhibitions" class="room reveal">
     <div class="wrap">
       <div class="room-head">
         <span class="room-index">Room 03</span>
-        <h2>Shop</h2>
+        <h2>Exhibitions</h2>
       </div>
-      <p class="room-lede">The MM Arts Shop will present a curated selection of artworks and creative outputs.</p>
-      <ul class="shop-list">
-        <li>Original Artworks <span class="tag">Coming Soon</span></li>
-        <li>Limited Edition Prints <span class="tag">Coming Soon</span></li>
-        <li>Digital Works <span class="tag">Coming Soon</span></li>
-      </ul>
-      <p class="shop-note">All works are selected and presented with attention to quality, authenticity and artistic intention.</p>
+      <p class="room-lede">Beyond the screen, MM Arts brings collections into physical space. Each exhibition offers a <strong>direct, unmediated encounter</strong> with scale, material and brushwork that a photograph cannot fully carry.</p>
+
+      <div class="collections-grid">
+        <button class="collection-card" onclick="openDetail('exhibition-current')">
+          <h3>Current Exhibition</h3>
+          <p>The first public presentation of Migma's debut collection, <strong>"EU" / "I (me)"</strong>.</p>
+          <span class="view">View exhibition →</span>
+        </button>
+        <div class="collection-card static">
+          <h3>Future Exhibitions</h3>
+          <p>Additional exhibitions will be announced as MM Arts' programme develops, bringing collections into new spaces and cities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="exhibition-current" class="detail-view" hidden>
+    <div class="wrap">
+      <button class="close-collection" onclick="closeDetail('exhibition-current','exhibitions')">← Back to Exhibitions</button>
+      <div class="room-head">
+        <span class="room-index">Exhibition</span>
+        <h2>&ldquo;EU&rdquo; — Opening Exhibition</h2>
+      </div>
+      <!-- PLACEHOLDER COPY: replace with the real exhibition text whenever it is confirmed -->
+      <p class="manifesto">Twelve works, one room, one first encounter.</p>
+      <p class="room-lede">MM Arts presents the <strong>first public exhibition</strong> of Migma's debut collection, bringing the original works of &ldquo;EU&rdquo; / &ldquo;I (me)&rdquo; into physical space for the first time. Visitors are invited to experience the scale, texture and presence of each piece up close — details that a screen cannot fully carry.</p>
+
+      <div class="meta-row">
+        <div><span class="label">Location</span><span class="value">To be announced</span></div>
+        <div><span class="label">Dates</span><span class="value">To be announced</span></div>
+        <div><span class="label">Entry</span><span class="value">Free · open to the public</span></div>
+      </div>
+
+      <div class="gallery" id="exhibition-gallery"></div>
     </div>
   </section>
 
@@ -517,10 +580,32 @@
     <span class="line"></span>
   </div>
 
-  <section class="room reveal" id="film">
+  <section id="shop" class="room reveal">
     <div class="wrap">
       <div class="room-head">
         <span class="room-index">Room 04</span>
+        <h2>Shop</h2>
+      </div>
+      <p class="room-lede">The MM Arts Shop will present a curated selection of artworks and creative outputs.</p>
+      <ul class="shop-list">
+        <li>Original Artworks <span class="tag">Coming Soon</span></li>
+        <li>Limited Edition Prints <span class="tag">Coming Soon</span></li>
+        <li>Digital Works <span class="tag">Coming Soon</span></li>
+      </ul>
+      <p class="shop-note">All works are selected and presented with attention to <strong>quality, authenticity and artistic intention</strong>.</p>
+    </div>
+  </section>
+
+  <div class="room-divider">
+    <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M 32.0 30.0 L 32.23 30.41 L 32.37 30.9 L 32.4 31.45 L 32.29 32.04 L 32.05 32.63 L 31.67 33.19 L 31.14 33.69 L 30.49 34.1 L 29.72 34.39 L 28.87 34.53 L 27.96 34.49 L 27.03 34.27 L 26.12 33.85 L 25.27 33.24 L 24.52 32.44 L 23.91 31.47 L 23.48 30.36 L 23.25 29.15 L 23.26 27.86 L 23.53 26.56 L 24.04 25.28 L 24.82 24.08 L 25.84 23.01 L 27.07 22.13 L 28.5 21.46 L 30.06 21.07 L 31.72 20.96 L 33.42 21.17 L 35.1 21.71 L 36.69 22.57 L 38.13 23.74 L 39.37 25.19 L 40.34 26.88 L 41.0 28.77 L 41.31 30.79 L 41.24 32.88 L 40.77 34.98 L 39.91 36.99 L 38.68 38.86 L 37.08 40.5 L 35.18 41.85 L 33.01 42.85 L 30.66 43.45 L 28.18 43.61 L 25.67 43.31 L 23.21 42.55 L 20.89 41.33 L 18.8 39.67 L 17.0 37.62 L 15.59 35.24 L 14.62 32.6 L 14.13 29.78 L 14.17 26.87 L 14.75 23.96 L 15.87 21.17 L 17.5 18.58 L 19.6 16.3 L 22.12 14.41 L 24.99 12.99 L 28.12 12.1 L 31.4 11.79 L 34.73 12.08 L 38.0 12.99 L 41.1 14.5 L 43.91 16.57 L 46.33 19.15 L 48.26 22.17 L 49.63 25.54 L 50.38 29.15 L 50.47 32.88 L 49.86 36.61 L 48.58 40.21 L 46.64 43.57 L 44.09 46.55 L 41.0 49.05 L 37.47 50.98 L 33.6 52.24 L 29.52 52.79 L 25.36 52.6 L 21.26 51.63 L 17.35 49.93 L 13.78 47.51 L 10.68 44.46 L 8.14 40.85 L 6.29 36.8 L 5.19 32.43 L 4.89 27.89 L 5.42 23.32 L 6.79 18.88 L 8.97 14.72"/></svg>
+    <span class="num">Room 05</span>
+    <span class="line"></span>
+  </div>
+
+  <section class="room reveal" id="film">
+    <div class="wrap">
+      <div class="room-head">
+        <span class="room-index">Room 05</span>
         <h2>Promotional Video</h2>
       </div>
       <p class="room-lede">An introduction to the MM Arts vision, values and long-term objectives.</p>
@@ -532,17 +617,17 @@
 
   <div class="room-divider">
     <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M 32.0 30.0 L 32.23 30.41 L 32.37 30.9 L 32.4 31.45 L 32.29 32.04 L 32.05 32.63 L 31.67 33.19 L 31.14 33.69 L 30.49 34.1 L 29.72 34.39 L 28.87 34.53 L 27.96 34.49 L 27.03 34.27 L 26.12 33.85 L 25.27 33.24 L 24.52 32.44 L 23.91 31.47 L 23.48 30.36 L 23.25 29.15 L 23.26 27.86 L 23.53 26.56 L 24.04 25.28 L 24.82 24.08 L 25.84 23.01 L 27.07 22.13 L 28.5 21.46 L 30.06 21.07 L 31.72 20.96 L 33.42 21.17 L 35.1 21.71 L 36.69 22.57 L 38.13 23.74 L 39.37 25.19 L 40.34 26.88 L 41.0 28.77 L 41.31 30.79 L 41.24 32.88 L 40.77 34.98 L 39.91 36.99 L 38.68 38.86 L 37.08 40.5 L 35.18 41.85 L 33.01 42.85 L 30.66 43.45 L 28.18 43.61 L 25.67 43.31 L 23.21 42.55 L 20.89 41.33 L 18.8 39.67 L 17.0 37.62 L 15.59 35.24 L 14.62 32.6 L 14.13 29.78 L 14.17 26.87 L 14.75 23.96 L 15.87 21.17 L 17.5 18.58 L 19.6 16.3 L 22.12 14.41 L 24.99 12.99 L 28.12 12.1 L 31.4 11.79 L 34.73 12.08 L 38.0 12.99 L 41.1 14.5 L 43.91 16.57 L 46.33 19.15 L 48.26 22.17 L 49.63 25.54 L 50.38 29.15 L 50.47 32.88 L 49.86 36.61 L 48.58 40.21 L 46.64 43.57 L 44.09 46.55 L 41.0 49.05 L 37.47 50.98 L 33.6 52.24 L 29.52 52.79 L 25.36 52.6 L 21.26 51.63 L 17.35 49.93 L 13.78 47.51 L 10.68 44.46 L 8.14 40.85 L 6.29 36.8 L 5.19 32.43 L 4.89 27.89 L 5.42 23.32 L 6.79 18.88 L 8.97 14.72"/></svg>
-    <span class="num">Room 05</span>
+    <span class="num">Room 06</span>
     <span class="line"></span>
   </div>
 
   <section id="contact" class="room reveal">
     <div class="wrap">
       <div class="room-head">
-        <span class="room-index">Room 05</span>
+        <span class="room-index">Room 06</span>
         <h2>Contact</h2>
       </div>
-      <p class="room-lede">For professional inquiries, artist submissions, collaborations or partnerships, please contact us through the official channels below.</p>
+      <p class="room-lede">For <strong>professional inquiries, artist submissions, collaborations or partnerships</strong>, please contact us through the official channels below.</p>
       <div class="contact-grid">
         <a href="mailto:enterprise.mm.arts@gmail.com">Email<br>enterprise.mm.arts@gmail.com</a>
         <a href="https://www.instagram.com/mmarts.global" target="_blank" rel="noopener">Instagram<br>@mmarts.global</a>
@@ -561,6 +646,7 @@
     <div class="footer-links">
       <a href="#about">About</a>
       <a href="#collections">Collections</a>
+      <a href="#exhibitions">Exhibitions</a>
       <a href="#shop">Shop</a>
       <a href="#contact">Contact</a>
     </div>
@@ -571,12 +657,16 @@
 <audio id="bg-music" loop preload="none">
   <source src="assets/audio/chopin-nocturne-op9-no2.mp3" type="audio/mpeg">
 </audio>
-<button class="sound-toggle" id="sound-toggle">♪ Sound: Off</button>
+<button class="sound-toggle" id="sound-toggle" data-playing="false" aria-pressed="false">
+  <span class="dot"></span><span id="sound-label">Sound: Off</span>
+</button>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // mobile nav close on link click
+  // ---------------------------------------------------------------
+  // Mobile nav: close the menu after tapping a link
+  // ---------------------------------------------------------------
   document.querySelectorAll('.site-nav a').forEach(a=>{
     a.addEventListener('click', ()=>{ document.getElementById('nav-toggle').checked = false; });
   });
@@ -587,51 +677,106 @@
       window.scrollY > 20 ? '0 2px 14px rgba(0,0,0,0.08)' : 'none';
   });
 
-  // build gallery with graceful placeholders (replace src with real files any time)
-  const works = 11;
-  const grid = document.getElementById('gallery-grid');
-  for(let i=1;i<=works;i++){
-    const fig = document.createElement('figure');
-    fig.className = 'artwork';
-    fig.innerHTML = `
-      <div class="frame">
-        <img src="assets/images/image${i}.jpg" alt="Migma — Work ${String(i).padStart(2,'0')}"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="placeholder" style="display:none;">
-          <span class="num">${String(i).padStart(2,'0')}</span>
-          <span>Image pending</span>
+  // ---------------------------------------------------------------
+  // GALLERY DATA
+  // Each entry needs a filename and an orientation ('landscape' or
+  // 'portrait'). The filename is what you must upload to GitHub,
+  // inside the folder named in the comment above each list.
+  // To mark a different piece as portrait, just move "portrait"
+  // to a different line — the number in the filename does not
+  // need to match its position.
+  // ---------------------------------------------------------------
+
+  // Files expected in: assets/images/collection-eu/01.jpg ... 12.jpg
+  const collectionWorks = [
+    { file:'01.jpg', orientation:'portrait'  },
+    { file:'02.jpg', orientation:'portrait'  },
+    { file:'03.jpg', orientation:'landscape' },
+    { file:'04.jpg', orientation:'landscape' },
+    { file:'05.jpg', orientation:'landscape' },
+    { file:'06.jpg', orientation:'landscape' },
+    { file:'07.jpg', orientation:'landscape' },
+    { file:'08.jpg', orientation:'landscape' },
+    { file:'09.jpg', orientation:'landscape' },
+    { file:'10.jpg', orientation:'landscape' },
+    { file:'11.jpg', orientation:'landscape' },
+    { file:'12.jpg', orientation:'landscape' },
+  ];
+
+  // Files expected in: assets/images/exhibition-current/01.jpg ... 07.jpg
+  const exhibitionWorks = [
+    { file:'01.jpg', orientation:'landscape' },
+    { file:'02.jpg', orientation:'landscape' },
+    { file:'03.jpg', orientation:'landscape' },
+    { file:'04.jpg', orientation:'landscape' },
+    { file:'05.jpg', orientation:'landscape' },
+    { file:'06.jpg', orientation:'landscape' },
+    { file:'07.jpg', orientation:'landscape' },
+  ];
+
+  function buildGallery(containerId, folder, items, captionFn){
+    const grid = document.getElementById(containerId);
+    items.forEach((item, i) => {
+      const n = i + 1;
+      const fig = document.createElement('figure');
+      fig.className = 'artwork';
+      fig.innerHTML = `
+        <div class="frame ${item.orientation}">
+          <img src="assets/images/${folder}/${item.file}" alt="Migma — Work ${String(n).padStart(2,'0')}"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="placeholder" style="display:none;">
+            <span class="num">${String(n).padStart(2,'0')}</span>
+            <span class="tag">Image pending</span>
+          </div>
         </div>
-      </div>
-      <figcaption><span class="artist">Migma</span> — Artwork Title — 2026 — Price on request</figcaption>`;
-    grid.appendChild(fig);
-    // trigger onerror check immediately if image genuinely missing (handled by browser natively)
+        <figcaption>${captionFn(n)}</figcaption>`;
+      grid.appendChild(fig);
+    });
   }
 
-  function openCollection(){
-    const section = document.getElementById('collection-one');
+  buildGallery('collection-gallery', 'collection-eu', collectionWorks,
+    n => `<span class="artist">Migma</span> — Artwork Title — 2026 — Price on request`);
+
+  buildGallery('exhibition-gallery', 'exhibition-current', exhibitionWorks,
+    n => `<span class="artist">Migma</span> — Exhibition view ${String(n).padStart(2,'0')}`);
+
+  // ---------------------------------------------------------------
+  // Detail views (Collections + Exhibitions share the same pattern)
+  // ---------------------------------------------------------------
+  function openDetail(id){
+    const section = document.getElementById(id);
     section.hidden = false;
     section.scrollIntoView({behavior:'smooth'});
   }
-  function closeCollection(){
-    document.getElementById('collections').scrollIntoView({behavior:'smooth'});
-    setTimeout(()=>{ document.getElementById('collection-one').hidden = true; }, 400);
+  function closeDetail(detailId, backToId){
+    document.getElementById(backToId).scrollIntoView({behavior:'smooth'});
+    setTimeout(()=>{ document.getElementById(detailId).hidden = true; }, 400);
   }
 
-  // sound toggle (user-controlled — most browsers block forced autoplay anyway)
+  // ---------------------------------------------------------------
+  // Sound toggle — click-to-play. Browsers block audio that starts
+  // on its own, so a user-initiated click is the reliable way to
+  // get the Chopin track playing.
+  // ---------------------------------------------------------------
   const audio = document.getElementById('bg-music');
   const soundBtn = document.getElementById('sound-toggle');
+  const soundLabel = document.getElementById('sound-label');
   let playing = false;
   soundBtn.addEventListener('click', ()=>{
     if(!playing){
       audio.volume = 0.3;
       audio.play().then(()=>{
         playing = true;
-        soundBtn.textContent = '♪ Sound: On';
-      }).catch(()=>{ soundBtn.textContent = '♪ Unavailable'; });
+        soundBtn.dataset.playing = 'true';
+        soundBtn.setAttribute('aria-pressed','true');
+        soundLabel.textContent = 'Sound: On';
+      }).catch(()=>{ soundLabel.textContent = 'Sound: Unavailable'; });
     } else {
       audio.pause();
       playing = false;
-      soundBtn.textContent = '♪ Sound: Off';
+      soundBtn.dataset.playing = 'false';
+      soundBtn.setAttribute('aria-pressed','false');
+      soundLabel.textContent = 'Sound: Off';
     }
   });
 
@@ -646,5 +791,7 @@
   }
 </script>
 
+</body>
+</html>
 </body>
 </html>
