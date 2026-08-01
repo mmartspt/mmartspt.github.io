@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MM Arts — Independent Art Platform</title>
 <meta name="description" content="MM Arts — an independent contemporary art platform supporting emerging artists worldwide.">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="apple-touch-icon" href="assets/images/favicon-touch.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Space+Grotesk:wght@400;500;600&family=Work+Sans:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
@@ -120,6 +122,7 @@
   }
   @media (max-width:860px){
     .nav-group{gap:0.6rem;}
+    .lang-toggle{transform:scale(0.9); transform-origin:right center; margin-left:0.4rem;}
     .site-nav{
       position:absolute; top:100%; left:0; right:0;
       flex-direction:column; gap:0;
@@ -326,6 +329,7 @@
   }
   .frame.landscape{aspect-ratio:4/3;}
   .frame.portrait{aspect-ratio:3/4;}
+  .frame.square{aspect-ratio:1/1;}
   .frame img{width:100%; height:100%; object-fit:cover;}
   .frame .placeholder{
     position:absolute; inset:0;
@@ -453,6 +457,32 @@
     .sound-toggle[data-playing="true"] .eq .bar{animation:none; height:14px;}
   }
 
+  /* ---------------- SCROLL TURTLE ---------------- */
+  .scroll-turtle{
+    position:fixed; right:4px; top:0; width:24px; height:24px;
+    z-index:850; pointer-events:none; opacity:0.9;
+    filter:drop-shadow(0 2px 4px rgba(20,19,14,0.25));
+  }
+  .scroll-turtle img{width:100%; height:100%; object-fit:contain;}
+  @media (max-width:600px){ .scroll-turtle{display:none;} }
+
+  /* ---------------- SECTION BACKGROUND DECOR ---------------- */
+  .room{position:relative; overflow:hidden;}
+  .room-decor{
+    position:absolute; pointer-events:none; z-index:0;
+    width:min(380px,55vw); height:min(380px,55vw); opacity:0.06;
+  }
+  .room-decor svg{width:100%; height:100%;}
+  .room > .wrap{position:relative; z-index:1;}
+  .room-decor.pos-tr{top:-10%; right:-8%;}
+  .room-decor.pos-bl{bottom:-10%; left:-8%;}
+  .room-decor.pos-tl{top:-10%; left:-8%;}
+  .room-decor.pos-br{bottom:-10%; right:-8%;}
+  .room-decor.tone-indigo{color:var(--indigo);}
+  .room-decor.tone-forest{color:var(--forest);}
+  .room-decor.tone-plum{color:var(--plum);}
+  .room-decor.tone-terracotta{color:var(--terracotta);}
+
   .reveal{opacity:0; transform:translateY(16px); transition:opacity 0.6s ease, transform 0.6s ease;}
   .reveal.in{opacity:1; transform:none;}
   @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none;} }
@@ -464,22 +494,23 @@
   <div class="header-inner">
     <a href="#home"><img src="assets/images/logo.png" alt="MM Arts logo" class="brand-logo"></a>
     <div class="nav-group">
-      <div class="lang-toggle" role="group" aria-label="Language / Idioma / Langue / Idioma">
-        <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
-        <button type="button" class="lang-btn" data-lang="pt" aria-pressed="false">PT</button>
-        <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false">FR</button>
-        <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
-        <button type="button" class="lang-btn" data-lang="zh" aria-pressed="false">中文</button>
-      </div>
       <input type="checkbox" id="nav-toggle">
       <label for="nav-toggle" class="nav-burger">☰</label>
       <nav class="site-nav">
         <a href="#about" data-i18n="nav_about">About</a>
         <a href="#collections" data-i18n="nav_collections">Collections</a>
+        <a href="#individual-pieces" data-i18n="nav_individual">Individual Pieces</a>
         <a href="#exhibitions" data-i18n="nav_exhibitions">Exhibitions</a>
         <a href="#shop" data-i18n="nav_shop">Shop</a>
         <a href="#contact" data-i18n="nav_contact">Contact</a>
       </nav>
+    </div>
+    <div class="lang-toggle" role="group" aria-label="Language / Idioma / Langue / Idioma">
+      <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" class="lang-btn" data-lang="pt" aria-pressed="false">PT</button>
+      <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false">FR</button>
+      <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      <button type="button" class="lang-btn" data-lang="zh" aria-pressed="false">中文</button>
     </div>
   </div>
 </header>
@@ -517,6 +548,9 @@
   </div>
 
   <section id="about" class="room reveal">
+    <div class="room-decor pos-tr tone-indigo" aria-hidden="true">
+      <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><path d="M 32.0 30.0 L 32.23 30.41 L 32.37 30.9 L 32.4 31.45 L 32.29 32.04 L 32.05 32.63 L 31.67 33.19 L 31.14 33.69 L 30.49 34.1 L 29.72 34.39 L 28.87 34.53 L 27.96 34.49 L 27.03 34.27 L 26.12 33.85 L 25.27 33.24 L 24.52 32.44 L 23.91 31.47 L 23.48 30.36 L 23.25 29.15 L 23.26 27.86 L 23.53 26.56 L 24.04 25.28 L 24.82 24.08 L 25.84 23.01 L 27.07 22.13 L 28.5 21.46 L 30.06 21.07 L 31.72 20.96 L 33.42 21.17 L 35.1 21.71 L 36.69 22.57 L 38.13 23.74 L 39.37 25.19 L 40.34 26.88 L 41.0 28.77 L 41.31 30.79 L 41.24 32.88 L 40.77 34.98 L 39.91 36.99 L 38.68 38.86 L 37.08 40.5 L 35.18 41.85 L 33.01 42.85 L 30.66 43.45 L 28.18 43.61 L 25.67 43.31 L 23.21 42.55 L 20.89 41.33 L 18.8 39.67 L 17.0 37.62 L 15.59 35.24 L 14.62 32.6 L 14.13 29.78 L 14.17 26.87 L 14.75 23.96 L 15.87 21.17 L 17.5 18.58 L 19.6 16.3 L 22.12 14.41 L 24.99 12.99 L 28.12 12.1 L 31.4 11.79 L 34.73 12.08 L 38.0 12.99 L 41.1 14.5 L 43.91 16.57 L 46.33 19.15 L 48.26 22.17 L 49.63 25.54 L 50.38 29.15 L 50.47 32.88 L 49.86 36.61 L 48.58 40.21 L 46.64 43.57 L 44.09 46.55 L 41.0 49.05 L 37.47 50.98 L 33.6 52.24 L 29.52 52.79 L 25.36 52.6 L 21.26 51.63 L 17.35 49.93 L 13.78 47.51 L 10.68 44.46 L 8.14 40.85 L 6.29 36.8 L 5.19 32.43 L 4.89 27.89 L 5.42 23.32 L 6.79 18.88 L 8.97 14.72"/></svg>
+    </div>
     <div class="wrap">
       <div class="room-head accent-indigo">
         <span class="room-index" data-i18n="section_01">Section 01</span>
@@ -571,12 +605,15 @@
   </div>
 
   <section id="collections" class="room room-tint reveal">
+    <div class="room-decor pos-bl tone-forest" aria-hidden="true">
+      <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><path d="M 32.0 30.0 L 32.23 30.41 L 32.37 30.9 L 32.4 31.45 L 32.29 32.04 L 32.05 32.63 L 31.67 33.19 L 31.14 33.69 L 30.49 34.1 L 29.72 34.39 L 28.87 34.53 L 27.96 34.49 L 27.03 34.27 L 26.12 33.85 L 25.27 33.24 L 24.52 32.44 L 23.91 31.47 L 23.48 30.36 L 23.25 29.15 L 23.26 27.86 L 23.53 26.56 L 24.04 25.28 L 24.82 24.08 L 25.84 23.01 L 27.07 22.13 L 28.5 21.46 L 30.06 21.07 L 31.72 20.96 L 33.42 21.17 L 35.1 21.71 L 36.69 22.57 L 38.13 23.74 L 39.37 25.19 L 40.34 26.88 L 41.0 28.77 L 41.31 30.79 L 41.24 32.88 L 40.77 34.98 L 39.91 36.99 L 38.68 38.86 L 37.08 40.5 L 35.18 41.85 L 33.01 42.85 L 30.66 43.45 L 28.18 43.61 L 25.67 43.31 L 23.21 42.55 L 20.89 41.33 L 18.8 39.67 L 17.0 37.62 L 15.59 35.24 L 14.62 32.6 L 14.13 29.78 L 14.17 26.87 L 14.75 23.96 L 15.87 21.17 L 17.5 18.58 L 19.6 16.3 L 22.12 14.41 L 24.99 12.99 L 28.12 12.1 L 31.4 11.79 L 34.73 12.08 L 38.0 12.99 L 41.1 14.5 L 43.91 16.57 L 46.33 19.15 L 48.26 22.17 L 49.63 25.54 L 50.38 29.15 L 50.47 32.88 L 49.86 36.61 L 48.58 40.21 L 46.64 43.57 L 44.09 46.55 L 41.0 49.05 L 37.47 50.98 L 33.6 52.24 L 29.52 52.79 L 25.36 52.6 L 21.26 51.63 L 17.35 49.93 L 13.78 47.51 L 10.68 44.46 L 8.14 40.85 L 6.29 36.8 L 5.19 32.43 L 4.89 27.89 L 5.42 23.32 L 6.79 18.88 L 8.97 14.72"/></svg>
+    </div>
     <div class="wrap">
       <div class="room-head">
         <span class="room-index" data-i18n="section_02">Section 02</span>
         <h2 data-i18n="collections_h2">Collections</h2>
       </div>
-      <p class="room-lede" data-i18n="collections_lede">MM Arts presents collections developed around specific themes, emotions and visual research. Each collection reflects a distinct artistic direction and brings together works that engage in dialogue through form, concept and expression.</p>
+      <p class="room-lede" data-i18n="collections_lede">MM Arts presents collections developed around specific themes, emotions and narratives. Each collection reflects a distinct artistic direction and brings together works that engage in dialogue through form, concept and expression.</p>
 
       <div class="collections-grid">
         <button class="collection-card" onclick="openDetail('collection-one')">
@@ -616,13 +653,37 @@
     <span class="line"></span>
   </div>
 
+  <section id="individual-pieces" class="room reveal">
+    <div class="room-decor pos-tr tone-plum" aria-hidden="true">
+      <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><path d="M 32.0 30.0 L 32.23 30.41 L 32.37 30.9 L 32.4 31.45 L 32.29 32.04 L 32.05 32.63 L 31.67 33.19 L 31.14 33.69 L 30.49 34.1 L 29.72 34.39 L 28.87 34.53 L 27.96 34.49 L 27.03 34.27 L 26.12 33.85 L 25.27 33.24 L 24.52 32.44 L 23.91 31.47 L 23.48 30.36 L 23.25 29.15 L 23.26 27.86 L 23.53 26.56 L 24.04 25.28 L 24.82 24.08 L 25.84 23.01 L 27.07 22.13 L 28.5 21.46 L 30.06 21.07 L 31.72 20.96 L 33.42 21.17 L 35.1 21.71 L 36.69 22.57 L 38.13 23.74 L 39.37 25.19 L 40.34 26.88 L 41.0 28.77 L 41.31 30.79 L 41.24 32.88 L 40.77 34.98 L 39.91 36.99 L 38.68 38.86 L 37.08 40.5 L 35.18 41.85 L 33.01 42.85 L 30.66 43.45 L 28.18 43.61 L 25.67 43.31 L 23.21 42.55 L 20.89 41.33 L 18.8 39.67 L 17.0 37.62 L 15.59 35.24 L 14.62 32.6 L 14.13 29.78 L 14.17 26.87 L 14.75 23.96 L 15.87 21.17 L 17.5 18.58 L 19.6 16.3 L 22.12 14.41 L 24.99 12.99 L 28.12 12.1 L 31.4 11.79 L 34.73 12.08 L 38.0 12.99 L 41.1 14.5 L 43.91 16.57 L 46.33 19.15 L 48.26 22.17 L 49.63 25.54 L 50.38 29.15 L 50.47 32.88 L 49.86 36.61 L 48.58 40.21 L 46.64 43.57 L 44.09 46.55 L 41.0 49.05 L 37.47 50.98 L 33.6 52.24 L 29.52 52.79 L 25.36 52.6 L 21.26 51.63 L 17.35 49.93 L 13.78 47.51 L 10.68 44.46 L 8.14 40.85 L 6.29 36.8 L 5.19 32.43 L 4.89 27.89 L 5.42 23.32 L 6.79 18.88 L 8.97 14.72"/></svg>
+    </div>
+    <div class="wrap">
+      <div class="room-head">
+        <span class="room-index" data-i18n="section_03">Section 03</span>
+        <h2 data-i18n="ip_h2">Individual Pieces</h2>
+      </div>
+      <p class="room-lede" data-i18n="ip_lede">Individual pieces outside the numbered collections — available one at a time, with or without a listed price.</p>
+
+      <div class="gallery" id="ip-gallery"></div>
+    </div>
+  </section>
+
+  <div class="room-divider">
+    <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M 32.0 30.0 L 32.23 30.41 L 32.37 30.9 L 32.4 31.45 L 32.29 32.04 L 32.05 32.63 L 31.67 33.19 L 31.14 33.69 L 30.49 34.1 L 29.72 34.39 L 28.87 34.53 L 27.96 34.49 L 27.03 34.27 L 26.12 33.85 L 25.27 33.24 L 24.52 32.44 L 23.91 31.47 L 23.48 30.36 L 23.25 29.15 L 23.26 27.86 L 23.53 26.56 L 24.04 25.28 L 24.82 24.08 L 25.84 23.01 L 27.07 22.13 L 28.5 21.46 L 30.06 21.07 L 31.72 20.96 L 33.42 21.17 L 35.1 21.71 L 36.69 22.57 L 38.13 23.74 L 39.37 25.19 L 40.34 26.88 L 41.0 28.77 L 41.31 30.79 L 41.24 32.88 L 40.77 34.98 L 39.91 36.99 L 38.68 38.86 L 37.08 40.5 L 35.18 41.85 L 33.01 42.85 L 30.66 43.45 L 28.18 43.61 L 25.67 43.31 L 23.21 42.55 L 20.89 41.33 L 18.8 39.67 L 17.0 37.62 L 15.59 35.24 L 14.62 32.6 L 14.13 29.78 L 14.17 26.87 L 14.75 23.96 L 15.87 21.17 L 17.5 18.58 L 19.6 16.3 L 22.12 14.41 L 24.99 12.99 L 28.12 12.1 L 31.4 11.79 L 34.73 12.08 L 38.0 12.99 L 41.1 14.5 L 43.91 16.57 L 46.33 19.15 L 48.26 22.17 L 49.63 25.54 L 50.38 29.15 L 50.47 32.88 L 49.86 36.61 L 48.58 40.21 L 46.64 43.57 L 44.09 46.55 L 41.0 49.05 L 37.47 50.98 L 33.6 52.24 L 29.52 52.79 L 25.36 52.6 L 21.26 51.63 L 17.35 49.93 L 13.78 47.51 L 10.68 44.46 L 8.14 40.85 L 6.29 36.8 L 5.19 32.43 L 4.89 27.89 L 5.42 23.32 L 6.79 18.88 L 8.97 14.72"/></svg>
+    <span class="num" data-i18n="section_04">Section 04</span>
+    <span class="line"></span>
+  </div>
+
   <section id="exhibitions" class="room reveal">
+    <div class="room-decor pos-tl tone-terracotta" aria-hidden="true">
+      <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><path d="M 32.0 30.0 L 32.23 30.41 L 32.37 30.9 L 32.4 31.45 L 32.29 32.04 L 32.05 32.63 L 31.67 33.19 L 31.14 33.69 L 30.49 34.1 L 29.72 34.39 L 28.87 34.53 L 27.96 34.49 L 27.03 34.27 L 26.12 33.85 L 25.27 33.24 L 24.52 32.44 L 23.91 31.47 L 23.48 30.36 L 23.25 29.15 L 23.26 27.86 L 23.53 26.56 L 24.04 25.28 L 24.82 24.08 L 25.84 23.01 L 27.07 22.13 L 28.5 21.46 L 30.06 21.07 L 31.72 20.96 L 33.42 21.17 L 35.1 21.71 L 36.69 22.57 L 38.13 23.74 L 39.37 25.19 L 40.34 26.88 L 41.0 28.77 L 41.31 30.79 L 41.24 32.88 L 40.77 34.98 L 39.91 36.99 L 38.68 38.86 L 37.08 40.5 L 35.18 41.85 L 33.01 42.85 L 30.66 43.45 L 28.18 43.61 L 25.67 43.31 L 23.21 42.55 L 20.89 41.33 L 18.8 39.67 L 17.0 37.62 L 15.59 35.24 L 14.62 32.6 L 14.13 29.78 L 14.17 26.87 L 14.75 23.96 L 15.87 21.17 L 17.5 18.58 L 19.6 16.3 L 22.12 14.41 L 24.99 12.99 L 28.12 12.1 L 31.4 11.79 L 34.73 12.08 L 38.0 12.99 L 41.1 14.5 L 43.91 16.57 L 46.33 19.15 L 48.26 22.17 L 49.63 25.54 L 50.38 29.15 L 50.47 32.88 L 49.86 36.61 L 48.58 40.21 L 46.64 43.57 L 44.09 46.55 L 41.0 49.05 L 37.47 50.98 L 33.6 52.24 L 29.52 52.79 L 25.36 52.6 L 21.26 51.63 L 17.35 49.93 L 13.78 47.51 L 10.68 44.46 L 8.14 40.85 L 6.29 36.8 L 5.19 32.43 L 4.89 27.89 L 5.42 23.32 L 6.79 18.88 L 8.97 14.72"/></svg>
+    </div>
     <div class="wrap">
       <div class="room-head accent-plum">
-        <span class="room-index" data-i18n="section_03">Section 03</span>
+        <span class="room-index" data-i18n="section_04">Section 04</span>
         <h2 data-i18n="exhibitions_h2">Exhibitions</h2>
       </div>
-      <p class="room-lede" data-i18n="exhibitions_lede" data-i18n-html>Beyond the screen, MM Arts brings collections into physical space. Each exhibition offers a <strong>direct, unmediated encounter</strong> with scale, material and brushwork that a photograph cannot fully carry.</p>
+      <p class="room-lede" data-i18n="exhibitions_lede" data-i18n-html>Beyond the screen, MM Arts brings collections into physical space. Each exhibition offers a <strong>direct, unmediated encounter</strong> with the material and brushwork that a photograph cannot fully carry.</p>
 
       <div class="collections-grid">
         <button class="collection-card" onclick="openDetail('exhibition-current')">
@@ -646,7 +707,7 @@
         <h2 data-i18n="exhibition_detail_h2" data-i18n-html>"EU" — Opening Exhibition</h2>
       </div>
       <p class="manifesto" data-i18n="exhibition_detail_manifesto">One collection, brought into physical space for the first time.</p>
-      <p class="room-lede" data-i18n="exhibition_detail_lede" data-i18n-html>MM Arts presented the <strong>first public exhibition</strong> of Migma's debut collection, bringing the original works of "EU" / "I (me)" into physical space for the first time. The exhibition took place at <strong>Galerias Alto da Barra, in Oeiras, Portugal</strong>, during <strong>March 2026</strong>, offering visitors a direct encounter with the scale, texture and presence of each piece — details a screen cannot fully carry.</p>
+      <p class="room-lede" data-i18n="exhibition_detail_lede" data-i18n-html>MM Arts presented the <strong>first public exhibition</strong> of Migma's debut collection, bringing the original works of "EU" / "I (me)" into physical space for the first time. The exhibition took place at <strong>Galerias Alto da Barra, in Oeiras, Portugal</strong>, during <strong>March 2026</strong>, offering visitors a direct encounter with the texture and presence of each piece — details a screen cannot fully carry.</p>
 
       <div class="meta-row">
         <div><span class="label" data-i18n="meta_location_label">Location</span><span class="value" data-i18n="meta_location_value">Galerias Alto da Barra, Oeiras, Portugal</span></div>
@@ -660,14 +721,17 @@
 
   <div class="room-divider">
     <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M 32.0 30.0 L 32.23 30.41 L 32.37 30.9 L 32.4 31.45 L 32.29 32.04 L 32.05 32.63 L 31.67 33.19 L 31.14 33.69 L 30.49 34.1 L 29.72 34.39 L 28.87 34.53 L 27.96 34.49 L 27.03 34.27 L 26.12 33.85 L 25.27 33.24 L 24.52 32.44 L 23.91 31.47 L 23.48 30.36 L 23.25 29.15 L 23.26 27.86 L 23.53 26.56 L 24.04 25.28 L 24.82 24.08 L 25.84 23.01 L 27.07 22.13 L 28.5 21.46 L 30.06 21.07 L 31.72 20.96 L 33.42 21.17 L 35.1 21.71 L 36.69 22.57 L 38.13 23.74 L 39.37 25.19 L 40.34 26.88 L 41.0 28.77 L 41.31 30.79 L 41.24 32.88 L 40.77 34.98 L 39.91 36.99 L 38.68 38.86 L 37.08 40.5 L 35.18 41.85 L 33.01 42.85 L 30.66 43.45 L 28.18 43.61 L 25.67 43.31 L 23.21 42.55 L 20.89 41.33 L 18.8 39.67 L 17.0 37.62 L 15.59 35.24 L 14.62 32.6 L 14.13 29.78 L 14.17 26.87 L 14.75 23.96 L 15.87 21.17 L 17.5 18.58 L 19.6 16.3 L 22.12 14.41 L 24.99 12.99 L 28.12 12.1 L 31.4 11.79 L 34.73 12.08 L 38.0 12.99 L 41.1 14.5 L 43.91 16.57 L 46.33 19.15 L 48.26 22.17 L 49.63 25.54 L 50.38 29.15 L 50.47 32.88 L 49.86 36.61 L 48.58 40.21 L 46.64 43.57 L 44.09 46.55 L 41.0 49.05 L 37.47 50.98 L 33.6 52.24 L 29.52 52.79 L 25.36 52.6 L 21.26 51.63 L 17.35 49.93 L 13.78 47.51 L 10.68 44.46 L 8.14 40.85 L 6.29 36.8 L 5.19 32.43 L 4.89 27.89 L 5.42 23.32 L 6.79 18.88 L 8.97 14.72"/></svg>
-    <span class="num" data-i18n="section_04">Section 04</span>
+    <span class="num" data-i18n="section_05">Section 05</span>
     <span class="line"></span>
   </div>
 
   <section id="shop" class="room room-tint reveal">
+    <div class="room-decor pos-br tone-indigo" aria-hidden="true">
+      <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><path d="M 32.0 30.0 L 32.23 30.41 L 32.37 30.9 L 32.4 31.45 L 32.29 32.04 L 32.05 32.63 L 31.67 33.19 L 31.14 33.69 L 30.49 34.1 L 29.72 34.39 L 28.87 34.53 L 27.96 34.49 L 27.03 34.27 L 26.12 33.85 L 25.27 33.24 L 24.52 32.44 L 23.91 31.47 L 23.48 30.36 L 23.25 29.15 L 23.26 27.86 L 23.53 26.56 L 24.04 25.28 L 24.82 24.08 L 25.84 23.01 L 27.07 22.13 L 28.5 21.46 L 30.06 21.07 L 31.72 20.96 L 33.42 21.17 L 35.1 21.71 L 36.69 22.57 L 38.13 23.74 L 39.37 25.19 L 40.34 26.88 L 41.0 28.77 L 41.31 30.79 L 41.24 32.88 L 40.77 34.98 L 39.91 36.99 L 38.68 38.86 L 37.08 40.5 L 35.18 41.85 L 33.01 42.85 L 30.66 43.45 L 28.18 43.61 L 25.67 43.31 L 23.21 42.55 L 20.89 41.33 L 18.8 39.67 L 17.0 37.62 L 15.59 35.24 L 14.62 32.6 L 14.13 29.78 L 14.17 26.87 L 14.75 23.96 L 15.87 21.17 L 17.5 18.58 L 19.6 16.3 L 22.12 14.41 L 24.99 12.99 L 28.12 12.1 L 31.4 11.79 L 34.73 12.08 L 38.0 12.99 L 41.1 14.5 L 43.91 16.57 L 46.33 19.15 L 48.26 22.17 L 49.63 25.54 L 50.38 29.15 L 50.47 32.88 L 49.86 36.61 L 48.58 40.21 L 46.64 43.57 L 44.09 46.55 L 41.0 49.05 L 37.47 50.98 L 33.6 52.24 L 29.52 52.79 L 25.36 52.6 L 21.26 51.63 L 17.35 49.93 L 13.78 47.51 L 10.68 44.46 L 8.14 40.85 L 6.29 36.8 L 5.19 32.43 L 4.89 27.89 L 5.42 23.32 L 6.79 18.88 L 8.97 14.72"/></svg>
+    </div>
     <div class="wrap">
       <div class="room-head accent-terracotta">
-        <span class="room-index" data-i18n="section_04">Section 04</span>
+        <span class="room-index" data-i18n="section_05">Section 05</span>
         <h2 data-i18n="shop_h2">Shop</h2>
       </div>
       <p class="room-lede" data-i18n="shop_lede">The MM Arts Shop brings the "EU" collection into everyday objects — prints, originals and limited pieces available to order.</p>
@@ -678,14 +742,14 @@
 
   <div class="room-divider">
     <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M 32.0 30.0 L 32.23 30.41 L 32.37 30.9 L 32.4 31.45 L 32.29 32.04 L 32.05 32.63 L 31.67 33.19 L 31.14 33.69 L 30.49 34.1 L 29.72 34.39 L 28.87 34.53 L 27.96 34.49 L 27.03 34.27 L 26.12 33.85 L 25.27 33.24 L 24.52 32.44 L 23.91 31.47 L 23.48 30.36 L 23.25 29.15 L 23.26 27.86 L 23.53 26.56 L 24.04 25.28 L 24.82 24.08 L 25.84 23.01 L 27.07 22.13 L 28.5 21.46 L 30.06 21.07 L 31.72 20.96 L 33.42 21.17 L 35.1 21.71 L 36.69 22.57 L 38.13 23.74 L 39.37 25.19 L 40.34 26.88 L 41.0 28.77 L 41.31 30.79 L 41.24 32.88 L 40.77 34.98 L 39.91 36.99 L 38.68 38.86 L 37.08 40.5 L 35.18 41.85 L 33.01 42.85 L 30.66 43.45 L 28.18 43.61 L 25.67 43.31 L 23.21 42.55 L 20.89 41.33 L 18.8 39.67 L 17.0 37.62 L 15.59 35.24 L 14.62 32.6 L 14.13 29.78 L 14.17 26.87 L 14.75 23.96 L 15.87 21.17 L 17.5 18.58 L 19.6 16.3 L 22.12 14.41 L 24.99 12.99 L 28.12 12.1 L 31.4 11.79 L 34.73 12.08 L 38.0 12.99 L 41.1 14.5 L 43.91 16.57 L 46.33 19.15 L 48.26 22.17 L 49.63 25.54 L 50.38 29.15 L 50.47 32.88 L 49.86 36.61 L 48.58 40.21 L 46.64 43.57 L 44.09 46.55 L 41.0 49.05 L 37.47 50.98 L 33.6 52.24 L 29.52 52.79 L 25.36 52.6 L 21.26 51.63 L 17.35 49.93 L 13.78 47.51 L 10.68 44.46 L 8.14 40.85 L 6.29 36.8 L 5.19 32.43 L 4.89 27.89 L 5.42 23.32 L 6.79 18.88 L 8.97 14.72"/></svg>
-    <span class="num" data-i18n="section_05">Section 05</span>
+    <span class="num" data-i18n="section_06">Section 06</span>
     <span class="line"></span>
   </div>
 
   <section class="room reveal" id="film">
     <div class="wrap">
       <div class="room-head">
-        <span class="room-index" data-i18n="section_05">Section 05</span>
+        <span class="room-index" data-i18n="section_06">Section 06</span>
         <h2 data-i18n="video_h2">Promotional Video</h2>
       </div>
       <p class="room-lede" data-i18n="video_lede">An introduction to the MM Arts vision, values and long-term objectives.</p>
@@ -697,14 +761,17 @@
 
   <div class="room-divider">
     <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M 32.0 30.0 L 32.23 30.41 L 32.37 30.9 L 32.4 31.45 L 32.29 32.04 L 32.05 32.63 L 31.67 33.19 L 31.14 33.69 L 30.49 34.1 L 29.72 34.39 L 28.87 34.53 L 27.96 34.49 L 27.03 34.27 L 26.12 33.85 L 25.27 33.24 L 24.52 32.44 L 23.91 31.47 L 23.48 30.36 L 23.25 29.15 L 23.26 27.86 L 23.53 26.56 L 24.04 25.28 L 24.82 24.08 L 25.84 23.01 L 27.07 22.13 L 28.5 21.46 L 30.06 21.07 L 31.72 20.96 L 33.42 21.17 L 35.1 21.71 L 36.69 22.57 L 38.13 23.74 L 39.37 25.19 L 40.34 26.88 L 41.0 28.77 L 41.31 30.79 L 41.24 32.88 L 40.77 34.98 L 39.91 36.99 L 38.68 38.86 L 37.08 40.5 L 35.18 41.85 L 33.01 42.85 L 30.66 43.45 L 28.18 43.61 L 25.67 43.31 L 23.21 42.55 L 20.89 41.33 L 18.8 39.67 L 17.0 37.62 L 15.59 35.24 L 14.62 32.6 L 14.13 29.78 L 14.17 26.87 L 14.75 23.96 L 15.87 21.17 L 17.5 18.58 L 19.6 16.3 L 22.12 14.41 L 24.99 12.99 L 28.12 12.1 L 31.4 11.79 L 34.73 12.08 L 38.0 12.99 L 41.1 14.5 L 43.91 16.57 L 46.33 19.15 L 48.26 22.17 L 49.63 25.54 L 50.38 29.15 L 50.47 32.88 L 49.86 36.61 L 48.58 40.21 L 46.64 43.57 L 44.09 46.55 L 41.0 49.05 L 37.47 50.98 L 33.6 52.24 L 29.52 52.79 L 25.36 52.6 L 21.26 51.63 L 17.35 49.93 L 13.78 47.51 L 10.68 44.46 L 8.14 40.85 L 6.29 36.8 L 5.19 32.43 L 4.89 27.89 L 5.42 23.32 L 6.79 18.88 L 8.97 14.72"/></svg>
-    <span class="num" data-i18n="section_06">Section 06</span>
+    <span class="num" data-i18n="section_07">Section 07</span>
     <span class="line"></span>
   </div>
 
   <section id="contact" class="room room-tint reveal">
+    <div class="room-decor pos-tl tone-forest" aria-hidden="true">
+      <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><path d="M 32.0 30.0 L 32.23 30.41 L 32.37 30.9 L 32.4 31.45 L 32.29 32.04 L 32.05 32.63 L 31.67 33.19 L 31.14 33.69 L 30.49 34.1 L 29.72 34.39 L 28.87 34.53 L 27.96 34.49 L 27.03 34.27 L 26.12 33.85 L 25.27 33.24 L 24.52 32.44 L 23.91 31.47 L 23.48 30.36 L 23.25 29.15 L 23.26 27.86 L 23.53 26.56 L 24.04 25.28 L 24.82 24.08 L 25.84 23.01 L 27.07 22.13 L 28.5 21.46 L 30.06 21.07 L 31.72 20.96 L 33.42 21.17 L 35.1 21.71 L 36.69 22.57 L 38.13 23.74 L 39.37 25.19 L 40.34 26.88 L 41.0 28.77 L 41.31 30.79 L 41.24 32.88 L 40.77 34.98 L 39.91 36.99 L 38.68 38.86 L 37.08 40.5 L 35.18 41.85 L 33.01 42.85 L 30.66 43.45 L 28.18 43.61 L 25.67 43.31 L 23.21 42.55 L 20.89 41.33 L 18.8 39.67 L 17.0 37.62 L 15.59 35.24 L 14.62 32.6 L 14.13 29.78 L 14.17 26.87 L 14.75 23.96 L 15.87 21.17 L 17.5 18.58 L 19.6 16.3 L 22.12 14.41 L 24.99 12.99 L 28.12 12.1 L 31.4 11.79 L 34.73 12.08 L 38.0 12.99 L 41.1 14.5 L 43.91 16.57 L 46.33 19.15 L 48.26 22.17 L 49.63 25.54 L 50.38 29.15 L 50.47 32.88 L 49.86 36.61 L 48.58 40.21 L 46.64 43.57 L 44.09 46.55 L 41.0 49.05 L 37.47 50.98 L 33.6 52.24 L 29.52 52.79 L 25.36 52.6 L 21.26 51.63 L 17.35 49.93 L 13.78 47.51 L 10.68 44.46 L 8.14 40.85 L 6.29 36.8 L 5.19 32.43 L 4.89 27.89 L 5.42 23.32 L 6.79 18.88 L 8.97 14.72"/></svg>
+    </div>
     <div class="wrap">
       <div class="room-head">
-        <span class="room-index" data-i18n="section_06">Section 06</span>
+        <span class="room-index" data-i18n="section_07">Section 07</span>
         <h2 data-i18n="contact_h2">Contact</h2>
       </div>
       <p class="room-lede" data-i18n="contact_lede" data-i18n-html>For <strong>professional inquiries, artist submissions, collaborations or partnerships</strong>, please contact us through the official channels below.</p>
@@ -727,6 +794,7 @@
     <div class="footer-links">
       <a href="#about" data-i18n="nav_about">About</a>
       <a href="#collections" data-i18n="nav_collections">Collections</a>
+      <a href="#individual-pieces" data-i18n="nav_individual">Individual Pieces</a>
       <a href="#exhibitions" data-i18n="nav_exhibitions">Exhibitions</a>
       <a href="#shop" data-i18n="nav_shop">Shop</a>
       <a href="#contact" data-i18n="nav_contact">Contact</a>
@@ -734,6 +802,10 @@
     <div class="footer-bottom">© <span id="year"></span> MM Arts — <span data-i18n="footer_rights">All rights reserved</span></div>
   </div>
 </footer>
+
+<div class="scroll-turtle" id="scroll-turtle" aria-hidden="true">
+  <img src="assets/images/favicon.png" alt="">
+</div>
 
 <audio id="bg-music" loop preload="auto">
   <source src="assets/audio/musicjazz.mp3" type="audio/mpeg">
@@ -753,8 +825,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
 ===================================================================== */
 const I18N = {
   en: {
-    nav_about:'About', nav_collections:'Collections', nav_exhibitions:'Exhibitions', nav_shop:'Shop', nav_contact:'Contact',
-    section_01:'Section 01', section_02:'Section 02', section_03:'Section 03', section_04:'Section 04', section_05:'Section 05', section_06:'Section 06',
+    nav_about:'About', nav_collections:'Collections', nav_individual:'Individual Pieces', nav_exhibitions:'Exhibitions', nav_shop:'Shop', nav_contact:'Contact',
+    section_01:'Section 01', section_02:'Section 02', section_03:'Section 03', section_04:'Section 04', section_05:'Section 05', section_06:'Section 06', section_07:'Section 07',
 
     hero_eyebrow:'Independent Contemporary Art Platform',
     hero_sub:'Art Without Limits',
@@ -784,7 +856,7 @@ const I18N = {
     about_vision_p:'We envision a future where artistic value is not defined by age, status or institutional access, but by <strong>expression, intention and creative depth</strong>. MM Arts seeks to contribute to a more open, accessible and sustainable contemporary art ecosystem.',
 
     collections_h2:'Collections',
-    collections_lede:'MM Arts presents collections developed around specific themes, emotions and visual research. Each collection reflects a distinct artistic direction and brings together works that engage in dialogue through form, concept and expression.',
+    collections_lede:'MM Arts presents collections developed around specific themes, emotions and narratives. Each collection reflects a distinct artistic direction and brings together works that engage in dialogue through form, concept and expression.',
     collections_card1_h3:'Collection “Eu” / “I (me)”',
     collections_card1_p:'The debut collection by Migma — <strong>12 original works</strong> forming an open visual narrative.',
     view_collection:'View collection →',
@@ -800,9 +872,12 @@ const I18N = {
     collection_detail_lede:'“EU” or “I (me)” is the debut collection by Migma, a <strong>16-year-old Portuguese contemporary artist</strong> and founder of MM Arts. The collection presents <strong>12 original works</strong> that construct an open visual narrative. More than a collection, it asserts itself as a manifesto for authentic art.',
     offer_price:'Offers above €75',
     image_pending:'Image pending',
+    ip_h2:'Individual Pieces',
+    ip_lede:'Individual pieces outside the numbered collections — available one at a time, with or without a listed price.',
+    ip_price_on_request:'Price on request',
 
     exhibitions_h2:'Exhibitions',
-    exhibitions_lede:'Beyond the screen, MM Arts brings collections into physical space. Each exhibition offers a <strong>direct, unmediated encounter</strong> with scale, material and brushwork that a photograph cannot fully carry.',
+    exhibitions_lede:'Beyond the screen, MM Arts brings collections into physical space. Each exhibition offers a <strong>direct, unmediated encounter</strong> with the material and brushwork that a photograph cannot fully carry.',
     exhibitions_card1_h3:'Exhibition 1',
     exhibitions_card1_p:'The first public presentation of Migma’s debut collection, <strong>“EU” / “I (me)”</strong>, held in Oeiras in March 2026.',
     view_exhibition:'View exhibition →',
@@ -813,7 +888,7 @@ const I18N = {
     exhibition_detail_eyebrow:'Exhibition',
     exhibition_detail_h2:'“EU” — Opening Exhibition',
     exhibition_detail_manifesto:'One collection, brought into physical space for the first time.',
-    exhibition_detail_lede:'MM Arts presented the <strong>first public exhibition</strong> of Migma’s debut collection, bringing the original works of “EU” / “I (me)” into physical space for the first time. The exhibition took place at <strong>Galerias Alto da Barra, in Oeiras, Portugal</strong>, during <strong>March 2026</strong>, offering visitors a direct encounter with the scale, texture and presence of each piece — details a screen cannot fully carry.',
+    exhibition_detail_lede:'MM Arts presented the <strong>first public exhibition</strong> of Migma’s debut collection, bringing the original works of “EU” / “I (me)” into physical space for the first time. The exhibition took place at <strong>Galerias Alto da Barra, in Oeiras, Portugal</strong>, during <strong>March 2026</strong>, offering visitors a direct encounter with the texture and presence of each piece — details a screen cannot fully carry.',
     meta_location_label:'Location', meta_location_value:'Galerias Alto da Barra, Oeiras, Portugal',
     meta_dates_label:'Dates', meta_dates_value:'March 2026',
     meta_works_label:'Works on View', meta_works_value:'12 original works',
@@ -837,8 +912,8 @@ const I18N = {
     sound_aria_play:'Play background music', sound_aria_pause:'Pause background music',
   },
   pt: {
-    nav_about:'Sobre', nav_collections:'Coleções', nav_exhibitions:'Exposições', nav_shop:'Loja', nav_contact:'Contacto',
-    section_01:'Secção 01', section_02:'Secção 02', section_03:'Secção 03', section_04:'Secção 04', section_05:'Secção 05', section_06:'Secção 06',
+    nav_about:'Sobre', nav_collections:'Coleções', nav_individual:'Peças Individuais', nav_exhibitions:'Exposições', nav_shop:'Loja', nav_contact:'Contacto',
+    section_01:'Secção 01', section_02:'Secção 02', section_03:'Secção 03', section_04:'Secção 04', section_05:'Secção 05', section_06:'Secção 06', section_07:'Secção 07',
 
     hero_eyebrow:'Plataforma Independente de Arte Contemporânea',
     hero_sub:'Arte Sem Limites',
@@ -868,7 +943,7 @@ const I18N = {
     about_vision_p:'Imaginamos um futuro em que o valor artístico não é definido pela idade, estatuto ou acesso institucional, mas sim pela <strong>expressão, intenção e profundidade criativa</strong>. A MM Arts procura contribuir para um ecossistema de arte contemporânea mais aberto, acessível e sustentável.',
 
     collections_h2:'Coleções',
-    collections_lede:'A MM Arts apresenta coleções desenvolvidas em torno de temas, emoções e pesquisas visuais específicas. Cada coleção reflete uma direção artística distinta e reúne obras que dialogam entre si através da forma, do conceito e da expressão.',
+    collections_lede:'A MM Arts apresenta coleções desenvolvidas em torno de temas, emoções e narrativas específicas. Cada coleção reflete uma direção artística distinta e reúne obras que dialogam entre si através da forma, do conceito e da expressão.',
     collections_card1_h3:'Coleção “Eu”',
     collections_card1_p:'A coleção de estreia de Migma — <strong>12 obras originais</strong> que constroem uma narrativa visual aberta.',
     view_collection:'Ver coleção →',
@@ -884,9 +959,12 @@ const I18N = {
     collection_detail_lede:'“EU” é a coleção de estreia de Migma, um <strong>artista contemporâneo português de 16 anos</strong> e fundador da MM Arts. A coleção apresenta <strong>12 obras originais</strong> que constroem uma narrativa visual aberta. Mais do que uma coleção, afirma-se como um manifesto pela arte autêntica.',
     offer_price:'Propostas acima de €75',
     image_pending:'Imagem pendente',
+    ip_h2:'Peças Individuais',
+    ip_lede:'Peças individuais fora das coleções numeradas — disponíveis uma a uma, com ou sem preço indicado.',
+    ip_price_on_request:'Preço sob consulta',
 
     exhibitions_h2:'Exposições',
-    exhibitions_lede:'Para além do ecrã, a MM Arts leva as coleções para o espaço físico. Cada exposição oferece um <strong>encontro direto e sem mediação</strong> com a escala, o material e a pincelada que uma fotografia não consegue transmitir por completo.',
+    exhibitions_lede:'Para além do ecrã, a MM Arts leva as coleções para o espaço físico. Cada exposição oferece um <strong>encontro direto e imediato</strong> com o material e a pincelada que uma fotografia não consegue transmitir por completo.',
     exhibitions_card1_h3:'Exposição 1',
     exhibitions_card1_p:'A primeira apresentação pública da coleção de estreia de Migma, <strong>“EU”</strong>, realizada em Oeiras, em março de 2026.',
     view_exhibition:'Ver exposição →',
@@ -897,7 +975,7 @@ const I18N = {
     exhibition_detail_eyebrow:'Exposição',
     exhibition_detail_h2:'“EU” — Exposição de Abertura',
     exhibition_detail_manifesto:'Uma coleção, levada pela primeira vez ao espaço físico.',
-    exhibition_detail_lede:'A MM Arts apresentou a <strong>primeira exposição pública</strong> da coleção de estreia de Migma, levando as obras originais de “EU” ao espaço físico pela primeira vez. A exposição teve lugar nas <strong>Galerias Alto da Barra, em Oeiras, Portugal</strong>, durante o mês de <strong>março de 2026</strong>, oferecendo aos visitantes um encontro direto com a escala, a textura e a presença de cada peça — pormenores que um ecrã não consegue transmitir por completo.',
+    exhibition_detail_lede:'A MM Arts apresentou a <strong>primeira exposição pública</strong> da coleção de estreia de Migma, levando as obras originais de “EU” ao espaço físico pela primeira vez. A exposição teve lugar nas <strong>Galerias Alto da Barra, em Oeiras, Portugal</strong>, durante o mês de <strong>março de 2026</strong>, oferecendo aos visitantes um encontro direto com a textura e a presença de cada peça — pormenores que um ecrã não consegue transmitir por completo.',
     meta_location_label:'Localização', meta_location_value:'Galerias Alto da Barra, Oeiras, Portugal',
     meta_dates_label:'Datas', meta_dates_value:'Março de 2026',
     meta_works_label:'Obras em Exposição', meta_works_value:'12 obras originais',
@@ -921,8 +999,8 @@ const I18N = {
     sound_aria_play:'Tocar música de fundo', sound_aria_pause:'Pausar música de fundo',
   },
   fr: {
-    nav_about:'À Propos', nav_collections:'Collections', nav_exhibitions:'Expositions', nav_shop:'Boutique', nav_contact:'Contact',
-    section_01:'Section 01', section_02:'Section 02', section_03:'Section 03', section_04:'Section 04', section_05:'Section 05', section_06:'Section 06',
+    nav_about:'À Propos', nav_collections:'Collections', nav_individual:'Pièces Individuelles', nav_exhibitions:'Expositions', nav_shop:'Boutique', nav_contact:'Contact',
+    section_01:'Section 01', section_02:'Section 02', section_03:'Section 03', section_04:'Section 04', section_05:'Section 05', section_06:'Section 06', section_07:'Section 07',
 
     hero_eyebrow:'Plateforme Indépendante d’Art Contemporain',
     hero_sub:'L’Art Sans Limites',
@@ -952,7 +1030,7 @@ const I18N = {
     about_vision_p:'Nous envisageons un avenir où la valeur artistique n’est pas définie par l’âge, le statut ou l’accès institutionnel, mais par <strong>l’expression, l’intention et la profondeur créative</strong>. MM Arts cherche à contribuer à un écosystème de l’art contemporain plus ouvert, accessible et durable.',
 
     collections_h2:'Collections',
-    collections_lede:'MM Arts présente des collections développées autour de thèmes, d’émotions et de recherches visuelles spécifiques. Chaque collection reflète une direction artistique distincte et rassemble des œuvres qui dialoguent entre elles à travers la forme, le concept et l’expression.',
+    collections_lede:'MM Arts présente des collections développées autour de thèmes, d’émotions et de récits spécifiques. Chaque collection reflète une direction artistique distincte et rassemble des œuvres qui dialoguent entre elles à travers la forme, le concept et l’expression.',
     collections_card1_h3:'Collection « Eu » / « I (me) »',
     collections_card1_p:'La collection de débuts de Migma — <strong>12 œuvres originales</strong> formant un récit visuel ouvert.',
     view_collection:'Voir la collection →',
@@ -968,9 +1046,12 @@ const I18N = {
     collection_detail_lede:'« EU », qui signifie « moi » en portugais, est la collection de débuts de Migma, un <strong>artiste contemporain portugais de 16 ans</strong> et fondateur de MM Arts. La collection présente <strong>12 œuvres originales</strong> qui construisent un récit visuel ouvert. Plus qu’une collection, elle s’affirme comme un manifeste pour un art authentique.',
     offer_price:'Offres à partir de 75 €',
     image_pending:'Image à venir',
+    ip_h2:'Pièces Individuelles',
+    ip_lede:'Pièces individuelles en dehors des collections numérotées — disponibles à l’unité, avec ou sans prix indiqué.',
+    ip_price_on_request:'Prix sur demande',
 
     exhibitions_h2:'Expositions',
-    exhibitions_lede:'Au-delà de l’écran, MM Arts fait entrer les collections dans l’espace physique. Chaque exposition offre une <strong>rencontre directe et sans intermédiaire</strong> avec l’échelle, la matière et la touche qu’une photographie ne peut pas entièrement transmettre.',
+    exhibitions_lede:'Au-delà de l’écran, MM Arts fait entrer les collections dans l’espace physique. Chaque exposition offre une <strong>rencontre directe et immédiate</strong> avec la matière et la touche qu’une photographie ne peut pas entièrement transmettre.',
     exhibitions_card1_h3:'Exposition 1',
     exhibitions_card1_p:'La première présentation publique de la collection de débuts de Migma, <strong>« EU » / « Moi »</strong>, organisée à Oeiras en mars 2026.',
     view_exhibition:'Voir l’exposition →',
@@ -981,7 +1062,7 @@ const I18N = {
     exhibition_detail_eyebrow:'Exposition',
     exhibition_detail_h2:'« EU » — Exposition d’Ouverture',
     exhibition_detail_manifesto:'Une collection, portée pour la première fois dans l’espace physique.',
-    exhibition_detail_lede:'MM Arts a présenté la <strong>première exposition publique</strong> de la collection de débuts de Migma, faisant entrer les œuvres originales de « EU » dans l’espace physique pour la première fois. L’exposition s’est tenue aux <strong>Galerias Alto da Barra, à Oeiras, au Portugal</strong>, durant le mois de <strong>mars 2026</strong>, offrant aux visiteurs une rencontre directe avec l’échelle, la texture et la présence de chaque pièce — des détails qu’un écran ne peut pas entièrement transmettre.',
+    exhibition_detail_lede:'MM Arts a présenté la <strong>première exposition publique</strong> de la collection de débuts de Migma, faisant entrer les œuvres originales de « EU » dans l’espace physique pour la première fois. L’exposition s’est tenue aux <strong>Galerias Alto da Barra, à Oeiras, au Portugal</strong>, durant le mois de <strong>mars 2026</strong>, offrant aux visiteurs une rencontre directe avec la texture et la présence de chaque pièce — des détails qu’un écran ne peut pas entièrement transmettre.',
     meta_location_label:'Lieu', meta_location_value:'Galerias Alto da Barra, Oeiras, Portugal',
     meta_dates_label:'Dates', meta_dates_value:'Mars 2026',
     meta_works_label:'Œuvres Exposées', meta_works_value:'12 œuvres originales',
@@ -1005,8 +1086,8 @@ const I18N = {
     sound_aria_play:'Lire la musique de fond', sound_aria_pause:'Mettre en pause la musique de fond',
   },
   es: {
-    nav_about:'Sobre Nosotros', nav_collections:'Colecciones', nav_exhibitions:'Exposiciones', nav_shop:'Tienda', nav_contact:'Contacto',
-    section_01:'Sección 01', section_02:'Sección 02', section_03:'Sección 03', section_04:'Sección 04', section_05:'Sección 05', section_06:'Sección 06',
+    nav_about:'Sobre Nosotros', nav_collections:'Colecciones', nav_individual:'Piezas Individuales', nav_exhibitions:'Exposiciones', nav_shop:'Tienda', nav_contact:'Contacto',
+    section_01:'Sección 01', section_02:'Sección 02', section_03:'Sección 03', section_04:'Sección 04', section_05:'Sección 05', section_06:'Sección 06', section_07:'Sección 07',
 
     hero_eyebrow:'Plataforma Independiente de Arte Contemporáneo',
     hero_sub:'Arte Sin Límites',
@@ -1036,7 +1117,7 @@ const I18N = {
     about_vision_p:'Imaginamos un futuro donde el valor artístico no esté definido por la edad, el estatus o el acceso institucional, sino por la <strong>expresión, la intención y la profundidad creativa</strong>. MM Arts busca contribuir a un ecosistema de arte contemporáneo más abierto, accesible y sostenible.',
 
     collections_h2:'Colecciones',
-    collections_lede:'MM Arts presenta colecciones desarrolladas en torno a temas, emociones e investigaciones visuales específicas. Cada colección refleja una dirección artística distinta y reúne obras que dialogan entre sí a través de la forma, el concepto y la expresión.',
+    collections_lede:'MM Arts presenta colecciones desarrolladas en torno a temas, emociones y narrativas específicas. Cada colección refleja una dirección artística distinta y reúne obras que dialogan entre sí a través de la forma, el concepto y la expresión.',
     collections_card1_h3:'Colección «Eu» / «I (me)»',
     collections_card1_p:'La colección debut de Migma — <strong>12 obras originales</strong> que forman una narrativa visual abierta.',
     view_collection:'Ver colección →',
@@ -1052,9 +1133,12 @@ const I18N = {
     collection_detail_lede:'«EU», que significa «yo» en portugués, es la colección debut de Migma, un <strong>artista contemporáneo portugués de 16 años</strong> y fundador de MM Arts. La colección presenta <strong>12 obras originales</strong> que construyen una narrativa visual abierta. Más que una colección, se afirma como un manifiesto por el arte auténtico.',
     offer_price:'Ofertas a partir de 75 €',
     image_pending:'Imagen pendiente',
+    ip_h2:'Piezas Individuales',
+    ip_lede:'Piezas individuales fuera de las colecciones numeradas — disponibles una a una, con o sin precio indicado.',
+    ip_price_on_request:'Precio a consultar',
 
     exhibitions_h2:'Exposiciones',
-    exhibitions_lede:'Más allá de la pantalla, MM Arts lleva las colecciones al espacio físico. Cada exposición ofrece un <strong>encuentro directo y sin mediación</strong> con la escala, el material y la pincelada que una fotografía no puede transmitir por completo.',
+    exhibitions_lede:'Más allá de la pantalla, MM Arts lleva las colecciones al espacio físico. Cada exposición ofrece un <strong>encuentro directo e inmediato</strong> con el material y la pincelada que una fotografía no puede transmitir por completo.',
     exhibitions_card1_h3:'Exposición 1',
     exhibitions_card1_p:'La primera presentación pública de la colección debut de Migma, <strong>«EU» / «Yo»</strong>, celebrada en Oeiras en marzo de 2026.',
     view_exhibition:'Ver exposición →',
@@ -1065,7 +1149,7 @@ const I18N = {
     exhibition_detail_eyebrow:'Exposición',
     exhibition_detail_h2:'«EU» — Exposición Inaugural',
     exhibition_detail_manifesto:'Una colección, llevada por primera vez al espacio físico.',
-    exhibition_detail_lede:'MM Arts presentó la <strong>primera exposición pública</strong> de la colección debut de Migma, llevando las obras originales de «EU» al espacio físico por primera vez. La exposición tuvo lugar en las <strong>Galerias Alto da Barra, en Oeiras, Portugal</strong>, durante el mes de <strong>marzo de 2026</strong>, ofreciendo a los visitantes un encuentro directo con la escala, la textura y la presencia de cada pieza — detalles que una pantalla no puede transmitir por completo.',
+    exhibition_detail_lede:'MM Arts presentó la <strong>primera exposición pública</strong> de la colección debut de Migma, llevando las obras originales de «EU» al espacio físico por primera vez. La exposición tuvo lugar en las <strong>Galerias Alto da Barra, en Oeiras, Portugal</strong>, durante el mes de <strong>marzo de 2026</strong>, ofreciendo a los visitantes un encuentro directo con la textura y la presencia de cada pieza — detalles que una pantalla no puede transmitir por completo.',
     meta_location_label:'Ubicación', meta_location_value:'Galerias Alto da Barra, Oeiras, Portugal',
     meta_dates_label:'Fechas', meta_dates_value:'Marzo de 2026',
     meta_works_label:'Obras Expuestas', meta_works_value:'12 obras originales',
@@ -1089,8 +1173,8 @@ const I18N = {
     sound_aria_play:'Reproducir música de fondo', sound_aria_pause:'Pausar música de fondo',
   },
   zh: {
-    nav_about:'关于', nav_collections:'系列', nav_exhibitions:'展览', nav_shop:'商店', nav_contact:'联系方式',
-    section_01:'第01节', section_02:'第02节', section_03:'第03节', section_04:'第04节', section_05:'第05节', section_06:'第06节',
+    nav_about:'关于', nav_collections:'系列', nav_individual:'单件作品', nav_exhibitions:'展览', nav_shop:'商店', nav_contact:'联系方式',
+    section_01:'第01节', section_02:'第02节', section_03:'第03节', section_04:'第04节', section_05:'第05节', section_06:'第06节', section_07:'第07节',
 
     hero_eyebrow:'独立当代艺术平台',
     hero_sub:'艺术无界',
@@ -1120,7 +1204,7 @@ const I18N = {
     about_vision_p:'我们期望未来艺术价值的定义,不再取决于年龄、地位或体制内的认可,而是取决于<strong>表达、意图与创作深度</strong>。MM Arts 致力于为一个更加开放、包容与可持续的当代艺术生态做出贡献。',
 
     collections_h2:'系列',
-    collections_lede:'MM Arts 呈现围绕特定主题、情感与视觉探索而发展出的系列作品。每个系列都反映出独特的艺术方向,汇聚了通过形式、概念与表达相互对话的作品。',
+    collections_lede:'MM Arts 呈现围绕特定主题、情感与叙事而发展出的系列作品。每个系列都反映出独特的艺术方向,汇聚了通过形式、概念与表达相互对话的作品。',
     collections_card1_h3:'“Eu” / “I (me)” 系列',
     collections_card1_p:'Migma 的首个系列 —— <strong>12件原创作品</strong>,构成一段开放的视觉叙事。',
     view_collection:'查看系列 →',
@@ -1136,9 +1220,12 @@ const I18N = {
     collection_detail_lede:'“EU”(葡萄牙语中意为“我”)是 Migma 的首个系列 —— 一位<strong>16岁的葡萄牙当代艺术家</strong>,同时也是 MM Arts 的创办人。该系列呈现<strong>12件原创作品</strong>,构成一段开放的视觉叙事。它不仅是一个系列,更是一份关于真实艺术的宣言。',
     offer_price:'75欧元以上竞价',
     image_pending:'图片待上传',
+    ip_h2:'单件作品',
+    ip_lede:'独立于系列编号之外的单件作品 —— 逐件供应,标价与否视情况而定。',
+    ip_price_on_request:'价格面议',
 
     exhibitions_h2:'展览',
-    exhibitions_lede:'MM Arts 让系列作品走出屏幕,进入真实的物理空间。每场展览都提供一次<strong>直接、无中介的接触</strong>,让观众感受照片无法完全传达的尺度、材质与笔触。',
+    exhibitions_lede:'MM Arts 让系列作品走出屏幕,进入真实的物理空间。每场展览都提供一次<strong>直接而即时的接触</strong>,让观众感受照片无法完全传达的材质与笔触。',
     exhibitions_card1_h3:'展览一',
     exhibitions_card1_p:'Migma 首个系列 <strong>“EU” / “I (me)”</strong> 的首次公开展出,于2026年3月在奥埃拉什举行。',
     view_exhibition:'查看展览 →',
@@ -1149,7 +1236,7 @@ const I18N = {
     exhibition_detail_eyebrow:'展览',
     exhibition_detail_h2:'“EU” —— 开幕展',
     exhibition_detail_manifesto:'一个系列,首次走入真实空间。',
-    exhibition_detail_lede:'MM Arts 举办了 Migma 首个系列的<strong>首次公开展览</strong>,让“EU” / “I (me)”的原作首次进入物理空间。展览于<strong>2026年3月</strong>在<strong>葡萄牙奥埃拉什的 Galerias Alto da Barra</strong>举行,让观众得以直接感受每件作品的尺度、质感与存在感 —— 这些细节是屏幕无法完全传达的。',
+    exhibition_detail_lede:'MM Arts 举办了 Migma 首个系列的<strong>首次公开展览</strong>,让“EU” / “I (me)”的原作首次进入物理空间。展览于<strong>2026年3月</strong>在<strong>葡萄牙奥埃拉什的 Galerias Alto da Barra</strong>举行,让观众得以直接感受每件作品的质感与存在感 —— 这些细节是屏幕无法完全传达的。',
     meta_location_label:'地点', meta_location_value:'Galerias Alto da Barra, 奥埃拉什, 葡萄牙',
     meta_dates_label:'日期', meta_dates_value:'2026年3月',
     meta_works_label:'展出作品', meta_works_value:'12件原创作品',
@@ -1192,6 +1279,7 @@ function setLanguage(lang){
     btn.setAttribute('aria-pressed', active ? 'true' : 'false');
   });
   renderCollectionGallery();
+  renderIndividualPieces();
   renderExhibitionGallery();
   renderShopProducts();
   updateSoundLabel();
@@ -1209,6 +1297,19 @@ window.addEventListener('scroll', ()=>{
   document.querySelector('.site-header').style.boxShadow =
     window.scrollY > 20 ? '0 2px 14px rgba(0,0,0,0.08)' : 'none';
 });
+
+/* Turtle that travels down the side of the page alongside the scrollbar */
+const scrollTurtle = document.getElementById('scroll-turtle');
+function updateScrollTurtle(){
+  if(!scrollTurtle) return;
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = scrollable > 0 ? window.scrollY / scrollable : 0;
+  const trackHeight = window.innerHeight - scrollTurtle.offsetHeight - 8;
+  scrollTurtle.style.top = (8 + pct * trackHeight) + 'px';
+}
+window.addEventListener('scroll', updateScrollTurtle);
+window.addEventListener('resize', updateScrollTurtle);
+updateScrollTurtle();
 
 /* =====================================================================
    COLLECTION "EU" — 12 works. Titles are not translated (art piece
@@ -1246,50 +1347,135 @@ const exhibitionWorks = [
 ];
 
 /* =====================================================================
+   INDIVIDUAL PIECES — 75 placeholder slots (25 square + 25 portrait +
+   25 landscape). Each line is fully editable: artist, title, size and
+   price (price can be left as '' to show "Price on request" instead).
+   Files: assets/images/individual-pieces/IP001.jpg ... IP075.jpg
+   (add more later following the same IP0XX pattern, up to IP999.jpg)
+===================================================================== */
+const ipWorks = [
+  { file:'IP001.jpg', orientation:'square', artist:'Migma', title:'Piece 001', size:'', price:'' },
+  { file:'IP002.jpg', orientation:'square', artist:'Migma', title:'Piece 002', size:'', price:'' },
+  { file:'IP003.jpg', orientation:'square', artist:'Migma', title:'Piece 003', size:'', price:'' },
+  { file:'IP004.jpg', orientation:'square', artist:'Migma', title:'Piece 004', size:'', price:'' },
+  { file:'IP005.jpg', orientation:'square', artist:'Migma', title:'Piece 005', size:'', price:'' },
+  { file:'IP006.jpg', orientation:'square', artist:'Migma', title:'Piece 006', size:'', price:'' },
+  { file:'IP007.jpg', orientation:'square', artist:'Migma', title:'Piece 007', size:'', price:'' },
+  { file:'IP008.jpg', orientation:'square', artist:'Migma', title:'Piece 008', size:'', price:'' },
+  { file:'IP009.jpg', orientation:'square', artist:'Migma', title:'Piece 009', size:'', price:'' },
+  { file:'IP010.jpg', orientation:'square', artist:'Migma', title:'Piece 010', size:'', price:'' },
+  { file:'IP011.jpg', orientation:'square', artist:'Migma', title:'Piece 011', size:'', price:'' },
+  { file:'IP012.jpg', orientation:'square', artist:'Migma', title:'Piece 012', size:'', price:'' },
+  { file:'IP013.jpg', orientation:'square', artist:'Migma', title:'Piece 013', size:'', price:'' },
+  { file:'IP014.jpg', orientation:'square', artist:'Migma', title:'Piece 014', size:'', price:'' },
+  { file:'IP015.jpg', orientation:'square', artist:'Migma', title:'Piece 015', size:'', price:'' },
+  { file:'IP016.jpg', orientation:'square', artist:'Migma', title:'Piece 016', size:'', price:'' },
+  { file:'IP017.jpg', orientation:'square', artist:'Migma', title:'Piece 017', size:'', price:'' },
+  { file:'IP018.jpg', orientation:'square', artist:'Migma', title:'Piece 018', size:'', price:'' },
+  { file:'IP019.jpg', orientation:'square', artist:'Migma', title:'Piece 019', size:'', price:'' },
+  { file:'IP020.jpg', orientation:'square', artist:'Migma', title:'Piece 020', size:'', price:'' },
+  { file:'IP021.jpg', orientation:'square', artist:'Migma', title:'Piece 021', size:'', price:'' },
+  { file:'IP022.jpg', orientation:'square', artist:'Migma', title:'Piece 022', size:'', price:'' },
+  { file:'IP023.jpg', orientation:'square', artist:'Migma', title:'Piece 023', size:'', price:'' },
+  { file:'IP024.jpg', orientation:'square', artist:'Migma', title:'Piece 024', size:'', price:'' },
+  { file:'IP025.jpg', orientation:'square', artist:'Migma', title:'Piece 025', size:'', price:'' },
+  { file:'IP026.jpg', orientation:'portrait', artist:'Migma', title:'Piece 026', size:'', price:'' },
+  { file:'IP027.jpg', orientation:'portrait', artist:'Migma', title:'Piece 027', size:'', price:'' },
+  { file:'IP028.jpg', orientation:'portrait', artist:'Migma', title:'Piece 028', size:'', price:'' },
+  { file:'IP029.jpg', orientation:'portrait', artist:'Migma', title:'Piece 029', size:'', price:'' },
+  { file:'IP030.jpg', orientation:'portrait', artist:'Migma', title:'Piece 030', size:'', price:'' },
+  { file:'IP031.jpg', orientation:'portrait', artist:'Migma', title:'Piece 031', size:'', price:'' },
+  { file:'IP032.jpg', orientation:'portrait', artist:'Migma', title:'Piece 032', size:'', price:'' },
+  { file:'IP033.jpg', orientation:'portrait', artist:'Migma', title:'Piece 033', size:'', price:'' },
+  { file:'IP034.jpg', orientation:'portrait', artist:'Migma', title:'Piece 034', size:'', price:'' },
+  { file:'IP035.jpg', orientation:'portrait', artist:'Migma', title:'Piece 035', size:'', price:'' },
+  { file:'IP036.jpg', orientation:'portrait', artist:'Migma', title:'Piece 036', size:'', price:'' },
+  { file:'IP037.jpg', orientation:'portrait', artist:'Migma', title:'Piece 037', size:'', price:'' },
+  { file:'IP038.jpg', orientation:'portrait', artist:'Migma', title:'Piece 038', size:'', price:'' },
+  { file:'IP039.jpg', orientation:'portrait', artist:'Migma', title:'Piece 039', size:'', price:'' },
+  { file:'IP040.jpg', orientation:'portrait', artist:'Migma', title:'Piece 040', size:'', price:'' },
+  { file:'IP041.jpg', orientation:'portrait', artist:'Migma', title:'Piece 041', size:'', price:'' },
+  { file:'IP042.jpg', orientation:'portrait', artist:'Migma', title:'Piece 042', size:'', price:'' },
+  { file:'IP043.jpg', orientation:'portrait', artist:'Migma', title:'Piece 043', size:'', price:'' },
+  { file:'IP044.jpg', orientation:'portrait', artist:'Migma', title:'Piece 044', size:'', price:'' },
+  { file:'IP045.jpg', orientation:'portrait', artist:'Migma', title:'Piece 045', size:'', price:'' },
+  { file:'IP046.jpg', orientation:'portrait', artist:'Migma', title:'Piece 046', size:'', price:'' },
+  { file:'IP047.jpg', orientation:'portrait', artist:'Migma', title:'Piece 047', size:'', price:'' },
+  { file:'IP048.jpg', orientation:'portrait', artist:'Migma', title:'Piece 048', size:'', price:'' },
+  { file:'IP049.jpg', orientation:'portrait', artist:'Migma', title:'Piece 049', size:'', price:'' },
+  { file:'IP050.jpg', orientation:'portrait', artist:'Migma', title:'Piece 050', size:'', price:'' },
+  { file:'IP051.jpg', orientation:'landscape', artist:'Migma', title:'Piece 051', size:'', price:'' },
+  { file:'IP052.jpg', orientation:'landscape', artist:'Migma', title:'Piece 052', size:'', price:'' },
+  { file:'IP053.jpg', orientation:'landscape', artist:'Migma', title:'Piece 053', size:'', price:'' },
+  { file:'IP054.jpg', orientation:'landscape', artist:'Migma', title:'Piece 054', size:'', price:'' },
+  { file:'IP055.jpg', orientation:'landscape', artist:'Migma', title:'Piece 055', size:'', price:'' },
+  { file:'IP056.jpg', orientation:'landscape', artist:'Migma', title:'Piece 056', size:'', price:'' },
+  { file:'IP057.jpg', orientation:'landscape', artist:'Migma', title:'Piece 057', size:'', price:'' },
+  { file:'IP058.jpg', orientation:'landscape', artist:'Migma', title:'Piece 058', size:'', price:'' },
+  { file:'IP059.jpg', orientation:'landscape', artist:'Migma', title:'Piece 059', size:'', price:'' },
+  { file:'IP060.jpg', orientation:'landscape', artist:'Migma', title:'Piece 060', size:'', price:'' },
+  { file:'IP061.jpg', orientation:'landscape', artist:'Migma', title:'Piece 061', size:'', price:'' },
+  { file:'IP062.jpg', orientation:'landscape', artist:'Migma', title:'Piece 062', size:'', price:'' },
+  { file:'IP063.jpg', orientation:'landscape', artist:'Migma', title:'Piece 063', size:'', price:'' },
+  { file:'IP064.jpg', orientation:'landscape', artist:'Migma', title:'Piece 064', size:'', price:'' },
+  { file:'IP065.jpg', orientation:'landscape', artist:'Migma', title:'Piece 065', size:'', price:'' },
+  { file:'IP066.jpg', orientation:'landscape', artist:'Migma', title:'Piece 066', size:'', price:'' },
+  { file:'IP067.jpg', orientation:'landscape', artist:'Migma', title:'Piece 067', size:'', price:'' },
+  { file:'IP068.jpg', orientation:'landscape', artist:'Migma', title:'Piece 068', size:'', price:'' },
+  { file:'IP069.jpg', orientation:'landscape', artist:'Migma', title:'Piece 069', size:'', price:'' },
+  { file:'IP070.jpg', orientation:'landscape', artist:'Migma', title:'Piece 070', size:'', price:'' },
+  { file:'IP071.jpg', orientation:'landscape', artist:'Migma', title:'Piece 071', size:'', price:'' },
+  { file:'IP072.jpg', orientation:'landscape', artist:'Migma', title:'Piece 072', size:'', price:'' },
+  { file:'IP073.jpg', orientation:'landscape', artist:'Migma', title:'Piece 073', size:'', price:'' },
+  { file:'IP074.jpg', orientation:'landscape', artist:'Migma', title:'Piece 074', size:'', price:'' },
+  { file:'IP075.jpg', orientation:'landscape', artist:'Migma', title:'Piece 075', size:'', price:'' },
+];
+
+/* =====================================================================
    SHOP — 13 products. Names are placeholders tied to the "EU" collection
    so they read as artworks, not generic merch. Edit price/name/size
-   any time — the 4 limited-edition variants below are marked "Price TBC"
+   any time — the 4 limited-edition variants below are marked "Coming Soon"
    on purpose, waiting for real pricing + measurements.
 ===================================================================== */
 const shopProducts = [
   { name:{en:'EU Collection — Digital Edition', pt:'Coleção EU — Edição Digital', fr:'Collection EU — Édition Numérique', es:'Colección EU — Edición Digital', zh:'EU系列 —— 数字版'},
-    price:{en:'€14', pt:'€14', fr:'14 €', es:'14 €', zh:'€14'} },
+    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
 
   { name:{en:'EU Collection — Postcard Set (5 Designs)', pt:'Coleção EU — Conjunto de Postais (5 Modelos)', fr:'Collection EU — Lot de Cartes Postales (5 Modèles)', es:'Colección EU — Set de Postales (5 Diseños)', zh:'EU系列 —— 明信片套装(5款)'},
-    price:{en:'€12', pt:'€12', fr:'12 €', es:'12 €', zh:'€12'} },
+    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
 
   { name:{en:'EU Collection — Sticker Pack (Set of 3)', pt:'Coleção EU — Pack de Autocolantes (Conjunto de 3)', fr:'Collection EU — Lot d’Autocollants (Lot de 3)', es:'Colección EU — Pack de Pegatinas (Set de 3)', zh:'EU系列 —— 贴纸套装(3枚装)'},
-    price:{en:'€7', pt:'€7', fr:'7 €', es:'7 €', zh:'€7'} },
+    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
 
   { name:{en:'EU Collection — Open Edition Print', pt:'Coleção EU — Impressão de Edição Aberta', fr:'Collection EU — Tirage en Édition Ouverte', es:'Colección EU — Impresión de Edición Abierta', zh:'EU系列 —— 开放版画'},
-    price:{en:'€22', pt:'€22', fr:'22 €', es:'22 €', zh:'€22'} },
+    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
 
   { name:{en:'EU Collection — Limited Edition Print, Square (Small)', pt:'Coleção EU — Edição Limitada, Quadrado (Pequeno)', fr:'Collection EU — Édition Limitée, Carré (Petit)', es:'Colección EU — Edición Limitada, Cuadrado (Pequeño)', zh:'EU系列 —— 限量版画,方形(小)'},
-    price:{en:'Price TBC', pt:'Preço a definir', fr:'Prix à définir', es:'Precio por definir', zh:'价格待定'} },
+    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
 
   { name:{en:'EU Collection — Limited Edition Print, Square (Large)', pt:'Coleção EU — Edição Limitada, Quadrado (Grande)', fr:'Collection EU — Édition Limitée, Carré (Grand)', es:'Colección EU — Edición Limitada, Cuadrado (Grande)', zh:'EU系列 —— 限量版画,方形(大)'},
-    price:{en:'Price TBC', pt:'Preço a definir', fr:'Prix à définir', es:'Precio por definir', zh:'价格待定'} },
+    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
 
   { name:{en:'EU Collection — Limited Edition Print, Landscape', pt:'Coleção EU — Edição Limitada, Horizontal', fr:'Collection EU — Édition Limitée, Format Horizontal', es:'Colección EU — Edición Limitada, Horizontal', zh:'EU系列 —— 限量版画,横版'},
-    price:{en:'Price TBC', pt:'Preço a definir', fr:'Prix à définir', es:'Precio por definir', zh:'价格待定'} },
+    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
 
   { name:{en:'EU Collection — Limited Edition Print, Portrait', pt:'Coleção EU — Edição Limitada, Vertical', fr:'Collection EU — Édition Limitée, Format Vertical', es:'Colección EU — Edición Limitada, Vertical', zh:'EU系列 —— 限量版画,竖版'},
-    price:{en:'Price TBC', pt:'Preço a definir', fr:'Prix à définir', es:'Precio por definir', zh:'价格待定'} },
+    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
 
   { name:{en:'Original Artwork by Migma', pt:'Obra Original de Migma', fr:'Œuvre Originale de Migma', es:'Obra Original de Migma', zh:'Migma 原创作品'},
-    price:{en:'From €75', pt:'A partir de €75', fr:'À partir de 75 €', es:'Desde 75 €', zh:'75欧元起'} },
+    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
 
   { name:{en:'Preparatory Study — One of a Kind', pt:'Estudo Preparatório — Peça Única', fr:'Étude Préparatoire — Pièce Unique', es:'Estudio Preparatorio — Pieza Única', zh:'创作草图 —— 独一无二'},
-    price:{en:'€35', pt:'€35', fr:'35 €', es:'35 €', zh:'€35'} },
+    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
 
   { name:{en:'Custom Commission by Migma', pt:'Encomenda Personalizada por Migma', fr:'Commande Personnalisée par Migma', es:'Encargo Personalizado por Migma', zh:'Migma 定制委托创作'},
-    price:{en:'By quote', pt:'Sob orçamento', fr:'Sur devis', es:'Bajo presupuesto', zh:'面议'} },
+    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
 
   { name:{en:'MM Arts Apparel — T-Shirt or Tote Bag', pt:'Vestuário MM Arts — T-shirt ou Tote Bag', fr:'Vêtements MM Arts — T-shirt ou Tote Bag', es:'Ropa MM Arts — Camiseta o Tote Bag', zh:'MM Arts 周边 —— T恤或帆布包'},
-    price:{en:'€25', pt:'€25', fr:'25 €', es:'25 €', zh:'€25'} },
+    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
 
   { name:{en:'Starter Bundle — Postcard + Sticker + Mini Print', pt:'Pack Inicial — Postal + Autocolante + Mini Impressão', fr:'Pack Découverte — Carte Postale + Autocollant + Mini Tirage', es:'Pack Inicial — Postal + Pegatina + Mini Impresión', zh:'入门礼包 —— 明信片 + 贴纸 + 迷你版画'},
-    price:{en:'€18', pt:'€18', fr:'18 €', es:'18 €', zh:'€18'} },
+    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
 ];
 
 function buildGalleryItem(folder, item, n, captionHtml){
@@ -1325,6 +1511,19 @@ function renderExhibitionGallery(){
     const n = i + 1;
     const caption = `<span class="artist">Migma</span> — ${I18N[currentLang].exhibition_view_prefix} ${String(n).padStart(2,'0')}`;
     grid.appendChild(buildGalleryItem('exhibition-current', item, n, caption));
+  });
+}
+
+function renderIndividualPieces(){
+  const grid = document.getElementById('ip-gallery');
+  grid.innerHTML = '';
+  ipWorks.forEach((item, i)=>{
+    const n = i + 1;
+    const priceText = item.price ? item.price : I18N[currentLang].ip_price_on_request;
+    const parts = [`<span class="artist">${item.artist}</span> — ${item.title}`];
+    if(item.size) parts.push(item.size);
+    parts.push(priceText);
+    grid.appendChild(buildGalleryItem('individual-pieces', item, n, parts.join(' · ')));
   });
 }
 
