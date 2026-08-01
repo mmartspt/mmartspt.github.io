@@ -7,7 +7,7 @@
 <meta name="description" content="MM Arts — an independent contemporary art platform supporting emerging artists worldwide.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Space+Grotesk:wght@400;500;600&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Space+Grotesk:wght@400;500;600&family=Work+Sans:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:      #F0F0EA;
@@ -18,6 +18,9 @@
     --indigo-br:  #4A3EE0;
     --forest:     #145C34;
     --forest-br:  #3C9767;
+    --plum:       #7A2C5C;
+    --terracotta: #B5502E;
+    --gold:       #8F6E19;
     --line:       rgba(20,19,14,0.14);
     --line-hi:    rgba(20,19,14,0.30);
   }
@@ -28,13 +31,13 @@
   body{
     background:var(--paper);
     color:var(--ink);
-    font-family:'Work Sans', sans-serif;
+    font-family:'Work Sans', 'Noto Sans SC', sans-serif;
     line-height:1.65;
     -webkit-font-smoothing:antialiased;
   }
 
-  h1,h2,h3{
-    font-family:'Newsreader', serif;
+  h1,h2,h3,h4{
+    font-family:'Newsreader', 'Noto Serif SC', serif;
     font-weight:500;
     color:var(--ink);
     letter-spacing:-0.01em;
@@ -71,16 +74,24 @@
   }
   .brand-logo{height:38px; width:auto;}
 
-  .nav-group{display:flex; align-items:center; gap:1.4rem;}
+  .nav-group{display:flex; align-items:center; gap:1.2rem;}
 
   .lang-toggle{display:flex; border:1px solid var(--line-hi); border-radius:999px; overflow:hidden; flex:none;}
   .lang-btn{
-    font-family:'Space Grotesk', sans-serif; font-size:0.7rem; letter-spacing:0.06em;
-    padding:0.42rem 0.75rem; border:none; background:transparent; color:var(--ink-soft);
-    cursor:pointer; transition:background 0.2s ease, color 0.2s ease;
+    font-family:'Space Grotesk', sans-serif; font-size:0.68rem; letter-spacing:0.04em; font-weight:600;
+    padding:0.4rem 0.6rem; border:none; background:transparent; cursor:pointer;
+    transition:background 0.2s ease, color 0.2s ease;
   }
-  .lang-btn.is-active{background:var(--ink); color:var(--paper);}
-  .lang-btn:not(.is-active):hover{color:var(--indigo);}
+  .lang-btn[data-lang="en"]{color:var(--indigo);}
+  .lang-btn[data-lang="pt"]{color:var(--forest);}
+  .lang-btn[data-lang="fr"]{color:var(--plum);}
+  .lang-btn[data-lang="es"]{color:var(--terracotta);}
+  .lang-btn[data-lang="zh"]{color:var(--gold);}
+  .lang-btn.is-active[data-lang="en"]{background:var(--indigo); color:var(--paper);}
+  .lang-btn.is-active[data-lang="pt"]{background:var(--forest); color:var(--paper);}
+  .lang-btn.is-active[data-lang="fr"]{background:var(--plum); color:var(--paper);}
+  .lang-btn.is-active[data-lang="es"]{background:var(--terracotta); color:var(--paper);}
+  .lang-btn.is-active[data-lang="zh"]{background:var(--gold); color:var(--paper);}
 
   .site-nav{display:flex; gap:1.7rem;}
   .site-nav a{
@@ -107,8 +118,8 @@
     display:none; width:38px; height:38px; border:1px solid var(--line-hi);
     align-items:center; justify-content:center; cursor:pointer; font-size:1.1rem; flex:none;
   }
-  @media (max-width:800px){
-    .nav-group{gap:0.7rem;}
+  @media (max-width:860px){
+    .nav-group{gap:0.6rem;}
     .site-nav{
       position:absolute; top:100%; left:0; right:0;
       flex-direction:column; gap:0;
@@ -124,9 +135,16 @@
 
   /* ---------------- HERO ---------------- */
   .hero{
+    position:relative; overflow:hidden;
     padding:clamp(8.5rem,16vw,11rem) 0 clamp(4rem,8vw,6rem);
     text-align:center;
   }
+  .hero-decor{
+    position:absolute; top:-8%; right:-8%; width:min(480px,70vw); height:min(480px,70vw);
+    pointer-events:none; z-index:0; color:var(--forest); opacity:0.07;
+  }
+  .hero-decor svg{width:100%; height:100%;}
+  .hero > .wrap{position:relative; z-index:1;}
   .hero-logo{width:min(190px,45vw); margin:0 auto 2rem;}
   .hero h1{
     font-size:clamp(3rem,9vw,5.5rem);
@@ -191,7 +209,14 @@
 
   /* ---------------- ROOM / SECTION ---------------- */
   .room{padding:1rem 0 clamp(3.5rem,8vw,6rem);}
+  .room-tint{background:var(--paper-2);}
   .room-head{margin-bottom:2.2rem;}
+  .room-head::before{
+    content:""; display:block; width:34px; height:3px; margin-bottom:1rem; background:var(--forest);
+  }
+  .room-head.accent-indigo::before{background:var(--indigo);}
+  .room-head.accent-plum::before{background:var(--plum);}
+  .room-head.accent-terracotta::before{background:var(--terracotta);}
   .room-index{
     font-family:'Space Grotesk', sans-serif;
     font-size:0.72rem; text-transform:uppercase; letter-spacing:0.16em;
@@ -212,6 +237,7 @@
     padding:clamp(1.6rem,3vw,2.2rem);
     background:var(--paper-2);
   }
+  .room-tint .info-card{background:var(--paper);}
   .info-card h3{font-size:1.2rem; margin-bottom:1rem; font-weight:500;}
   .info-card li{
     color:var(--ink-soft); font-size:0.94rem;
@@ -240,12 +266,15 @@
     padding:clamp(1.8rem,3.5vw,2.6rem);
     text-align:left; background:var(--paper);
     font:inherit; cursor:pointer;
-    transition:background 0.25s ease, border-color 0.25s ease;
+    transition:background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
     display:block; width:100%;
   }
-  .collection-card:hover{background:var(--paper-2); border-color:var(--indigo);}
+  .room-tint .collection-card{background:var(--paper-2);}
+  .collection-card:hover{background:var(--paper-2); border-color:var(--indigo); transform:translateY(-3px);}
+  .room-tint .collection-card:hover{background:var(--paper);}
   .collection-card.static{cursor:default;}
-  .collection-card.static:hover{background:var(--paper); border-color:var(--line-hi);}
+  .collection-card.static:hover{background:var(--paper); border-color:var(--line-hi); transform:none;}
+  .room-tint .collection-card.static:hover{background:var(--paper-2);}
   .collection-card h3{font-size:1.3rem; margin-bottom:0.7rem; font-weight:500;}
   .collection-card p{color:var(--ink-soft); font-size:0.92rem;}
   .collection-card .view{
@@ -321,18 +350,35 @@
   figcaption .artist{color:var(--ink); font-weight:500;}
 
   /* ---------------- SHOP ---------------- */
-  .shop-list{margin-top:1.6rem; display:grid; gap:0.2rem; max-width:60ch;}
-  .shop-list li{
-    display:flex; justify-content:space-between; align-items:center; gap:1rem;
-    padding:0.9rem 0; border-bottom:1px solid var(--line);
-    color:var(--ink-soft); font-size:0.95rem;
+  .product-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:1.4rem; margin-top:2.2rem;
   }
-  .shop-list li span.name{color:var(--ink);}
-  .shop-list li span.tag{
-    font-family:'Space Grotesk', sans-serif; font-size:0.72rem;
-    text-transform:uppercase; letter-spacing:0.06em; color:var(--forest); white-space:nowrap;
+  .product-card{
+    position:relative; overflow:hidden;
+    border:1px solid var(--line-hi); background:var(--paper);
+    padding:1.6rem 1.4rem 1.5rem;
+    transition:border-color 0.25s ease, background 0.25s ease, transform 0.2s ease;
   }
-  .shop-note{margin-top:1.6rem; max-width:60ch; color:var(--ink-soft); font-size:0.92rem;}
+  .room-tint .product-card{background:var(--paper-2);}
+  .product-card:hover{border-color:var(--forest); transform:translateY(-3px);}
+  .product-card .pnum{
+    position:absolute; top:0.4rem; right:0.8rem; z-index:0;
+    font-family:'Newsreader', serif; font-style:italic; font-size:2.6rem;
+    color:var(--line-hi); line-height:1;
+  }
+  .product-card h4{
+    position:relative; z-index:1; font-size:1.05rem; font-weight:500;
+    margin:0 2.4rem 1rem 0;
+  }
+  .product-card .price-tag{
+    position:relative; z-index:1; display:inline-block;
+    font-family:'Space Grotesk', sans-serif; font-size:0.72rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:0.05em;
+    color:var(--paper); background:var(--forest);
+    padding:0.35rem 0.75rem; border-radius:999px;
+  }
+  .shop-note{margin-top:2rem; max-width:60ch; color:var(--ink-soft); font-size:0.92rem;}
 
   /* ---------------- VIDEO ---------------- */
   .video-wrapper{
@@ -349,6 +395,7 @@
   .contact-grid a{
     border:1px solid var(--line-hi); padding:1.1rem 1.3rem;
     font-size:0.92rem; transition:border-color 0.2s ease, color 0.2s ease;
+    background:var(--paper);
   }
   .contact-grid a:hover{border-color:var(--indigo); color:var(--indigo);}
 
@@ -377,33 +424,33 @@
     position:fixed; right:1.4rem; bottom:1.4rem; z-index:800;
     background:var(--ink); color:var(--paper);
     font-family:'Space Grotesk', sans-serif;
-    font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em;
+    font-size:0.82rem; text-transform:uppercase; letter-spacing:0.07em;
     border:none; border-radius:999px;
-    padding:0.7rem 1.3rem 0.7rem 1rem;
-    display:flex; align-items:center; gap:0.7rem; cursor:pointer;
-    box-shadow:0 6px 20px rgba(20,19,14,0.25);
+    padding:0.95rem 1.7rem 0.95rem 1.3rem;
+    display:flex; align-items:center; gap:0.85rem; cursor:pointer;
+    box-shadow:0 8px 24px rgba(20,19,14,0.28);
     transition:background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .sound-toggle:hover{background:var(--indigo); transform:translateY(-2px); box-shadow:0 10px 24px rgba(20,19,14,0.3);}
+  .sound-toggle:hover{background:var(--indigo); transform:translateY(-2px); box-shadow:0 12px 28px rgba(20,19,14,0.32);}
   .sound-toggle:disabled{cursor:not-allowed; opacity:0.5; transform:none;}
 
   .sound-toggle .eq{
-    display:flex; align-items:flex-end; gap:3px; height:16px; width:18px;
+    display:flex; align-items:flex-end; gap:4px; height:20px; width:24px;
   }
   .sound-toggle .eq .bar{
-    width:3px; border-radius:2px; background:var(--forest-br);
-    height:6px; transition:background 0.2s ease;
+    width:4px; border-radius:2px; background:var(--forest-br);
+    height:7px; transition:background 0.2s ease;
   }
   .sound-toggle[data-playing="true"] .eq .bar{background:#7CE3A6;}
   .sound-toggle[data-playing="true"] .eq .bar:nth-child(1){animation:eq-bounce 0.9s ease-in-out infinite;}
   .sound-toggle[data-playing="true"] .eq .bar:nth-child(2){animation:eq-bounce 0.9s ease-in-out infinite 0.2s;}
   .sound-toggle[data-playing="true"] .eq .bar:nth-child(3){animation:eq-bounce 0.9s ease-in-out infinite 0.4s;}
   @keyframes eq-bounce{
-    0%, 100%{height:5px;}
-    50%{height:16px;}
+    0%, 100%{height:6px;}
+    50%{height:20px;}
   }
   @media (prefers-reduced-motion:reduce){
-    .sound-toggle[data-playing="true"] .eq .bar{animation:none; height:12px;}
+    .sound-toggle[data-playing="true"] .eq .bar{animation:none; height:14px;}
   }
 
   .reveal{opacity:0; transform:translateY(16px); transition:opacity 0.6s ease, transform 0.6s ease;}
@@ -417,9 +464,12 @@
   <div class="header-inner">
     <a href="#home"><img src="assets/images/logo.png" alt="MM Arts logo" class="brand-logo"></a>
     <div class="nav-group">
-      <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+      <div class="lang-toggle" role="group" aria-label="Language / Idioma / Langue / Idioma">
         <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" class="lang-btn" data-lang="pt" aria-pressed="false">PT</button>
+        <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false">FR</button>
+        <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+        <button type="button" class="lang-btn" data-lang="zh" aria-pressed="false">中文</button>
       </div>
       <input type="checkbox" id="nav-toggle">
       <label for="nav-toggle" class="nav-burger">☰</label>
@@ -437,13 +487,16 @@
 <main id="home">
 
   <section class="hero">
+    <div class="hero-decor" aria-hidden="true">
+      <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><path d="M 32.0 30.0 L 32.23 30.41 L 32.37 30.9 L 32.4 31.45 L 32.29 32.04 L 32.05 32.63 L 31.67 33.19 L 31.14 33.69 L 30.49 34.1 L 29.72 34.39 L 28.87 34.53 L 27.96 34.49 L 27.03 34.27 L 26.12 33.85 L 25.27 33.24 L 24.52 32.44 L 23.91 31.47 L 23.48 30.36 L 23.25 29.15 L 23.26 27.86 L 23.53 26.56 L 24.04 25.28 L 24.82 24.08 L 25.84 23.01 L 27.07 22.13 L 28.5 21.46 L 30.06 21.07 L 31.72 20.96 L 33.42 21.17 L 35.1 21.71 L 36.69 22.57 L 38.13 23.74 L 39.37 25.19 L 40.34 26.88 L 41.0 28.77 L 41.31 30.79 L 41.24 32.88 L 40.77 34.98 L 39.91 36.99 L 38.68 38.86 L 37.08 40.5 L 35.18 41.85 L 33.01 42.85 L 30.66 43.45 L 28.18 43.61 L 25.67 43.31 L 23.21 42.55 L 20.89 41.33 L 18.8 39.67 L 17.0 37.62 L 15.59 35.24 L 14.62 32.6 L 14.13 29.78 L 14.17 26.87 L 14.75 23.96 L 15.87 21.17 L 17.5 18.58 L 19.6 16.3 L 22.12 14.41 L 24.99 12.99 L 28.12 12.1 L 31.4 11.79 L 34.73 12.08 L 38.0 12.99 L 41.1 14.5 L 43.91 16.57 L 46.33 19.15 L 48.26 22.17 L 49.63 25.54 L 50.38 29.15 L 50.47 32.88 L 49.86 36.61 L 48.58 40.21 L 46.64 43.57 L 44.09 46.55 L 41.0 49.05 L 37.47 50.98 L 33.6 52.24 L 29.52 52.79 L 25.36 52.6 L 21.26 51.63 L 17.35 49.93 L 13.78 47.51 L 10.68 44.46 L 8.14 40.85 L 6.29 36.8 L 5.19 32.43 L 4.89 27.89 L 5.42 23.32 L 6.79 18.88 L 8.97 14.72"/></svg>
+    </div>
     <div class="wrap">
       <img src="assets/images/logo.png" alt="MM Arts logo" class="hero-logo">
       <span class="eyebrow" data-i18n="hero_eyebrow">Independent Contemporary Art Platform</span>
       <h1>MM ARTS</h1>
       <p class="hero-sub" data-i18n="hero_sub">Art Without Limits</p>
       <p class="hero-lede" data-i18n="hero_lede">An independent contemporary art platform supporting emerging artists worldwide.</p>
-      <p class="hero-body" data-i18n="hero_body" data-i18n-html>MM Arts is a long-term cultural initiative dedicated to the development, presentation and visibility of contemporary artistic work. We support emerging artists by creating professional structure, curatorial direction and access to new audiences. Our focus is not trends or instant exposure, but <strong>clarity, consistency and sustainable artistic growth</strong>.</p>
+      <p class="hero-body" data-i18n="hero_body" data-i18n-html>MM Arts is a long-term cultural initiative dedicated to the development, presentation and visibility of contemporary artistic work. We support emerging artists by creating professional structure, creative direction and access to new audiences. Our focus is not trends or instant exposure, but <strong>clarity, consistency and sustainable artistic growth</strong>.</p>
       <div class="hero-actions">
         <a href="#collections" class="btn btn-solid" data-i18n="nav_collections">Collections</a>
         <a href="#shop" class="btn btn-line" data-i18n="nav_shop">Shop</a>
@@ -465,7 +518,7 @@
 
   <section id="about" class="room reveal">
     <div class="wrap">
-      <div class="room-head">
+      <div class="room-head accent-indigo">
         <span class="room-index" data-i18n="section_01">Section 01</span>
         <h2 data-i18n="about_h2">About MM Arts</h2>
       </div>
@@ -473,14 +526,14 @@
         <p data-i18n="about_p1" data-i18n-html>MM Arts is an independent initiative created to respond to a recurring problem in the contemporary art landscape: <strong>the lack of professional structure and visibility for emerging artists</strong>.</p>
         <p data-i18n="about_p2">Many creators produce serious, meaningful work but remain unseen due to age, limited exposure, or non-traditional artistic language. MM Arts exists to bridge this gap.</p>
         <p data-i18n="about_p3" data-i18n-html>The platform was founded with the intention of offering artists a <strong>clear, professional and accessible</strong> environment where their work can be presented with respect, coherence and long-term vision.</p>
-        <p data-i18n="about_p4">MM Arts operates independently, prioritising quality, curatorial intention and sustainable development over short-term visibility or algorithmic trends.</p>
+        <p data-i18n="about_p4">MM Arts operates independently, prioritising quality, thoughtful direction and sustainable development over short-term visibility or algorithmic trends.</p>
       </div>
 
       <div class="cards-2">
         <div class="info-card">
           <h3 data-i18n="about_card1_h3">What We Are</h3>
           <ul>
-            <li data-i18n="about_card1_li1">A curated and intentional contemporary art platform</li>
+            <li data-i18n="about_card1_li1">A carefully built, intentional contemporary art platform</li>
             <li data-i18n="about_card1_li2">A long-term cultural and creative project</li>
             <li data-i18n="about_card1_li3">A professional digital space for emerging artists</li>
             <li data-i18n="about_card1_li4">A structure focused on visibility, clarity and growth</li>
@@ -491,7 +544,7 @@
           <h3 data-i18n="about_card2_h3">What We Can Do For You</h3>
           <ul>
             <li data-i18n="about_card2_li1">A professional platform to present artistic work</li>
-            <li data-i18n="about_card2_li2">Curated collections and thematic releases</li>
+            <li data-i18n="about_card2_li2">Selected collections and thematic releases</li>
             <li data-i18n="about_card2_li3">Visibility through digital content and social platforms</li>
             <li data-i18n="about_card2_li4">Long-term support and artistic development</li>
             <li data-i18n="about_card2_li5">A clear and coherent artistic presentation</li>
@@ -517,13 +570,13 @@
     <span class="line"></span>
   </div>
 
-  <section id="collections" class="room reveal">
+  <section id="collections" class="room room-tint reveal">
     <div class="wrap">
       <div class="room-head">
         <span class="room-index" data-i18n="section_02">Section 02</span>
         <h2 data-i18n="collections_h2">Collections</h2>
       </div>
-      <p class="room-lede" data-i18n="collections_lede">MM Arts presents curated collections developed around specific themes, emotions and visual research. Each collection reflects a distinct artistic direction and brings together works that engage in dialogue through form, concept and expression.</p>
+      <p class="room-lede" data-i18n="collections_lede">MM Arts presents collections developed around specific themes, emotions and visual research. Each collection reflects a distinct artistic direction and brings together works that engage in dialogue through form, concept and expression.</p>
 
       <div class="collections-grid">
         <button class="collection-card" onclick="openDetail('collection-one')">
@@ -546,12 +599,12 @@
   <section id="collection-one" class="detail-view" hidden>
     <div class="wrap">
       <button class="close-collection" onclick="closeDetail('collection-one','collections')" data-i18n="collection_detail_back">← Back to Collections</button>
-      <div class="room-head">
+      <div class="room-head accent-indigo">
         <span class="room-index" data-i18n="collection_detail_eyebrow">Collection</span>
-        <h2 data-i18n="collection_detail_h2" data-i18n-html>&ldquo;EU&rdquo; / &ldquo;I (me)&rdquo;</h2>
+        <h2 data-i18n="collection_detail_h2" data-i18n-html>"EU" / "I (me)"</h2>
       </div>
       <p class="manifesto" data-i18n="collection_detail_manifesto">The Brush Will Paint What Cannot Be Told.</p>
-      <p class="room-lede" data-i18n="collection_detail_lede" data-i18n-html>&ldquo;EU&rdquo; or &ldquo;I (me)&rdquo; is the debut collection by Migma, a <strong>16-year-old Portuguese contemporary artist</strong> and founder of MM Arts. The collection presents <strong>12 original works</strong> that construct an open visual narrative. More than a collection, it asserts itself as a manifesto for authentic art.</p>
+      <p class="room-lede" data-i18n="collection_detail_lede" data-i18n-html>"EU" or "I (me)" is the debut collection by Migma, a <strong>16-year-old Portuguese contemporary artist</strong> and founder of MM Arts. The collection presents <strong>12 original works</strong> that construct an open visual narrative. More than a collection, it asserts itself as a manifesto for authentic art.</p>
 
       <div class="gallery" id="collection-gallery"></div>
     </div>
@@ -565,7 +618,7 @@
 
   <section id="exhibitions" class="room reveal">
     <div class="wrap">
-      <div class="room-head">
+      <div class="room-head accent-plum">
         <span class="room-index" data-i18n="section_03">Section 03</span>
         <h2 data-i18n="exhibitions_h2">Exhibitions</h2>
       </div>
@@ -573,7 +626,7 @@
 
       <div class="collections-grid">
         <button class="collection-card" onclick="openDetail('exhibition-current')">
-          <h3 data-i18n="exhibitions_card1_h3">Current Exhibition</h3>
+          <h3 data-i18n="exhibitions_card1_h3">Exhibition 1</h3>
           <p data-i18n="exhibitions_card1_p" data-i18n-html>The first public presentation of Migma's debut collection, <strong>"EU" / "I (me)"</strong>, held in Oeiras in March 2026.</p>
           <span class="view" data-i18n="view_exhibition">View exhibition →</span>
         </button>
@@ -588,12 +641,12 @@
   <section id="exhibition-current" class="detail-view" hidden>
     <div class="wrap">
       <button class="close-collection" onclick="closeDetail('exhibition-current','exhibitions')" data-i18n="exhibition_detail_back">← Back to Exhibitions</button>
-      <div class="room-head">
+      <div class="room-head accent-plum">
         <span class="room-index" data-i18n="exhibition_detail_eyebrow">Exhibition</span>
-        <h2 data-i18n="exhibition_detail_h2" data-i18n-html>&ldquo;EU&rdquo; — Opening Exhibition</h2>
+        <h2 data-i18n="exhibition_detail_h2" data-i18n-html>"EU" — Opening Exhibition</h2>
       </div>
       <p class="manifesto" data-i18n="exhibition_detail_manifesto">One collection, brought into physical space for the first time.</p>
-      <p class="room-lede" data-i18n="exhibition_detail_lede" data-i18n-html>MM Arts presented the <strong>first public exhibition</strong> of Migma's debut collection, bringing the original works of &ldquo;EU&rdquo; / &ldquo;I (me)&rdquo; into physical space for the first time. The exhibition took place at <strong>Galerias Alto da Barra, in Oeiras, Portugal</strong>, during <strong>March 2026</strong>, offering visitors a direct encounter with the scale, texture and presence of each piece — details a screen cannot fully carry.</p>
+      <p class="room-lede" data-i18n="exhibition_detail_lede" data-i18n-html>MM Arts presented the <strong>first public exhibition</strong> of Migma's debut collection, bringing the original works of "EU" / "I (me)" into physical space for the first time. The exhibition took place at <strong>Galerias Alto da Barra, in Oeiras, Portugal</strong>, during <strong>March 2026</strong>, offering visitors a direct encounter with the scale, texture and presence of each piece — details a screen cannot fully carry.</p>
 
       <div class="meta-row">
         <div><span class="label" data-i18n="meta_location_label">Location</span><span class="value" data-i18n="meta_location_value">Galerias Alto da Barra, Oeiras, Portugal</span></div>
@@ -611,15 +664,15 @@
     <span class="line"></span>
   </div>
 
-  <section id="shop" class="room reveal">
+  <section id="shop" class="room room-tint reveal">
     <div class="wrap">
-      <div class="room-head">
+      <div class="room-head accent-terracotta">
         <span class="room-index" data-i18n="section_04">Section 04</span>
         <h2 data-i18n="shop_h2">Shop</h2>
       </div>
-      <p class="room-lede" data-i18n="shop_lede">The MM Arts Shop presents a curated selection of artworks and creative outputs, available to order directly.</p>
-      <ul class="shop-list" id="shop-product-list"></ul>
-      <p class="shop-note" data-i18n="shop_order_note" data-i18n-html>To order, contact us directly at <strong>mmarts.globalshop@gmail.com</strong> — include the product name and your delivery details, and we'll confirm availability and next steps.</p>
+      <p class="room-lede" data-i18n="shop_lede">The MM Arts Shop brings the "EU" collection into everyday objects — prints, originals and limited pieces available to order.</p>
+      <div class="product-grid" id="shop-product-list"></div>
+      <p class="shop-note" data-i18n="shop_order_note" data-i18n-html>To order, contact us directly at <strong>mmarts.globalshop@gmail.com</strong> with the product name and your delivery details — we will confirm availability and next steps.</p>
     </div>
   </section>
 
@@ -648,7 +701,7 @@
     <span class="line"></span>
   </div>
 
-  <section id="contact" class="room reveal">
+  <section id="contact" class="room room-tint reveal">
     <div class="wrap">
       <div class="room-head">
         <span class="room-index" data-i18n="section_06">Section 06</span>
@@ -694,10 +747,9 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
 /* =====================================================================
-   TRANSLATIONS
-   Every visible piece of text on the site lives here. To edit copy,
-   change the string on the right of the colon for the language you
-   want to fix. Keep the "en" and "pt" keys matching one another.
+   TRANSLATIONS — every visible piece of text lives here.
+   To edit copy, change the string for the language you want to fix.
+   Keep the "en" / "pt" / "fr" / "es" / "zh" keys matching one another.
 ===================================================================== */
 const I18N = {
   en: {
@@ -707,22 +759,22 @@ const I18N = {
     hero_eyebrow:'Independent Contemporary Art Platform',
     hero_sub:'Art Without Limits',
     hero_lede:'An independent contemporary art platform supporting emerging artists worldwide.',
-    hero_body:'MM Arts is a long-term cultural initiative dedicated to the development, presentation and visibility of contemporary artistic work. We support emerging artists by creating professional structure, curatorial direction and access to new audiences. Our focus is not trends or instant exposure, but <strong>clarity, consistency and sustainable artistic growth</strong>.',
+    hero_body:'MM Arts is a long-term cultural initiative dedicated to the development, presentation and visibility of contemporary artistic work. We support emerging artists by creating professional structure, creative direction and access to new audiences. Our focus is not trends or instant exposure, but <strong>clarity, consistency and sustainable artistic growth</strong>.',
 
     about_h2:'About MM Arts',
     about_p1:'MM Arts is an independent initiative created to respond to a recurring problem in the contemporary art landscape: <strong>the lack of professional structure and visibility for emerging artists</strong>.',
     about_p2:'Many creators produce serious, meaningful work but remain unseen due to age, limited exposure, or non-traditional artistic language. MM Arts exists to bridge this gap.',
     about_p3:'The platform was founded with the intention of offering artists a <strong>clear, professional and accessible</strong> environment where their work can be presented with respect, coherence and long-term vision.',
-    about_p4:'MM Arts operates independently, prioritising quality, curatorial intention and sustainable development over short-term visibility or algorithmic trends.',
+    about_p4:'MM Arts operates independently, prioritising quality, thoughtful direction and sustainable development over short-term visibility or algorithmic trends.',
     about_card1_h3:'What We Are',
-    about_card1_li1:'A curated and intentional contemporary art platform',
+    about_card1_li1:'A carefully built, intentional contemporary art platform',
     about_card1_li2:'A long-term cultural and creative project',
     about_card1_li3:'A professional digital space for emerging artists',
     about_card1_li4:'A structure focused on visibility, clarity and growth',
     about_card1_li5:'A platform committed to artistic freedom and expression',
     about_card2_h3:'What We Can Do For You',
     about_card2_li1:'A professional platform to present artistic work',
-    about_card2_li2:'Curated collections and thematic releases',
+    about_card2_li2:'Selected collections and thematic releases',
     about_card2_li3:'Visibility through digital content and social platforms',
     about_card2_li4:'Long-term support and artistic development',
     about_card2_li5:'A clear and coherent artistic presentation',
@@ -732,44 +784,44 @@ const I18N = {
     about_vision_p:'We envision a future where artistic value is not defined by age, status or institutional access, but by <strong>expression, intention and creative depth</strong>. MM Arts seeks to contribute to a more open, accessible and sustainable contemporary art ecosystem.',
 
     collections_h2:'Collections',
-    collections_lede:'MM Arts presents curated collections developed around specific themes, emotions and visual research. Each collection reflects a distinct artistic direction and brings together works that engage in dialogue through form, concept and expression.',
-    collections_card1_h3:'Collection "Eu" / "I (me)"',
+    collections_lede:'MM Arts presents collections developed around specific themes, emotions and visual research. Each collection reflects a distinct artistic direction and brings together works that engage in dialogue through form, concept and expression.',
+    collections_card1_h3:'Collection “Eu” / “I (me)”',
     collections_card1_p:'The debut collection by Migma — <strong>12 original works</strong> forming an open visual narrative.',
     view_collection:'View collection →',
     collections_card2_h3:'In Development',
     collections_card2_p:'A new collection is currently being developed and will be published here once it is complete.',
     collections_card3_h3:'Future Collections',
-    collections_card3_p:'New curated collections will be introduced as the platform evolves, expanding artistic perspectives and creative voices.',
+    collections_card3_p:'New collections will be introduced as the platform evolves, expanding artistic perspectives and creative voices.',
 
     collection_detail_back:'← Back to Collections',
     collection_detail_eyebrow:'Collection',
     collection_detail_h2:'“EU” / “I (me)”',
     collection_detail_manifesto:'The Brush Will Paint What Cannot Be Told.',
     collection_detail_lede:'“EU” or “I (me)” is the debut collection by Migma, a <strong>16-year-old Portuguese contemporary artist</strong> and founder of MM Arts. The collection presents <strong>12 original works</strong> that construct an open visual narrative. More than a collection, it asserts itself as a manifesto for authentic art.',
-    offer_price:'Offers above €65',
+    offer_price:'Offers above €75',
     image_pending:'Image pending',
 
     exhibitions_h2:'Exhibitions',
     exhibitions_lede:'Beyond the screen, MM Arts brings collections into physical space. Each exhibition offers a <strong>direct, unmediated encounter</strong> with scale, material and brushwork that a photograph cannot fully carry.',
-    exhibitions_card1_h3:'Current Exhibition',
-    exhibitions_card1_p:'The first public presentation of Migma\'s debut collection, <strong>"EU" / "I (me)"</strong>, held in Oeiras in March 2026.',
+    exhibitions_card1_h3:'Exhibition 1',
+    exhibitions_card1_p:'The first public presentation of Migma’s debut collection, <strong>“EU” / “I (me)”</strong>, held in Oeiras in March 2026.',
     view_exhibition:'View exhibition →',
     exhibitions_card2_h3:'Future Exhibitions',
-    exhibitions_card2_p:'Additional exhibitions will be announced as MM Arts\' programme develops, bringing collections into new spaces and cities.',
+    exhibitions_card2_p:'Additional exhibitions will be announced as MM Arts’ programme develops, bringing collections into new spaces and cities.',
 
     exhibition_detail_back:'← Back to Exhibitions',
     exhibition_detail_eyebrow:'Exhibition',
     exhibition_detail_h2:'“EU” — Opening Exhibition',
     exhibition_detail_manifesto:'One collection, brought into physical space for the first time.',
-    exhibition_detail_lede:'MM Arts presented the <strong>first public exhibition</strong> of Migma\'s debut collection, bringing the original works of “EU” / “I (me)” into physical space for the first time. The exhibition took place at <strong>Galerias Alto da Barra, in Oeiras, Portugal</strong>, during <strong>March 2026</strong>, offering visitors a direct encounter with the scale, texture and presence of each piece — details a screen cannot fully carry.',
+    exhibition_detail_lede:'MM Arts presented the <strong>first public exhibition</strong> of Migma’s debut collection, bringing the original works of “EU” / “I (me)” into physical space for the first time. The exhibition took place at <strong>Galerias Alto da Barra, in Oeiras, Portugal</strong>, during <strong>March 2026</strong>, offering visitors a direct encounter with the scale, texture and presence of each piece — details a screen cannot fully carry.',
     meta_location_label:'Location', meta_location_value:'Galerias Alto da Barra, Oeiras, Portugal',
     meta_dates_label:'Dates', meta_dates_value:'March 2026',
     meta_works_label:'Works on View', meta_works_value:'12 original works',
     exhibition_view_prefix:'Exhibition view',
 
     shop_h2:'Shop',
-    shop_lede:'The MM Arts Shop presents a curated selection of artworks and creative outputs, available to order directly.',
-    shop_order_note:'To order, contact us directly at <strong>mmarts.globalshop@gmail.com</strong> — include the product name and your delivery details, and we\'ll confirm availability and next steps.',
+    shop_lede:'The MM Arts Shop brings the “EU” collection into everyday objects — prints, originals and limited pieces available to order.',
+    shop_order_note:'To order, contact us directly at <strong>mmarts.globalshop@gmail.com</strong> with the product name and your delivery details — we will confirm availability and next steps.',
 
     video_h2:'Promotional Video',
     video_lede:'An introduction to the MM Arts vision, values and long-term objectives.',
@@ -791,22 +843,22 @@ const I18N = {
     hero_eyebrow:'Plataforma Independente de Arte Contemporânea',
     hero_sub:'Arte Sem Limites',
     hero_lede:'Uma plataforma independente de arte contemporânea que apoia artistas emergentes em todo o mundo.',
-    hero_body:'A MM Arts é uma iniciativa cultural de longo prazo dedicada ao desenvolvimento, apresentação e visibilidade do trabalho artístico contemporâneo. Apoiamos artistas emergentes através da criação de uma estrutura profissional, direção curatorial e acesso a novos públicos. O nosso foco não são as tendências ou a exposição instantânea, mas sim <strong>clareza, consistência e um crescimento artístico sustentável</strong>.',
+    hero_body:'A MM Arts é uma iniciativa cultural de longo prazo dedicada ao desenvolvimento, apresentação e visibilidade do trabalho artístico contemporâneo. Apoiamos artistas emergentes através da criação de uma estrutura profissional, direção criativa e acesso a novos públicos. O nosso foco não são as tendências ou a exposição instantânea, mas sim <strong>clareza, consistência e um crescimento artístico sustentável</strong>.',
 
     about_h2:'Sobre a MM Arts',
     about_p1:'A MM Arts é uma iniciativa independente criada para responder a um problema recorrente no panorama da arte contemporânea: <strong>a falta de estrutura profissional e visibilidade para artistas emergentes</strong>.',
     about_p2:'Muitos criadores produzem trabalho sério e com significado, mas permanecem invisíveis devido à idade, exposição limitada ou uma linguagem artística não tradicional. A MM Arts existe para colmatar esta lacuna.',
     about_p3:'A plataforma foi fundada com o objetivo de oferecer aos artistas um ambiente <strong>claro, profissional e acessível</strong>, onde o seu trabalho possa ser apresentado com respeito, coerência e visão a longo prazo.',
-    about_p4:'A MM Arts opera de forma independente, priorizando a qualidade, a intenção curatorial e o desenvolvimento sustentável em detrimento da visibilidade a curto prazo ou das tendências dos algoritmos.',
+    about_p4:'A MM Arts opera de forma independente, priorizando a qualidade, uma direção cuidada e o desenvolvimento sustentável em detrimento da visibilidade a curto prazo ou das tendências dos algoritmos.',
     about_card1_h3:'O Que Somos',
-    about_card1_li1:'Uma plataforma de arte contemporânea curada e intencional',
+    about_card1_li1:'Uma plataforma de arte contemporânea cuidada e intencional',
     about_card1_li2:'Um projeto cultural e criativo de longo prazo',
     about_card1_li3:'Um espaço digital profissional para artistas emergentes',
     about_card1_li4:'Uma estrutura focada na visibilidade, clareza e crescimento',
     about_card1_li5:'Uma plataforma comprometida com a liberdade e expressão artística',
     about_card2_h3:'O Que Podemos Fazer Por Si',
     about_card2_li1:'Uma plataforma profissional para apresentar trabalho artístico',
-    about_card2_li2:'Coleções curadas e lançamentos temáticos',
+    about_card2_li2:'Coleções selecionadas e lançamentos temáticos',
     about_card2_li3:'Visibilidade através de conteúdo digital e redes sociais',
     about_card2_li4:'Apoio a longo prazo e desenvolvimento artístico',
     about_card2_li5:'Uma apresentação artística clara e coerente',
@@ -816,27 +868,27 @@ const I18N = {
     about_vision_p:'Imaginamos um futuro em que o valor artístico não é definido pela idade, estatuto ou acesso institucional, mas sim pela <strong>expressão, intenção e profundidade criativa</strong>. A MM Arts procura contribuir para um ecossistema de arte contemporânea mais aberto, acessível e sustentável.',
 
     collections_h2:'Coleções',
-    collections_lede:'A MM Arts apresenta coleções curadas, desenvolvidas em torno de temas, emoções e pesquisas visuais específicas. Cada coleção reflete uma direção artística distinta e reúne obras que dialogam entre si através da forma, do conceito e da expressão.',
-    collections_card1_h3:'Coleção "Eu"',
+    collections_lede:'A MM Arts apresenta coleções desenvolvidas em torno de temas, emoções e pesquisas visuais específicas. Cada coleção reflete uma direção artística distinta e reúne obras que dialogam entre si através da forma, do conceito e da expressão.',
+    collections_card1_h3:'Coleção “Eu”',
     collections_card1_p:'A coleção de estreia de Migma — <strong>12 obras originais</strong> que constroem uma narrativa visual aberta.',
     view_collection:'Ver coleção →',
     collections_card2_h3:'Em Desenvolvimento',
     collections_card2_p:'Uma nova coleção está atualmente a ser desenvolvida e será publicada aqui assim que estiver concluída.',
     collections_card3_h3:'Próximas Coleções',
-    collections_card3_p:'Novas coleções curadas serão introduzidas à medida que a plataforma evolui, alargando perspetivas artísticas e vozes criativas.',
+    collections_card3_p:'Novas coleções serão introduzidas à medida que a plataforma evolui, alargando perspetivas artísticas e vozes criativas.',
 
     collection_detail_back:'← Voltar às Coleções',
     collection_detail_eyebrow:'Coleção',
     collection_detail_h2:'“EU”',
     collection_detail_manifesto:'O Pincel Pintará o Que Não Pode Ser Dito.',
-    collection_detail_lede:'“EU” é a coleção de estreia de Migma, uma <strong>artista contemporânea portuguesa de 16 anos</strong> e fundadora da MM Arts. A coleção apresenta <strong>12 obras originais</strong> que constroem uma narrativa visual aberta. Mais do que uma coleção, afirma-se como um manifesto pela arte autêntica.',
-    offer_price:'Propostas acima de €65',
+    collection_detail_lede:'“EU” é a coleção de estreia de Migma, um <strong>artista contemporâneo português de 16 anos</strong> e fundador da MM Arts. A coleção apresenta <strong>12 obras originais</strong> que constroem uma narrativa visual aberta. Mais do que uma coleção, afirma-se como um manifesto pela arte autêntica.',
+    offer_price:'Propostas acima de €75',
     image_pending:'Imagem pendente',
 
     exhibitions_h2:'Exposições',
     exhibitions_lede:'Para além do ecrã, a MM Arts leva as coleções para o espaço físico. Cada exposição oferece um <strong>encontro direto e sem mediação</strong> com a escala, o material e a pincelada que uma fotografia não consegue transmitir por completo.',
-    exhibitions_card1_h3:'Exposição Atual',
-    exhibitions_card1_p:'A primeira apresentação pública da coleção de estreia de Migma, <strong>"EU"</strong>, realizada em Oeiras, em março de 2026.',
+    exhibitions_card1_h3:'Exposição 1',
+    exhibitions_card1_p:'A primeira apresentação pública da coleção de estreia de Migma, <strong>“EU”</strong>, realizada em Oeiras, em março de 2026.',
     view_exhibition:'Ver exposição →',
     exhibitions_card2_h3:'Próximas Exposições',
     exhibitions_card2_p:'Novas exposições serão anunciadas à medida que o programa da MM Arts se desenvolve, levando as coleções a novos espaços e cidades.',
@@ -852,8 +904,8 @@ const I18N = {
     exhibition_view_prefix:'Vista da exposição',
 
     shop_h2:'Loja',
-    shop_lede:'A Loja MM Arts apresenta uma seleção curada de obras e produtos criativos, disponíveis para encomenda direta.',
-    shop_order_note:'Para encomendar, contacte-nos diretamente através de <strong>mmarts.globalshop@gmail.com</strong> — indique o nome do produto e os dados de entrega, e confirmaremos a disponibilidade e os próximos passos.',
+    shop_lede:'A Loja MM Arts leva a coleção “EU” para o dia a dia — impressões, obras originais e peças em edição limitada disponíveis para encomenda.',
+    shop_order_note:'Para encomendar, contacte-nos diretamente através de <strong>mmarts.globalshop@gmail.com</strong>, indicando o nome do produto e os dados de entrega — confirmaremos a disponibilidade e os próximos passos.',
 
     video_h2:'Vídeo Promocional',
     video_lede:'Uma introdução à visão, aos valores e aos objetivos de longo prazo da MM Arts.',
@@ -867,6 +919,258 @@ const I18N = {
     sound_play:'Tocar música', sound_pause:'Pausar música',
     sound_tap_again:'Toca novamente', sound_unavailable:'Música indisponível',
     sound_aria_play:'Tocar música de fundo', sound_aria_pause:'Pausar música de fundo',
+  },
+  fr: {
+    nav_about:'À Propos', nav_collections:'Collections', nav_exhibitions:'Expositions', nav_shop:'Boutique', nav_contact:'Contact',
+    section_01:'Section 01', section_02:'Section 02', section_03:'Section 03', section_04:'Section 04', section_05:'Section 05', section_06:'Section 06',
+
+    hero_eyebrow:'Plateforme Indépendante d’Art Contemporain',
+    hero_sub:'L’Art Sans Limites',
+    hero_lede:'Une plateforme indépendante d’art contemporain qui soutient des artistes émergents à travers le monde.',
+    hero_body:'MM Arts est une initiative culturelle à long terme dédiée au développement, à la présentation et à la visibilité du travail artistique contemporain. Nous soutenons les artistes émergents en créant une structure professionnelle, une direction créative et un accès à de nouveaux publics. Notre priorité n’est pas les tendances ou l’exposition instantanée, mais <strong>la clarté, la cohérence et une croissance artistique durable</strong>.',
+
+    about_h2:'À Propos de MM Arts',
+    about_p1:'MM Arts est une initiative indépendante créée pour répondre à un problème récurrent dans le paysage de l’art contemporain : <strong>le manque de structure professionnelle et de visibilité pour les artistes émergents</strong>.',
+    about_p2:'De nombreux créateurs produisent un travail sérieux et porteur de sens, mais restent invisibles en raison de leur âge, d’une exposition limitée ou d’un langage artistique non traditionnel. MM Arts existe pour combler cet écart.',
+    about_p3:'La plateforme a été fondée dans l’intention d’offrir aux artistes un environnement <strong>clair, professionnel et accessible</strong>, où leur travail peut être présenté avec respect, cohérence et une vision à long terme.',
+    about_p4:'MM Arts opère de manière indépendante, en donnant la priorité à la qualité, à une direction réfléchie et à un développement durable plutôt qu’à la visibilité à court terme ou aux tendances des algorithmes.',
+    about_card1_h3:'Ce Que Nous Sommes',
+    about_card1_li1:'Une plateforme d’art contemporain construite avec soin et intention',
+    about_card1_li2:'Un projet culturel et créatif à long terme',
+    about_card1_li3:'Un espace numérique professionnel pour les artistes émergents',
+    about_card1_li4:'Une structure axée sur la visibilité, la clarté et la croissance',
+    about_card1_li5:'Une plateforme engagée pour la liberté et l’expression artistique',
+    about_card2_h3:'Ce Que Nous Pouvons Faire Pour Vous',
+    about_card2_li1:'Une plateforme professionnelle pour présenter un travail artistique',
+    about_card2_li2:'Des collections sélectionnées et des sorties thématiques',
+    about_card2_li3:'De la visibilité grâce au contenu numérique et aux réseaux sociaux',
+    about_card2_li4:'Un accompagnement à long terme et un développement artistique',
+    about_card2_li5:'Une présentation artistique claire et cohérente',
+    about_mission_h3:'Notre Mission',
+    about_mission_p:'Notre mission est de soutenir les artistes émergents en leur offrant une structure, de la visibilité et une présentation professionnelle pour leur travail artistique contemporain. Nous cherchons à créer des opportunités permettant aux artistes de <strong>développer leur pratique, toucher de nouveaux publics</strong> et présenter leur travail dans un cadre sérieux et respectueux.',
+    about_vision_h3:'Notre Vision',
+    about_vision_p:'Nous envisageons un avenir où la valeur artistique n’est pas définie par l’âge, le statut ou l’accès institutionnel, mais par <strong>l’expression, l’intention et la profondeur créative</strong>. MM Arts cherche à contribuer à un écosystème de l’art contemporain plus ouvert, accessible et durable.',
+
+    collections_h2:'Collections',
+    collections_lede:'MM Arts présente des collections développées autour de thèmes, d’émotions et de recherches visuelles spécifiques. Chaque collection reflète une direction artistique distincte et rassemble des œuvres qui dialoguent entre elles à travers la forme, le concept et l’expression.',
+    collections_card1_h3:'Collection « Eu » / « I (me) »',
+    collections_card1_p:'La collection de débuts de Migma — <strong>12 œuvres originales</strong> formant un récit visuel ouvert.',
+    view_collection:'Voir la collection →',
+    collections_card2_h3:'En Développement',
+    collections_card2_p:'Une nouvelle collection est actuellement en cours de développement et sera publiée ici dès qu’elle sera terminée.',
+    collections_card3_h3:'Prochaines Collections',
+    collections_card3_p:'De nouvelles collections seront présentées à mesure que la plateforme évolue, élargissant les perspectives artistiques et les voix créatives.',
+
+    collection_detail_back:'← Retour aux Collections',
+    collection_detail_eyebrow:'Collection',
+    collection_detail_h2:'« EU » / « Moi »',
+    collection_detail_manifesto:'Le Pinceau Peindra Ce Qui Ne Peut Être Dit.',
+    collection_detail_lede:'« EU », qui signifie « moi » en portugais, est la collection de débuts de Migma, un <strong>artiste contemporain portugais de 16 ans</strong> et fondateur de MM Arts. La collection présente <strong>12 œuvres originales</strong> qui construisent un récit visuel ouvert. Plus qu’une collection, elle s’affirme comme un manifeste pour un art authentique.',
+    offer_price:'Offres à partir de 75 €',
+    image_pending:'Image à venir',
+
+    exhibitions_h2:'Expositions',
+    exhibitions_lede:'Au-delà de l’écran, MM Arts fait entrer les collections dans l’espace physique. Chaque exposition offre une <strong>rencontre directe et sans intermédiaire</strong> avec l’échelle, la matière et la touche qu’une photographie ne peut pas entièrement transmettre.',
+    exhibitions_card1_h3:'Exposition 1',
+    exhibitions_card1_p:'La première présentation publique de la collection de débuts de Migma, <strong>« EU » / « Moi »</strong>, organisée à Oeiras en mars 2026.',
+    view_exhibition:'Voir l’exposition →',
+    exhibitions_card2_h3:'Prochaines Expositions',
+    exhibitions_card2_p:'D’autres expositions seront annoncées à mesure que le programme de MM Arts se développe, faisant voyager les collections vers de nouveaux espaces et de nouvelles villes.',
+
+    exhibition_detail_back:'← Retour aux Expositions',
+    exhibition_detail_eyebrow:'Exposition',
+    exhibition_detail_h2:'« EU » — Exposition d’Ouverture',
+    exhibition_detail_manifesto:'Une collection, portée pour la première fois dans l’espace physique.',
+    exhibition_detail_lede:'MM Arts a présenté la <strong>première exposition publique</strong> de la collection de débuts de Migma, faisant entrer les œuvres originales de « EU » dans l’espace physique pour la première fois. L’exposition s’est tenue aux <strong>Galerias Alto da Barra, à Oeiras, au Portugal</strong>, durant le mois de <strong>mars 2026</strong>, offrant aux visiteurs une rencontre directe avec l’échelle, la texture et la présence de chaque pièce — des détails qu’un écran ne peut pas entièrement transmettre.',
+    meta_location_label:'Lieu', meta_location_value:'Galerias Alto da Barra, Oeiras, Portugal',
+    meta_dates_label:'Dates', meta_dates_value:'Mars 2026',
+    meta_works_label:'Œuvres Exposées', meta_works_value:'12 œuvres originales',
+    exhibition_view_prefix:'Vue de l’exposition',
+
+    shop_h2:'Boutique',
+    shop_lede:'La Boutique MM Arts fait entrer la collection « EU » dans le quotidien — impressions, œuvres originales et pièces en édition limitée disponibles à la commande.',
+    shop_order_note:'Pour commander, contactez-nous directement à <strong>mmarts.globalshop@gmail.com</strong> en indiquant le nom du produit et les informations de livraison — la disponibilité et les prochaines étapes seront confirmées.',
+
+    video_h2:'Vidéo Promotionnelle',
+    video_lede:'Une introduction à la vision, aux valeurs et aux objectifs à long terme de MM Arts.',
+
+    contact_h2:'Contact',
+    contact_lede:'Pour toute <strong>demande professionnelle, candidature d’artiste, collaboration ou partenariat</strong>, merci de nous contacter via les canaux officiels ci-dessous.',
+    contact_shop_label:'Commandes Boutique',
+
+    footer_rights:'Tous droits réservés',
+
+    sound_play:'Lire la musique', sound_pause:'Mettre en pause',
+    sound_tap_again:'Appuyez à nouveau', sound_unavailable:'Musique indisponible',
+    sound_aria_play:'Lire la musique de fond', sound_aria_pause:'Mettre en pause la musique de fond',
+  },
+  es: {
+    nav_about:'Sobre Nosotros', nav_collections:'Colecciones', nav_exhibitions:'Exposiciones', nav_shop:'Tienda', nav_contact:'Contacto',
+    section_01:'Sección 01', section_02:'Sección 02', section_03:'Sección 03', section_04:'Sección 04', section_05:'Sección 05', section_06:'Sección 06',
+
+    hero_eyebrow:'Plataforma Independiente de Arte Contemporáneo',
+    hero_sub:'Arte Sin Límites',
+    hero_lede:'Una plataforma independiente de arte contemporáneo que apoya a artistas emergentes en todo el mundo.',
+    hero_body:'MM Arts es una iniciativa cultural a largo plazo dedicada al desarrollo, la presentación y la visibilidad del trabajo artístico contemporáneo. Apoyamos a artistas emergentes creando una estructura profesional, dirección creativa y acceso a nuevos públicos. Nuestro enfoque no son las tendencias ni la exposición instantánea, sino <strong>claridad, coherencia y un crecimiento artístico sostenible</strong>.',
+
+    about_h2:'Sobre MM Arts',
+    about_p1:'MM Arts es una iniciativa independiente creada para responder a un problema recurrente en el panorama del arte contemporáneo: <strong>la falta de estructura profesional y visibilidad para artistas emergentes</strong>.',
+    about_p2:'Muchos creadores producen un trabajo serio y con significado, pero permanecen invisibles debido a la edad, una exposición limitada o un lenguaje artístico no tradicional. MM Arts existe para cerrar esa brecha.',
+    about_p3:'La plataforma se fundó con la intención de ofrecer a los artistas un entorno <strong>claro, profesional y accesible</strong>, donde su trabajo pueda presentarse con respeto, coherencia y visión a largo plazo.',
+    about_p4:'MM Arts opera de forma independiente, priorizando la calidad, una dirección cuidada y el desarrollo sostenible por encima de la visibilidad a corto plazo o las tendencias de los algoritmos.',
+    about_card1_h3:'Quiénes Somos',
+    about_card1_li1:'Una plataforma de arte contemporáneo construida con cuidado e intención',
+    about_card1_li2:'Un proyecto cultural y creativo a largo plazo',
+    about_card1_li3:'Un espacio digital profesional para artistas emergentes',
+    about_card1_li4:'Una estructura centrada en la visibilidad, la claridad y el crecimiento',
+    about_card1_li5:'Una plataforma comprometida con la libertad y la expresión artística',
+    about_card2_h3:'Qué Podemos Hacer Por Usted',
+    about_card2_li1:'Una plataforma profesional para presentar trabajo artístico',
+    about_card2_li2:'Colecciones seleccionadas y lanzamientos temáticos',
+    about_card2_li3:'Visibilidad a través de contenido digital y redes sociales',
+    about_card2_li4:'Apoyo a largo plazo y desarrollo artístico',
+    about_card2_li5:'Una presentación artística clara y coherente',
+    about_mission_h3:'Nuestra Misión',
+    about_mission_p:'Nuestra misión es apoyar a artistas emergentes proporcionando estructura, visibilidad y una presentación profesional para el trabajo artístico contemporáneo. Buscamos crear oportunidades para que los artistas <strong>desarrollen su práctica, alcancen nuevos públicos</strong> y presenten su trabajo dentro de un marco serio y respetuoso.',
+    about_vision_h3:'Nuestra Visión',
+    about_vision_p:'Imaginamos un futuro donde el valor artístico no esté definido por la edad, el estatus o el acceso institucional, sino por la <strong>expresión, la intención y la profundidad creativa</strong>. MM Arts busca contribuir a un ecosistema de arte contemporáneo más abierto, accesible y sostenible.',
+
+    collections_h2:'Colecciones',
+    collections_lede:'MM Arts presenta colecciones desarrolladas en torno a temas, emociones e investigaciones visuales específicas. Cada colección refleja una dirección artística distinta y reúne obras que dialogan entre sí a través de la forma, el concepto y la expresión.',
+    collections_card1_h3:'Colección «Eu» / «I (me)»',
+    collections_card1_p:'La colección debut de Migma — <strong>12 obras originales</strong> que forman una narrativa visual abierta.',
+    view_collection:'Ver colección →',
+    collections_card2_h3:'En Desarrollo',
+    collections_card2_p:'Una nueva colección está actualmente en desarrollo y se publicará aquí en cuanto esté terminada.',
+    collections_card3_h3:'Próximas Colecciones',
+    collections_card3_p:'Se presentarán nuevas colecciones a medida que la plataforma evolucione, ampliando perspectivas artísticas y voces creativas.',
+
+    collection_detail_back:'← Volver a Colecciones',
+    collection_detail_eyebrow:'Colección',
+    collection_detail_h2:'«EU» / «Yo»',
+    collection_detail_manifesto:'El Pincel Pintará Lo Que No Puede Ser Dicho.',
+    collection_detail_lede:'«EU», que significa «yo» en portugués, es la colección debut de Migma, un <strong>artista contemporáneo portugués de 16 años</strong> y fundador de MM Arts. La colección presenta <strong>12 obras originales</strong> que construyen una narrativa visual abierta. Más que una colección, se afirma como un manifiesto por el arte auténtico.',
+    offer_price:'Ofertas a partir de 75 €',
+    image_pending:'Imagen pendiente',
+
+    exhibitions_h2:'Exposiciones',
+    exhibitions_lede:'Más allá de la pantalla, MM Arts lleva las colecciones al espacio físico. Cada exposición ofrece un <strong>encuentro directo y sin mediación</strong> con la escala, el material y la pincelada que una fotografía no puede transmitir por completo.',
+    exhibitions_card1_h3:'Exposición 1',
+    exhibitions_card1_p:'La primera presentación pública de la colección debut de Migma, <strong>«EU» / «Yo»</strong>, celebrada en Oeiras en marzo de 2026.',
+    view_exhibition:'Ver exposición →',
+    exhibitions_card2_h3:'Próximas Exposiciones',
+    exhibitions_card2_p:'Se anunciarán nuevas exposiciones a medida que el programa de MM Arts se desarrolle, llevando las colecciones a nuevos espacios y ciudades.',
+
+    exhibition_detail_back:'← Volver a Exposiciones',
+    exhibition_detail_eyebrow:'Exposición',
+    exhibition_detail_h2:'«EU» — Exposición Inaugural',
+    exhibition_detail_manifesto:'Una colección, llevada por primera vez al espacio físico.',
+    exhibition_detail_lede:'MM Arts presentó la <strong>primera exposición pública</strong> de la colección debut de Migma, llevando las obras originales de «EU» al espacio físico por primera vez. La exposición tuvo lugar en las <strong>Galerias Alto da Barra, en Oeiras, Portugal</strong>, durante el mes de <strong>marzo de 2026</strong>, ofreciendo a los visitantes un encuentro directo con la escala, la textura y la presencia de cada pieza — detalles que una pantalla no puede transmitir por completo.',
+    meta_location_label:'Ubicación', meta_location_value:'Galerias Alto da Barra, Oeiras, Portugal',
+    meta_dates_label:'Fechas', meta_dates_value:'Marzo de 2026',
+    meta_works_label:'Obras Expuestas', meta_works_value:'12 obras originales',
+    exhibition_view_prefix:'Vista de la exposición',
+
+    shop_h2:'Tienda',
+    shop_lede:'La Tienda MM Arts lleva la colección «EU» al día a día — impresiones, obras originales y piezas en edición limitada disponibles para encargo.',
+    shop_order_note:'Para encargar, contacte directamente a través de <strong>mmarts.globalshop@gmail.com</strong> indicando el nombre del producto y los datos de entrega — se confirmará la disponibilidad y los próximos pasos.',
+
+    video_h2:'Vídeo Promocional',
+    video_lede:'Una introducción a la visión, los valores y los objetivos a largo plazo de MM Arts.',
+
+    contact_h2:'Contacto',
+    contact_lede:'Para <strong>consultas profesionales, candidaturas de artistas, colaboraciones o asociaciones</strong>, contacte a través de los canales oficiales indicados a continuación.',
+    contact_shop_label:'Pedidos de la Tienda',
+
+    footer_rights:'Todos los derechos reservados',
+
+    sound_play:'Reproducir música', sound_pause:'Pausar música',
+    sound_tap_again:'Toca de nuevo', sound_unavailable:'Música no disponible',
+    sound_aria_play:'Reproducir música de fondo', sound_aria_pause:'Pausar música de fondo',
+  },
+  zh: {
+    nav_about:'关于', nav_collections:'系列', nav_exhibitions:'展览', nav_shop:'商店', nav_contact:'联系方式',
+    section_01:'第01节', section_02:'第02节', section_03:'第03节', section_04:'第04节', section_05:'第05节', section_06:'第06节',
+
+    hero_eyebrow:'独立当代艺术平台',
+    hero_sub:'艺术无界',
+    hero_lede:'一个支持全球新锐艺术家的独立当代艺术平台。',
+    hero_body:'MM Arts 是一项长期的文化事业,致力于当代艺术作品的发展、呈现与推广。我们通过建立专业的架构、富有创意的方向以及触达新观众的渠道,支持新锐艺术家的成长。我们关注的不是潮流或短暂的曝光,而是<strong>清晰、持续与可持续的艺术成长</strong>。',
+
+    about_h2:'关于 MM Arts',
+    about_p1:'MM Arts 是一项独立倡议,旨在回应当代艺术领域中一个反复出现的问题:<strong>新锐艺术家缺乏专业架构与曝光机会</strong>。',
+    about_p2:'许多创作者的作品严肃且富有意义,却因年龄、曝光有限或非传统的艺术语言而未被看见。MM Arts 的存在,正是为了弥合这一差距。',
+    about_p3:'这个平台的成立初衷,是为艺术家提供一个<strong>清晰、专业且平易近人</strong>的环境,让他们的作品能够以尊重、连贯与长远的视野被呈现。',
+    about_p4:'MM Arts 独立运作,将质量、周到的方向与可持续发展置于短期曝光或算法趋势之上。',
+    about_card1_h3:'我们是谁',
+    about_card1_li1:'一个用心打造、目标明确的当代艺术平台',
+    about_card1_li2:'一个长期的文化与创意项目',
+    about_card1_li3:'一个专为新锐艺术家打造的专业数字空间',
+    about_card1_li4:'一个专注于曝光度、清晰度与成长的架构',
+    about_card1_li5:'一个致力于艺术自由与表达的平台',
+    about_card2_h3:'我们能为您做什么',
+    about_card2_li1:'一个呈现艺术作品的专业平台',
+    about_card2_li2:'精选系列与主题发布',
+    about_card2_li3:'通过数字内容与社交平台获得曝光',
+    about_card2_li4:'长期的支持与艺术发展',
+    about_card2_li5:'清晰而连贯的艺术呈现',
+    about_mission_h3:'我们的使命',
+    about_mission_p:'我们的使命是通过提供架构、曝光机会以及专业的呈现方式,支持新锐艺术家发展当代艺术作品。我们致力于为艺术家创造机会,让他们能够<strong>发展自己的创作实践、触达新的观众</strong>,并在一个严肃而尊重的框架内展示作品。',
+    about_vision_h3:'我们的愿景',
+    about_vision_p:'我们期望未来艺术价值的定义,不再取决于年龄、地位或体制内的认可,而是取决于<strong>表达、意图与创作深度</strong>。MM Arts 致力于为一个更加开放、包容与可持续的当代艺术生态做出贡献。',
+
+    collections_h2:'系列',
+    collections_lede:'MM Arts 呈现围绕特定主题、情感与视觉探索而发展出的系列作品。每个系列都反映出独特的艺术方向,汇聚了通过形式、概念与表达相互对话的作品。',
+    collections_card1_h3:'“Eu” / “I (me)” 系列',
+    collections_card1_p:'Migma 的首个系列 —— <strong>12件原创作品</strong>,构成一段开放的视觉叙事。',
+    view_collection:'查看系列 →',
+    collections_card2_h3:'筹备中',
+    collections_card2_p:'一个新的系列正在筹备中,完成后将在此发布。',
+    collections_card3_h3:'未来系列',
+    collections_card3_p:'随着平台的发展,将陆续推出新的系列,拓展艺术视角与创作声音。',
+
+    collection_detail_back:'← 返回系列',
+    collection_detail_eyebrow:'系列',
+    collection_detail_h2:'“EU” / “I (me)”',
+    collection_detail_manifesto:'画笔将描绘言语无法诉说之物。',
+    collection_detail_lede:'“EU”(葡萄牙语中意为“我”)是 Migma 的首个系列 —— 一位<strong>16岁的葡萄牙当代艺术家</strong>,同时也是 MM Arts 的创办人。该系列呈现<strong>12件原创作品</strong>,构成一段开放的视觉叙事。它不仅是一个系列,更是一份关于真实艺术的宣言。',
+    offer_price:'75欧元以上竞价',
+    image_pending:'图片待上传',
+
+    exhibitions_h2:'展览',
+    exhibitions_lede:'MM Arts 让系列作品走出屏幕,进入真实的物理空间。每场展览都提供一次<strong>直接、无中介的接触</strong>,让观众感受照片无法完全传达的尺度、材质与笔触。',
+    exhibitions_card1_h3:'展览一',
+    exhibitions_card1_p:'Migma 首个系列 <strong>“EU” / “I (me)”</strong> 的首次公开展出,于2026年3月在奥埃拉什举行。',
+    view_exhibition:'查看展览 →',
+    exhibitions_card2_h3:'未来展览',
+    exhibitions_card2_p:'随着 MM Arts 展览计划的推进,更多展览信息将陆续公布,把系列作品带到新的空间与城市。',
+
+    exhibition_detail_back:'← 返回展览',
+    exhibition_detail_eyebrow:'展览',
+    exhibition_detail_h2:'“EU” —— 开幕展',
+    exhibition_detail_manifesto:'一个系列,首次走入真实空间。',
+    exhibition_detail_lede:'MM Arts 举办了 Migma 首个系列的<strong>首次公开展览</strong>,让“EU” / “I (me)”的原作首次进入物理空间。展览于<strong>2026年3月</strong>在<strong>葡萄牙奥埃拉什的 Galerias Alto da Barra</strong>举行,让观众得以直接感受每件作品的尺度、质感与存在感 —— 这些细节是屏幕无法完全传达的。',
+    meta_location_label:'地点', meta_location_value:'Galerias Alto da Barra, 奥埃拉什, 葡萄牙',
+    meta_dates_label:'日期', meta_dates_value:'2026年3月',
+    meta_works_label:'展出作品', meta_works_value:'12件原创作品',
+    exhibition_view_prefix:'展览现场',
+
+    shop_h2:'商店',
+    shop_lede:'MM Arts 商店让“EU”系列走进日常生活 —— 版画、原作与限量作品,均可订购。',
+    shop_order_note:'如需订购,请直接联系 <strong>mmarts.globalshop@gmail.com</strong>,并注明产品名称与收货信息 —— 我们将确认库存与后续流程。',
+
+    video_h2:'宣传视频',
+    video_lede:'了解 MM Arts 的愿景、价值观与长期目标。',
+
+    contact_h2:'联系方式',
+    contact_lede:'如有<strong>专业咨询、艺术家投稿、合作或伙伴关系</strong>意向,请通过以下官方渠道联系我们。',
+    contact_shop_label:'商店订购',
+
+    footer_rights:'版权所有',
+
+    sound_play:'播放音乐', sound_pause:'暂停音乐',
+    sound_tap_again:'请再次点击播放', sound_unavailable:'音乐暂时无法播放',
+    sound_aria_play:'播放背景音乐', sound_aria_pause:'暂停背景音乐',
   }
 };
 
@@ -897,9 +1201,6 @@ document.querySelectorAll('.lang-btn').forEach(btn=>{
   btn.addEventListener('click', ()=> setLanguage(btn.dataset.lang));
 });
 
-/* ---------------------------------------------------------------
-   Mobile nav: close the menu after tapping a link
---------------------------------------------------------------- */
 document.querySelectorAll('.site-nav a').forEach(a=>{
   a.addEventListener('click', ()=>{ document.getElementById('nav-toggle').checked = false; });
 });
@@ -910,11 +1211,9 @@ window.addEventListener('scroll', ()=>{
 });
 
 /* =====================================================================
-   COLLECTION "EU" — 12 works
-   EDIT HERE: title, size ('A4' or 'A3'), orientation ('portrait' or 'landscape').
-   Files must be uploaded to: assets/images/collection-eu/01.jpg ... 12.jpg
-   Pricing note ("Offers above €65") is shared by all works — edit the
-   "offer_price" line in the I18N object above (both en + pt) to change it.
+   COLLECTION "EU" — 12 works. Titles are not translated (art piece
+   titles stay as given, same in every language).
+   Files: assets/images/collection-eu/01.jpg ... 12.jpg
 ===================================================================== */
 const collectionWorks = [
   { file:'01.jpg', orientation:'portrait',  title:'The Eye',       size:'A3' },
@@ -931,11 +1230,8 @@ const collectionWorks = [
   { file:'12.jpg', orientation:'landscape', title:'Chaser',        size:'A4' },
 ];
 
-/* =====================================================================
-   EXHIBITION "EU" — Galerias Alto da Barra, Oeiras — March 2026
-   10 installation photos: 5 portrait + 5 landscape.
-   Files must be uploaded to: assets/images/exhibition-current/E01.jpg ... E10.jpg
-===================================================================== */
+/* Exhibition — Galerias Alto da Barra, Oeiras — March 2026. 10 photos: 5 portrait + 5 landscape.
+   Files: assets/images/exhibition-current/E01.jpg ... E10.jpg */
 const exhibitionWorks = [
   { file:'E01.jpg', orientation:'portrait'  },
   { file:'E02.jpg', orientation:'portrait'  },
@@ -950,13 +1246,50 @@ const exhibitionWorks = [
 ];
 
 /* =====================================================================
-   SHOP — example placeholder products. Replace name.en / name.pt / price
-   with real products whenever they're ready.
+   SHOP — 13 products. Names are placeholders tied to the "EU" collection
+   so they read as artworks, not generic merch. Edit price/name/size
+   any time — the 4 limited-edition variants below are marked "Price TBC"
+   on purpose, waiting for real pricing + measurements.
 ===================================================================== */
 const shopProducts = [
-  { name:{en:'Limited Edition Print — "EU" Series', pt:'Impressão de Edição Limitada — Série "EU"'}, price:{en:'€45', pt:'€45'} },
-  { name:{en:'Original Artwork (by request)',        pt:'Obra Original (por encomenda)'},            price:{en:'From €65', pt:'A partir de €65'} },
-  { name:{en:'Digital Download',                      pt:'Download Digital'},                          price:{en:'€15', pt:'€15'} },
+  { name:{en:'EU Collection — Digital Edition', pt:'Coleção EU — Edição Digital', fr:'Collection EU — Édition Numérique', es:'Colección EU — Edición Digital', zh:'EU系列 —— 数字版'},
+    price:{en:'€14', pt:'€14', fr:'14 €', es:'14 €', zh:'€14'} },
+
+  { name:{en:'EU Collection — Postcard Set (5 Designs)', pt:'Coleção EU — Conjunto de Postais (5 Modelos)', fr:'Collection EU — Lot de Cartes Postales (5 Modèles)', es:'Colección EU — Set de Postales (5 Diseños)', zh:'EU系列 —— 明信片套装(5款)'},
+    price:{en:'€12', pt:'€12', fr:'12 €', es:'12 €', zh:'€12'} },
+
+  { name:{en:'EU Collection — Sticker Pack (Set of 3)', pt:'Coleção EU — Pack de Autocolantes (Conjunto de 3)', fr:'Collection EU — Lot d’Autocollants (Lot de 3)', es:'Colección EU — Pack de Pegatinas (Set de 3)', zh:'EU系列 —— 贴纸套装(3枚装)'},
+    price:{en:'€7', pt:'€7', fr:'7 €', es:'7 €', zh:'€7'} },
+
+  { name:{en:'EU Collection — Open Edition Print', pt:'Coleção EU — Impressão de Edição Aberta', fr:'Collection EU — Tirage en Édition Ouverte', es:'Colección EU — Impresión de Edición Abierta', zh:'EU系列 —— 开放版画'},
+    price:{en:'€22', pt:'€22', fr:'22 €', es:'22 €', zh:'€22'} },
+
+  { name:{en:'EU Collection — Limited Edition Print, Square (Small)', pt:'Coleção EU — Edição Limitada, Quadrado (Pequeno)', fr:'Collection EU — Édition Limitée, Carré (Petit)', es:'Colección EU — Edición Limitada, Cuadrado (Pequeño)', zh:'EU系列 —— 限量版画,方形(小)'},
+    price:{en:'Price TBC', pt:'Preço a definir', fr:'Prix à définir', es:'Precio por definir', zh:'价格待定'} },
+
+  { name:{en:'EU Collection — Limited Edition Print, Square (Large)', pt:'Coleção EU — Edição Limitada, Quadrado (Grande)', fr:'Collection EU — Édition Limitée, Carré (Grand)', es:'Colección EU — Edición Limitada, Cuadrado (Grande)', zh:'EU系列 —— 限量版画,方形(大)'},
+    price:{en:'Price TBC', pt:'Preço a definir', fr:'Prix à définir', es:'Precio por definir', zh:'价格待定'} },
+
+  { name:{en:'EU Collection — Limited Edition Print, Landscape', pt:'Coleção EU — Edição Limitada, Horizontal', fr:'Collection EU — Édition Limitée, Format Horizontal', es:'Colección EU — Edición Limitada, Horizontal', zh:'EU系列 —— 限量版画,横版'},
+    price:{en:'Price TBC', pt:'Preço a definir', fr:'Prix à définir', es:'Precio por definir', zh:'价格待定'} },
+
+  { name:{en:'EU Collection — Limited Edition Print, Portrait', pt:'Coleção EU — Edição Limitada, Vertical', fr:'Collection EU — Édition Limitée, Format Vertical', es:'Colección EU — Edición Limitada, Vertical', zh:'EU系列 —— 限量版画,竖版'},
+    price:{en:'Price TBC', pt:'Preço a definir', fr:'Prix à définir', es:'Precio por definir', zh:'价格待定'} },
+
+  { name:{en:'Original Artwork by Migma', pt:'Obra Original de Migma', fr:'Œuvre Originale de Migma', es:'Obra Original de Migma', zh:'Migma 原创作品'},
+    price:{en:'From €75', pt:'A partir de €75', fr:'À partir de 75 €', es:'Desde 75 €', zh:'75欧元起'} },
+
+  { name:{en:'Preparatory Study — One of a Kind', pt:'Estudo Preparatório — Peça Única', fr:'Étude Préparatoire — Pièce Unique', es:'Estudio Preparatorio — Pieza Única', zh:'创作草图 —— 独一无二'},
+    price:{en:'€35', pt:'€35', fr:'35 €', es:'35 €', zh:'€35'} },
+
+  { name:{en:'Custom Commission by Migma', pt:'Encomenda Personalizada por Migma', fr:'Commande Personnalisée par Migma', es:'Encargo Personalizado por Migma', zh:'Migma 定制委托创作'},
+    price:{en:'By quote', pt:'Sob orçamento', fr:'Sur devis', es:'Bajo presupuesto', zh:'面议'} },
+
+  { name:{en:'MM Arts Apparel — T-Shirt or Tote Bag', pt:'Vestuário MM Arts — T-shirt ou Tote Bag', fr:'Vêtements MM Arts — T-shirt ou Tote Bag', es:'Ropa MM Arts — Camiseta o Tote Bag', zh:'MM Arts 周边 —— T恤或帆布包'},
+    price:{en:'€25', pt:'€25', fr:'25 €', es:'25 €', zh:'€25'} },
+
+  { name:{en:'Starter Bundle — Postcard + Sticker + Mini Print', pt:'Pack Inicial — Postal + Autocolante + Mini Impressão', fr:'Pack Découverte — Carte Postale + Autocollant + Mini Tirage', es:'Pack Inicial — Postal + Pegatina + Mini Impresión', zh:'入门礼包 —— 明信片 + 贴纸 + 迷你版画'},
+    price:{en:'€18', pt:'€18', fr:'18 €', es:'18 €', zh:'€18'} },
 ];
 
 function buildGalleryItem(folder, item, n, captionHtml){
@@ -996,18 +1329,19 @@ function renderExhibitionGallery(){
 }
 
 function renderShopProducts(){
-  const list = document.getElementById('shop-product-list');
-  list.innerHTML = '';
-  shopProducts.forEach(p=>{
-    const li = document.createElement('li');
-    li.innerHTML = `<span class="name">${p.name[currentLang]}</span><span class="tag">${p.price[currentLang]}</span>`;
-    list.appendChild(li);
+  const grid = document.getElementById('shop-product-list');
+  grid.innerHTML = '';
+  shopProducts.forEach((p, i)=>{
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <span class="pnum">${String(i+1).padStart(2,'0')}</span>
+      <h4>${p.name[currentLang]}</h4>
+      <span class="price-tag">${p.price[currentLang]}</span>`;
+    grid.appendChild(card);
   });
 }
 
-/* ---------------------------------------------------------------
-   Detail views (Collections + Exhibitions share the same pattern)
---------------------------------------------------------------- */
 function openDetail(id){
   const section = document.getElementById(id);
   section.hidden = false;
@@ -1018,16 +1352,8 @@ function closeDetail(detailId, backToId){
   setTimeout(()=>{ document.getElementById(detailId).hidden = true; }, 400);
 }
 
-/* ---------------------------------------------------------------
-   Sound toggle — click-to-play. Browsers block audio that starts
-   on its own, so a user-initiated click is the reliable way to
-   get the track playing.
-   If it still doesn't work after a hard refresh (Ctrl+F5), open
-   this URL directly in the browser to test the file on its own:
-   https://mmartspt.github.io/assets/audio/musicjazz.mp3
-   If THAT doesn't play either, the problem is the file/path, not
-   this code. Also double-check your system/browser volume isn't muted.
---------------------------------------------------------------- */
+/* Sound toggle — click-to-play (browsers block audio that starts on its own).
+   Test file directly: https://mmartspt.github.io/assets/audio/musicjazz.mp3 */
 const audio = document.getElementById('bg-music');
 const soundBtn = document.getElementById('sound-toggle');
 const soundLabel = document.getElementById('sound-label');
@@ -1070,7 +1396,6 @@ soundBtn.addEventListener('click', ()=>{
   }
 });
 
-/* scroll reveal */
 if('IntersectionObserver' in window){
   const io = new IntersectionObserver(entries=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
@@ -1080,7 +1405,6 @@ if('IntersectionObserver' in window){
   document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
 }
 
-/* initial render — site starts in English */
 setLanguage('en');
 </script>
 
