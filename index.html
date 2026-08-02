@@ -483,6 +483,16 @@
   .room-decor.tone-plum{color:var(--plum);}
   .room-decor.tone-terracotta{color:var(--terracotta);}
 
+  /* ---------------- AVAILABILITY BADGE (Individual Pieces) ---------------- */
+  .avail-badge{
+    display:inline-block; margin-top:0.6rem;
+    font-family:'Space Grotesk', sans-serif; font-size:0.68rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:0.05em;
+    padding:0.3rem 0.7rem; border-radius:999px;
+  }
+  .avail-badge.is-yes{background:var(--forest); color:var(--paper);}
+  .avail-badge.is-no{background:var(--paper-2); color:var(--ink-soft); border:1px solid var(--line-hi);}
+
   .reveal{opacity:0; transform:translateY(16px); transition:opacity 0.6s ease, transform 0.6s ease;}
   .reveal.in{opacity:1; transform:none;}
   @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none;} }
@@ -662,7 +672,26 @@
         <span class="room-index" data-i18n="section_03">Section 03</span>
         <h2 data-i18n="ip_h2">Individual Pieces</h2>
       </div>
-      <p class="room-lede" data-i18n="ip_lede">Individual pieces outside the numbered collections — available one at a time, with or without a listed price.</p>
+      <p class="room-lede" data-i18n="ip_lede">Individual pieces outside the numbered collections — not part of any collection, still art, and sometimes by other artists. Available one at a time, with or without a listed price.</p>
+
+      <div class="collections-grid">
+        <button class="collection-card" onclick="openDetail('individual-pieces-detail')">
+          <h3 data-i18n="ip_card_h3">Browse Individual Pieces</h3>
+          <p data-i18n="ip_card_p">75 standalone pieces — square, portrait and landscape formats.</p>
+          <span class="view" data-i18n="view_individual">View pieces →</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="individual-pieces-detail" class="detail-view" hidden>
+    <div class="wrap">
+      <button class="close-collection" onclick="closeDetail('individual-pieces-detail','individual-pieces')" data-i18n="ip_detail_back">← Back to Individual Pieces</button>
+      <div class="room-head">
+        <span class="room-index" data-i18n="ip_h2">Individual Pieces</span>
+        <h2 data-i18n="ip_h2">Individual Pieces</h2>
+      </div>
+      <p class="room-lede" data-i18n="ip_lede">Individual pieces outside the numbered collections — not part of any collection, still art, and sometimes by other artists. Available one at a time, with or without a listed price.</p>
 
       <div class="gallery" id="ip-gallery"></div>
     </div>
@@ -873,8 +902,13 @@ const I18N = {
     offer_price:'Offers above €75',
     image_pending:'Image pending',
     ip_h2:'Individual Pieces',
-    ip_lede:'Individual pieces outside the numbered collections — available one at a time, with or without a listed price.',
+    ip_lede:'Pieces that are not part of any numbered collection — still art, sometimes by other artists, available one at a time, with or without a listed price.',
     ip_price_on_request:'Price on request',
+    ip_card_h3:'Browse Individual Pieces',
+    ip_card_p:'75 standalone pieces — square, portrait and landscape formats.',
+    view_individual:'View pieces →',
+    ip_detail_back:'← Back to Individual Pieces',
+    ip_available:'Available', ip_unavailable:'Not Available',
 
     exhibitions_h2:'Exhibitions',
     exhibitions_lede:'Beyond the screen, MM Arts brings collections into physical space. Each exhibition offers a <strong>direct, unmediated encounter</strong> with the material and brushwork that a photograph cannot fully carry.',
@@ -960,8 +994,13 @@ const I18N = {
     offer_price:'Propostas acima de €75',
     image_pending:'Imagem pendente',
     ip_h2:'Peças Individuais',
-    ip_lede:'Peças individuais fora das coleções numeradas — disponíveis uma a uma, com ou sem preço indicado.',
+    ip_lede:'Peças que não fazem parte de nenhuma coleção numerada — ainda assim são arte, por vezes de outros artistas, disponíveis uma a uma, com ou sem preço indicado.',
     ip_price_on_request:'Preço sob consulta',
+    ip_card_h3:'Ver Peças Individuais',
+    ip_card_p:'75 peças avulsas — formatos quadrado, vertical e horizontal.',
+    view_individual:'Ver peças →',
+    ip_detail_back:'← Voltar a Peças Individuais',
+    ip_available:'Disponível', ip_unavailable:'Indisponível',
 
     exhibitions_h2:'Exposições',
     exhibitions_lede:'Para além do ecrã, a MM Arts leva as coleções para o espaço físico. Cada exposição oferece um <strong>encontro direto e imediato</strong> com o material e a pincelada que uma fotografia não consegue transmitir por completo.',
@@ -1047,8 +1086,13 @@ const I18N = {
     offer_price:'Offres à partir de 75 €',
     image_pending:'Image à venir',
     ip_h2:'Pièces Individuelles',
-    ip_lede:'Pièces individuelles en dehors des collections numérotées — disponibles à l’unité, avec ou sans prix indiqué.',
+    ip_lede:'Pièces qui ne font partie d’aucune collection numérotée — elles restent de l’art, parfois d’autres artistes, disponibles à l’unité, avec ou sans prix indiqué.',
     ip_price_on_request:'Prix sur demande',
+    ip_card_h3:'Voir les Pièces Individuelles',
+    ip_card_p:'75 pièces indépendantes — formats carré, portrait et paysage.',
+    view_individual:'Voir les pièces →',
+    ip_detail_back:'← Retour aux Pièces Individuelles',
+    ip_available:'Disponible', ip_unavailable:'Non Disponible',
 
     exhibitions_h2:'Expositions',
     exhibitions_lede:'Au-delà de l’écran, MM Arts fait entrer les collections dans l’espace physique. Chaque exposition offre une <strong>rencontre directe et immédiate</strong> avec la matière et la touche qu’une photographie ne peut pas entièrement transmettre.',
@@ -1134,8 +1178,13 @@ const I18N = {
     offer_price:'Ofertas a partir de 75 €',
     image_pending:'Imagen pendiente',
     ip_h2:'Piezas Individuales',
-    ip_lede:'Piezas individuales fuera de las colecciones numeradas — disponibles una a una, con o sin precio indicado.',
+    ip_lede:'Piezas que no forman parte de ninguna colección numerada — siguen siendo arte, a veces de otros artistas, disponibles una a una, con o sin precio indicado.',
     ip_price_on_request:'Precio a consultar',
+    ip_card_h3:'Ver Piezas Individuales',
+    ip_card_p:'75 piezas independientes — formatos cuadrado, vertical y horizontal.',
+    view_individual:'Ver piezas →',
+    ip_detail_back:'← Volver a Piezas Individuales',
+    ip_available:'Disponible', ip_unavailable:'No Disponible',
 
     exhibitions_h2:'Exposiciones',
     exhibitions_lede:'Más allá de la pantalla, MM Arts lleva las colecciones al espacio físico. Cada exposición ofrece un <strong>encuentro directo e inmediato</strong> con el material y la pincelada que una fotografía no puede transmitir por completo.',
@@ -1221,8 +1270,13 @@ const I18N = {
     offer_price:'75欧元以上竞价',
     image_pending:'图片待上传',
     ip_h2:'单件作品',
-    ip_lede:'独立于系列编号之外的单件作品 —— 逐件供应,标价与否视情况而定。',
+    ip_lede:'不属于任何编号系列的作品 —— 依然是艺术创作,有时来自其他艺术家,逐件供应,标价与否视情况而定。',
     ip_price_on_request:'价格面议',
+    ip_card_h3:'浏览单件作品',
+    ip_card_p:'75件独立作品 —— 方形、竖版与横版。',
+    view_individual:'查看作品 →',
+    ip_detail_back:'← 返回单件作品',
+    ip_available:'有售', ip_unavailable:'暂不出售',
 
     exhibitions_h2:'展览',
     exhibitions_lede:'MM Arts 让系列作品走出屏幕,进入真实的物理空间。每场展览都提供一次<strong>直接而即时的接触</strong>,让观众感受照片无法完全传达的材质与笔触。',
@@ -1279,7 +1333,7 @@ function setLanguage(lang){
     btn.setAttribute('aria-pressed', active ? 'true' : 'false');
   });
   renderCollectionGallery();
-  renderIndividualPieces();
+  if(ipRendered) renderIndividualPieces();
   renderExhibitionGallery();
   renderShopProducts();
   updateSoundLabel();
@@ -1354,9 +1408,9 @@ const exhibitionWorks = [
    (add more later following the same IP0XX pattern, up to IP999.jpg)
 ===================================================================== */
 const ipWorks = [
-  { file:'IP001.jpg', orientation:'square', artist:'Migma', title:'Piece 001', size:'', price:'' },
-  { file:'IP002.jpg', orientation:'square', artist:'Migma', title:'Piece 002', size:'', price:'' },
-  { file:'IP003.jpg', orientation:'square', artist:'Migma', title:'Piece 003', size:'', price:'' },
+  { file:'IP001.jpg', orientation:'square', artist:'Migma', title:'Piece 001', size:'', price:'', available:true },
+  { file:'IP002.jpg', orientation:'square', artist:'Migma', title:'Piece 002', size:'', price:'', available:false },
+  { file:'IP003.jpg', orientation:'square', artist:'Migma', title:'Piece 003', size:'', price:'', available:true },
   { file:'IP004.jpg', orientation:'square', artist:'Migma', title:'Piece 004', size:'', price:'' },
   { file:'IP005.jpg', orientation:'square', artist:'Migma', title:'Piece 005', size:'', price:'' },
   { file:'IP006.jpg', orientation:'square', artist:'Migma', title:'Piece 006', size:'', price:'' },
@@ -1379,9 +1433,9 @@ const ipWorks = [
   { file:'IP023.jpg', orientation:'square', artist:'Migma', title:'Piece 023', size:'', price:'' },
   { file:'IP024.jpg', orientation:'square', artist:'Migma', title:'Piece 024', size:'', price:'' },
   { file:'IP025.jpg', orientation:'square', artist:'Migma', title:'Piece 025', size:'', price:'' },
-  { file:'IP026.jpg', orientation:'portrait', artist:'Migma', title:'Piece 026', size:'', price:'' },
-  { file:'IP027.jpg', orientation:'portrait', artist:'Migma', title:'Piece 027', size:'', price:'' },
-  { file:'IP028.jpg', orientation:'portrait', artist:'Migma', title:'Piece 028', size:'', price:'' },
+  { file:'IP026.jpg', orientation:'portrait', artist:'Migma', title:'Piece 026', size:'', price:'', available:true },
+  { file:'IP027.jpg', orientation:'portrait', artist:'Migma', title:'Piece 027', size:'', price:'', available:false },
+  { file:'IP028.jpg', orientation:'portrait', artist:'Migma', title:'Piece 028', size:'', price:'', available:true },
   { file:'IP029.jpg', orientation:'portrait', artist:'Migma', title:'Piece 029', size:'', price:'' },
   { file:'IP030.jpg', orientation:'portrait', artist:'Migma', title:'Piece 030', size:'', price:'' },
   { file:'IP031.jpg', orientation:'portrait', artist:'Migma', title:'Piece 031', size:'', price:'' },
@@ -1404,9 +1458,9 @@ const ipWorks = [
   { file:'IP048.jpg', orientation:'portrait', artist:'Migma', title:'Piece 048', size:'', price:'' },
   { file:'IP049.jpg', orientation:'portrait', artist:'Migma', title:'Piece 049', size:'', price:'' },
   { file:'IP050.jpg', orientation:'portrait', artist:'Migma', title:'Piece 050', size:'', price:'' },
-  { file:'IP051.jpg', orientation:'landscape', artist:'Migma', title:'Piece 051', size:'', price:'' },
-  { file:'IP052.jpg', orientation:'landscape', artist:'Migma', title:'Piece 052', size:'', price:'' },
-  { file:'IP053.jpg', orientation:'landscape', artist:'Migma', title:'Piece 053', size:'', price:'' },
+  { file:'IP051.jpg', orientation:'landscape', artist:'Migma', title:'Piece 051', size:'', price:'', available:false },
+  { file:'IP052.jpg', orientation:'landscape', artist:'Migma', title:'Piece 052', size:'', price:'', available:true },
+  { file:'IP053.jpg', orientation:'landscape', artist:'Migma', title:'Piece 053', size:'', price:'', available:true },
   { file:'IP054.jpg', orientation:'landscape', artist:'Migma', title:'Piece 054', size:'', price:'' },
   { file:'IP055.jpg', orientation:'landscape', artist:'Migma', title:'Piece 055', size:'', price:'' },
   { file:'IP056.jpg', orientation:'landscape', artist:'Migma', title:'Piece 056', size:'', price:'' },
@@ -1478,7 +1532,8 @@ const shopProducts = [
     price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
 ];
 
-function buildGalleryItem(folder, item, n, captionHtml){
+function buildGalleryItem(folder, item, n, captionHtml, extraHtml){
+  extraHtml = extraHtml || '';
   const fig = document.createElement('figure');
   fig.className = 'artwork';
   fig.innerHTML = `
@@ -1490,7 +1545,8 @@ function buildGalleryItem(folder, item, n, captionHtml){
         <span class="tag">${I18N[currentLang].image_pending}</span>
       </div>
     </div>
-    <figcaption>${captionHtml}</figcaption>`;
+    <figcaption>${captionHtml}</figcaption>
+    ${extraHtml}`;
   return fig;
 }
 
@@ -1514,8 +1570,10 @@ function renderExhibitionGallery(){
   });
 }
 
+let ipRendered = false;
 function renderIndividualPieces(){
   const grid = document.getElementById('ip-gallery');
+  if(!grid) return;
   grid.innerHTML = '';
   ipWorks.forEach((item, i)=>{
     const n = i + 1;
@@ -1523,8 +1581,14 @@ function renderIndividualPieces(){
     const parts = [`<span class="artist">${item.artist}</span> — ${item.title}`];
     if(item.size) parts.push(item.size);
     parts.push(priceText);
-    grid.appendChild(buildGalleryItem('individual-pieces', item, n, parts.join(' · ')));
+    let badge = '';
+    if(item.available !== undefined){
+      const label = item.available ? I18N[currentLang].ip_available : I18N[currentLang].ip_unavailable;
+      badge = `<span class="avail-badge ${item.available ? 'is-yes' : 'is-no'}">${label}</span>`;
+    }
+    grid.appendChild(buildGalleryItem('individual-pieces', item, n, parts.join(' · '), badge));
   });
+  ipRendered = true;
 }
 
 function renderShopProducts(){
@@ -1543,6 +1607,7 @@ function renderShopProducts(){
 
 function openDetail(id){
   const section = document.getElementById(id);
+  if(id === 'individual-pieces-detail' && !ipRendered){ renderIndividualPieces(); }
   section.hidden = false;
   section.scrollIntoView({behavior:'smooth'});
 }
