@@ -7,6 +7,8 @@
 <meta name="description" content="MM Arts — an independent contemporary art platform supporting emerging artists worldwide.">
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="apple-touch-icon" href="assets/images/favicon-touch.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B0FA0">
 
 <!-- Open Graph / social sharing preview -->
 <meta property="og:type" content="website">
@@ -20,6 +22,58 @@
 <meta name="twitter:title" content="MM Arts — Independent Contemporary Art Platform">
 <meta name="twitter:description" content="An independent contemporary art platform supporting emerging artists worldwide.">
 <meta name="twitter:image" content="https://mmartspt.github.io/assets/images/og-banner.png">
+
+<!-- Structured data for search engines (Schema.org) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://mmartspt.github.io/#organization",
+      "name": "MM Arts",
+      "alternateName": "Art Without Limits",
+      "url": "https://mmartspt.github.io/",
+      "logo": "https://mmartspt.github.io/assets/images/logo.png",
+      "description": "An independent contemporary art platform supporting emerging artists worldwide.",
+      "email": "enterprise.mm.arts@gmail.com",
+      "founder": { "@id": "https://mmartspt.github.io/#founder" },
+      "sameAs": [
+        "https://www.instagram.com/mmarts.global",
+        "https://www.tiktok.com/@enterprise.mm.arts",
+        "https://www.youtube.com/@mmarts.global"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://mmartspt.github.io/#founder",
+      "name": "Miguel Marques",
+      "alternateName": "Migma",
+      "jobTitle": "Founder & Contemporary Artist",
+      "nationality": "Portuguese",
+      "worksFor": { "@id": "https://mmartspt.github.io/#organization" }
+    },
+    {
+      "@type": "ExhibitionEvent",
+      "name": "\u201cEU\u201d \u2014 Opening Exhibition",
+      "description": "The first public exhibition of Migma's debut collection \u201cEU\u201d / \u201cI (me)\u201d.",
+      "startDate": "2026-03-01",
+      "endDate": "2026-03-31",
+      "location": {
+        "@type": "Place",
+        "name": "Galerias Alto da Barra",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Oeiras",
+          "addressCountry": "PT"
+        }
+      },
+      "organizer": { "@id": "https://mmartspt.github.io/#organization" },
+      "performer": { "@id": "https://mmartspt.github.io/#founder" }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Space+Grotesk:wght@400;500;600&family=Work+Sans:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
