@@ -592,6 +592,7 @@
   }
   .avail-badge.is-yes{background:var(--forest); color:var(--paper);}
   .avail-badge.is-no{background:var(--paper-2); color:var(--ink-soft); border:1px solid var(--line-hi);}
+  .avail-badge.is-soon{background:var(--terracotta); color:var(--paper);}
 
   .collab-note{
     margin-top:1.6rem; padding:1.4rem clamp(1.4rem,3vw,1.8rem);
@@ -600,6 +601,10 @@
   }
   .room-tint .collab-note{background:var(--paper);}
   .collab-note p{color:var(--ink-soft); font-size:0.9rem; margin:0;}
+  .form-link{color:var(--indigo); font-weight:600; text-decoration:underline; text-underline-offset:2px;}
+  .form-link:hover{color:var(--indigo-br);}
+  footer .form-link{color:var(--paper); opacity:0.9;}
+  footer .form-link:hover{opacity:1;}
 
   .reveal{opacity:0; transform:translateY(16px); transition:opacity 0.6s ease, transform 0.6s ease;}
   .reveal.in{opacity:1; transform:none;}
@@ -923,6 +928,7 @@
       </div>
       <p class="room-lede" data-i18n="contact_lede" data-i18n-html>For <strong>professional inquiries, artist submissions, collaborations or partnerships</strong>, please contact us through the official channels below.</p>
       <div class="contact-grid">
+        <a href="#" class="form-link" target="_blank" rel="noopener"><span data-i18n="contact_form_label">Contact Form</span><br><span data-i18n="contact_form_sublabel">Fill out our form →</span></a>
         <a href="mailto:enterprise.mm.arts@gmail.com">Email<br>enterprise.mm.arts@gmail.com</a>
         <a href="mailto:mmarts.globalshop@gmail.com"><span data-i18n="contact_shop_label">Shop Orders</span><br>mmarts.globalshop@gmail.com</a>
         <a href="https://www.instagram.com/mmarts.global" target="_blank" rel="noopener">Instagram<br>@mmarts.global</a>
@@ -1033,7 +1039,7 @@ const I18N = {
     collection_detail_h2:'“EU” / “I (me)”',
     collection_detail_manifesto:'The Brush Will Paint What Cannot Be Told.',
     collection_detail_lede:'“EU” or “I (me)” is the debut collection by Migma, a <strong>16-year-old Portuguese contemporary artist</strong> and founder of MM Arts. The collection presents <strong>12 original works</strong> that construct an open visual narrative. More than a collection, it asserts itself as a manifesto for authentic art.',
-    offer_price:'Offers above €75',
+    offer_price:'From €100',
     image_pending:'Image pending',
     ip_h2:'Individual Pieces',
     ip_lede:'Pieces that are not part of any numbered collection — still art, sometimes by other artists, available one at a time, with or without a listed price.',
@@ -1042,7 +1048,7 @@ const I18N = {
     ip_card_p:'75 standalone pieces — square, portrait and landscape formats.',
     view_individual:'View pieces →',
     ip_detail_back:'← Back to Individual Pieces',
-    ip_available:'Available', ip_unavailable:'Not Available',
+    ip_available:'Available', ip_unavailable:'Not Available', ip_coming_soon:'Coming Soon',
 
     exhibitions_h2:'Exhibitions',
     exhibitions_lede:'Beyond the screen, MM Arts brings collections into physical space. Each exhibition offers a <strong>direct, unmediated encounter</strong> with the material and brushwork that a photograph cannot fully carry.',
@@ -1064,7 +1070,7 @@ const I18N = {
 
     shop_h2:'Shop',
     shop_lede:'The MM Arts Shop brings the “EU” collection into everyday objects — prints, originals and limited pieces available to order.',
-    shop_order_note:'To order, contact us directly at <strong>mmarts.globalshop@gmail.com</strong> with the product name and your delivery details — we will confirm availability and next steps.',
+    shop_order_note:'To order, contact us directly at <strong>mmarts.globalshop@gmail.com</strong> or <a href="#" class="form-link" target="_blank" rel="noopener">fill out our form</a> with the product name and your delivery details — we will confirm availability and next steps.',
 
     video_h2:'Promotional Video',
     video_lede:'An introduction to the MM Arts vision, values and long-term objectives.',
@@ -1072,13 +1078,15 @@ const I18N = {
     contact_h2:'Contact',
     contact_lede:'For <strong>professional inquiries, artist submissions, collaborations or partnerships</strong>, please contact us through the official channels below.',
     contact_shop_label:'Shop Orders',
+    contact_form_label:'Contact Form',
+    contact_form_sublabel:'Fill out our form →',
 
     footer_rights:'All rights reserved',
     hero_copyright:'© MM Arts — Founded by Miguel Marques. Artworks remain © their respective artists. All rights reserved.',
     founder_credit:'Founded by Miguel Marques',
-    ip_collab_note:'Are you an artist working outside the numbered collections? MM Arts is open to featuring select individual pieces from other creators here. Reach out at <strong>enterprise.mm.arts@gmail.com</strong> to be considered.',
-    collections_collab_note:'Have a finished collection of your own? MM Arts is open to featuring new collections from other artists — get in touch at <strong>enterprise.mm.arts@gmail.com</strong> to discuss.',
-    footer_collab:'Interested in collaborating with MM Arts? Get in touch at <strong>enterprise.mm.arts@gmail.com</strong>.',
+    ip_collab_note:'Are you an artist working outside the numbered collections? MM Arts is open to featuring select individual pieces from other creators here. Contact us at <strong>enterprise.mm.arts@gmail.com</strong> or <a href="#" class="form-link" target="_blank" rel="noopener">fill out our form</a> to be considered.',
+    collections_collab_note:'Do you have a completed collection of your own? MM Arts is open to featuring new collections from other artists. Contact us at <strong>enterprise.mm.arts@gmail.com</strong> or <a href="#" class="form-link" target="_blank" rel="noopener">fill out our form</a> to have your collection considered.',
+    footer_collab:'Interested in collaborating with MM Arts? Contact us at <strong>enterprise.mm.arts@gmail.com</strong> or <a href="#" class="form-link" target="_blank" rel="noopener">fill out our form</a>.',
     footer_artist_rights:'Artworks remain the copyright of their respective artists.',
     legal_h3:'Privacy & Copyright',
     legal_copyright:'MM Arts — the platform, its name and visual identity — is © Miguel Marques. Copyright in each individual artwork shown on this site remains with the artist who created it. No artwork may be reproduced, printed or sold without written permission from its creator.',
@@ -1134,7 +1142,7 @@ const I18N = {
     collection_detail_h2:'“EU”',
     collection_detail_manifesto:'O Pincel Pintará o Que Não Pode Ser Dito.',
     collection_detail_lede:'“EU” é a coleção de estreia de Migma, um <strong>artista contemporâneo português de 16 anos</strong> e fundador da MM Arts. A coleção apresenta <strong>12 obras originais</strong> que constroem uma narrativa visual aberta. Mais do que uma coleção, afirma-se como um manifesto pela arte autêntica.',
-    offer_price:'Propostas acima de €75',
+    offer_price:'A partir de €100',
     image_pending:'Imagem pendente',
     ip_h2:'Peças Individuais',
     ip_lede:'Peças que não fazem parte de nenhuma coleção numerada — ainda assim são arte, por vezes de outros artistas, disponíveis uma a uma, com ou sem preço indicado.',
@@ -1143,7 +1151,7 @@ const I18N = {
     ip_card_p:'75 peças avulsas — formatos quadrado, vertical e horizontal.',
     view_individual:'Ver peças →',
     ip_detail_back:'← Voltar a Peças Individuais',
-    ip_available:'Disponível', ip_unavailable:'Indisponível',
+    ip_available:'Disponível', ip_unavailable:'Indisponível', ip_coming_soon:'Em Breve',
 
     exhibitions_h2:'Exposições',
     exhibitions_lede:'Para além do ecrã, a MM Arts leva as coleções para o espaço físico. Cada exposição oferece um <strong>encontro direto e imediato</strong> com o material e a pincelada que uma fotografia não consegue transmitir por completo.',
@@ -1165,7 +1173,7 @@ const I18N = {
 
     shop_h2:'Loja',
     shop_lede:'A Loja MM Arts leva a coleção “EU” para o dia a dia — impressões, obras originais e peças em edição limitada disponíveis para encomenda.',
-    shop_order_note:'Para encomendar, contacte-nos diretamente através de <strong>mmarts.globalshop@gmail.com</strong>, indicando o nome do produto e os dados de entrega — confirmaremos a disponibilidade e os próximos passos.',
+    shop_order_note:'Para encomendar, contacte-nos diretamente através de <strong>mmarts.globalshop@gmail.com</strong> ou <a href="#" class="form-link" target="_blank" rel="noopener">preencha o formulário</a>, indicando o nome do produto e os dados de entrega — confirmaremos a disponibilidade e os próximos passos.',
 
     video_h2:'Vídeo Promocional',
     video_lede:'Uma introdução à visão, aos valores e aos objetivos de longo prazo da MM Arts.',
@@ -1173,13 +1181,15 @@ const I18N = {
     contact_h2:'Contacto',
     contact_lede:'Para <strong>questões profissionais, candidaturas de artistas, colaborações ou parcerias</strong>, contacte-nos através dos canais oficiais abaixo.',
     contact_shop_label:'Encomendas da Loja',
+    contact_form_label:'Formulário de Contacto',
+    contact_form_sublabel:'Preencher o formulário →',
 
     footer_rights:'Todos os direitos reservados',
     hero_copyright:'© MM Arts — Fundada por Miguel Marques. As obras mantêm-se © dos respetivos artistas. Todos os direitos reservados.',
     founder_credit:'Fundada por Miguel Marques',
-    ip_collab_note:'És artista e trabalhas fora das coleções numeradas? A MM Arts está aberta a apresentar aqui peças individuais selecionadas de outros criadores. Contacta <strong>enterprise.mm.arts@gmail.com</strong> para seres considerado.',
-    collections_collab_note:'Tens uma coleção tua já terminada? A MM Arts está aberta a apresentar novas coleções de outros artistas — contacta <strong>enterprise.mm.arts@gmail.com</strong> para conversarmos.',
-    footer_collab:'Interessado em colaborar com a MM Arts? Contacta <strong>enterprise.mm.arts@gmail.com</strong>.',
+    ip_collab_note:'É artista e trabalha fora das coleções numeradas? A MM Arts está aberta a apresentar aqui peças individuais selecionadas de outros criadores. Contacte-nos através de <strong>enterprise.mm.arts@gmail.com</strong> ou <a href="#" class="form-link" target="_blank" rel="noopener">preencha o formulário</a> para ser considerado.',
+    collections_collab_note:'Tem uma coleção sua já concluída? A MM Arts está aberta a apresentar novas coleções de outros artistas. Contacte-nos através de <strong>enterprise.mm.arts@gmail.com</strong> ou <a href="#" class="form-link" target="_blank" rel="noopener">preencha o formulário</a> para que a sua coleção seja considerada.',
+    footer_collab:'Interessado em colaborar com a MM Arts? Contacte-nos através de <strong>enterprise.mm.arts@gmail.com</strong> ou <a href="#" class="form-link" target="_blank" rel="noopener">preencha o formulário</a>.',
     footer_artist_rights:'As obras mantêm-se sob direitos de autor dos respetivos artistas.',
     legal_h3:'Privacidade e Direitos de Autor',
     legal_copyright:'A MM Arts — a plataforma, o nome e a identidade visual — é © de Miguel Marques. Os direitos de autor de cada obra apresentada neste site pertencem ao artista que a criou. Nenhuma obra pode ser reproduzida, impressa ou vendida sem autorização escrita do seu autor.',
@@ -1235,7 +1245,7 @@ const I18N = {
     collection_detail_h2:'« EU » / « Moi »',
     collection_detail_manifesto:'Le Pinceau Peindra Ce Qui Ne Peut Être Dit.',
     collection_detail_lede:'« EU », qui signifie « moi » en portugais, est la collection de débuts de Migma, un <strong>artiste contemporain portugais de 16 ans</strong> et fondateur de MM Arts. La collection présente <strong>12 œuvres originales</strong> qui construisent un récit visuel ouvert. Plus qu’une collection, elle s’affirme comme un manifeste pour un art authentique.',
-    offer_price:'Offres à partir de 75 €',
+    offer_price:'À partir de 100 €',
     image_pending:'Image à venir',
     ip_h2:'Pièces Individuelles',
     ip_lede:'Pièces qui ne font partie d’aucune collection numérotée — elles restent de l’art, parfois d’autres artistes, disponibles à l’unité, avec ou sans prix indiqué.',
@@ -1244,7 +1254,7 @@ const I18N = {
     ip_card_p:'75 pièces indépendantes — formats carré, portrait et paysage.',
     view_individual:'Voir les pièces →',
     ip_detail_back:'← Retour aux Pièces Individuelles',
-    ip_available:'Disponible', ip_unavailable:'Non Disponible',
+    ip_available:'Disponible', ip_unavailable:'Non Disponible', ip_coming_soon:'Bientôt Disponible',
 
     exhibitions_h2:'Expositions',
     exhibitions_lede:'Au-delà de l’écran, MM Arts fait entrer les collections dans l’espace physique. Chaque exposition offre une <strong>rencontre directe et immédiate</strong> avec la matière et la touche qu’une photographie ne peut pas entièrement transmettre.',
@@ -1266,7 +1276,7 @@ const I18N = {
 
     shop_h2:'Boutique',
     shop_lede:'La Boutique MM Arts fait entrer la collection « EU » dans le quotidien — impressions, œuvres originales et pièces en édition limitée disponibles à la commande.',
-    shop_order_note:'Pour commander, contactez-nous directement à <strong>mmarts.globalshop@gmail.com</strong> en indiquant le nom du produit et les informations de livraison — la disponibilité et les prochaines étapes seront confirmées.',
+    shop_order_note:'Pour commander, contactez-nous directement à <strong>mmarts.globalshop@gmail.com</strong> ou <a href="#" class="form-link" target="_blank" rel="noopener">remplissez notre formulaire</a> en indiquant le nom du produit et les informations de livraison — la disponibilité et les prochaines étapes seront confirmées.',
 
     video_h2:'Vidéo Promotionnelle',
     video_lede:'Une introduction à la vision, aux valeurs et aux objectifs à long terme de MM Arts.',
@@ -1274,13 +1284,15 @@ const I18N = {
     contact_h2:'Contact',
     contact_lede:'Pour toute <strong>demande professionnelle, candidature d’artiste, collaboration ou partenariat</strong>, merci de nous contacter via les canaux officiels ci-dessous.',
     contact_shop_label:'Commandes Boutique',
+    contact_form_label:'Formulaire de Contact',
+    contact_form_sublabel:'Remplir le formulaire →',
 
     footer_rights:'Tous droits réservés',
     hero_copyright:'© MM Arts — Fondée par Miguel Marques. Les œuvres restent © de leurs artistes respectifs. Tous droits réservés.',
     founder_credit:'Fondée par Miguel Marques',
-    ip_collab_note:'Vous êtes artiste et travaillez en dehors des collections numérotées ? MM Arts est ouvert à présenter ici des pièces individuelles sélectionnées d’autres créateurs. Contactez <strong>enterprise.mm.arts@gmail.com</strong> pour être pris en considération.',
-    collections_collab_note:'Vous avez une collection personnelle terminée ? MM Arts est ouvert à présenter de nouvelles collections d’autres artistes — contactez <strong>enterprise.mm.arts@gmail.com</strong> pour en discuter.',
-    footer_collab:'Intéressé à collaborer avec MM Arts ? Contactez <strong>enterprise.mm.arts@gmail.com</strong>.',
+    ip_collab_note:'Êtes-vous artiste et travaillez-vous en dehors des collections numérotées ? MM Arts est ouvert à présenter ici des pièces individuelles sélectionnées d’autres créateurs. Contactez-nous à <strong>enterprise.mm.arts@gmail.com</strong> ou <a href="#" class="form-link" target="_blank" rel="noopener">remplissez notre formulaire</a> pour être pris en considération.',
+    collections_collab_note:'Avez-vous une collection personnelle déjà terminée ? MM Arts est ouvert à présenter de nouvelles collections d’autres artistes. Contactez-nous à <strong>enterprise.mm.arts@gmail.com</strong> ou <a href="#" class="form-link" target="_blank" rel="noopener">remplissez notre formulaire</a> pour que votre collection soit prise en considération.',
+    footer_collab:'Intéressé à collaborer avec MM Arts ? Contactez-nous à <strong>enterprise.mm.arts@gmail.com</strong> ou <a href="#" class="form-link" target="_blank" rel="noopener">remplissez notre formulaire</a>.',
     footer_artist_rights:'Les œuvres restent sous les droits d’auteur de leurs artistes respectifs.',
     legal_h3:'Confidentialité et Droits d’Auteur',
     legal_copyright:'MM Arts — la plateforme, son nom et son identité visuelle — est © Miguel Marques. Les droits d’auteur de chaque œuvre présentée sur ce site appartiennent à l’artiste qui l’a créée. Aucune œuvre ne peut être reproduite, imprimée ou vendue sans l’autorisation écrite de son créateur.',
@@ -1336,7 +1348,7 @@ const I18N = {
     collection_detail_h2:'«EU» / «Yo»',
     collection_detail_manifesto:'El Pincel Pintará Lo Que No Puede Ser Dicho.',
     collection_detail_lede:'«EU», que significa «yo» en portugués, es la colección debut de Migma, un <strong>artista contemporáneo portugués de 16 años</strong> y fundador de MM Arts. La colección presenta <strong>12 obras originales</strong> que construyen una narrativa visual abierta. Más que una colección, se afirma como un manifiesto por el arte auténtico.',
-    offer_price:'Ofertas a partir de 75 €',
+    offer_price:'Desde 100 €',
     image_pending:'Imagen pendiente',
     ip_h2:'Piezas Individuales',
     ip_lede:'Piezas que no forman parte de ninguna colección numerada — siguen siendo arte, a veces de otros artistas, disponibles una a una, con o sin precio indicado.',
@@ -1345,7 +1357,7 @@ const I18N = {
     ip_card_p:'75 piezas independientes — formatos cuadrado, vertical y horizontal.',
     view_individual:'Ver piezas →',
     ip_detail_back:'← Volver a Piezas Individuales',
-    ip_available:'Disponible', ip_unavailable:'No Disponible',
+    ip_available:'Disponible', ip_unavailable:'No Disponible', ip_coming_soon:'Próximamente',
 
     exhibitions_h2:'Exposiciones',
     exhibitions_lede:'Más allá de la pantalla, MM Arts lleva las colecciones al espacio físico. Cada exposición ofrece un <strong>encuentro directo e inmediato</strong> con el material y la pincelada que una fotografía no puede transmitir por completo.',
@@ -1367,7 +1379,7 @@ const I18N = {
 
     shop_h2:'Tienda',
     shop_lede:'La Tienda MM Arts lleva la colección «EU» al día a día — impresiones, obras originales y piezas en edición limitada disponibles para encargo.',
-    shop_order_note:'Para encargar, contacte directamente a través de <strong>mmarts.globalshop@gmail.com</strong> indicando el nombre del producto y los datos de entrega — se confirmará la disponibilidad y los próximos pasos.',
+    shop_order_note:'Para encargar, contacte directamente a través de <strong>mmarts.globalshop@gmail.com</strong> o <a href="#" class="form-link" target="_blank" rel="noopener">rellene nuestro formulario</a> indicando el nombre del producto y los datos de entrega — se confirmará la disponibilidad y los próximos pasos.',
 
     video_h2:'Vídeo Promocional',
     video_lede:'Una introducción a la visión, los valores y los objetivos a largo plazo de MM Arts.',
@@ -1375,13 +1387,15 @@ const I18N = {
     contact_h2:'Contacto',
     contact_lede:'Para <strong>consultas profesionales, candidaturas de artistas, colaboraciones o asociaciones</strong>, contacte a través de los canales oficiales indicados a continuación.',
     contact_shop_label:'Pedidos de la Tienda',
+    contact_form_label:'Formulario de Contacto',
+    contact_form_sublabel:'Rellenar el formulario →',
 
     footer_rights:'Todos los derechos reservados',
     hero_copyright:'© MM Arts — Fundada por Miguel Marques. Las obras siguen siendo © de sus respectivos artistas. Todos los derechos reservados.',
     founder_credit:'Fundada por Miguel Marques',
-    ip_collab_note:'¿Eres artista y trabajas fuera de las colecciones numeradas? MM Arts está abierto a presentar aquí piezas individuales seleccionadas de otros creadores. Contacta con <strong>enterprise.mm.arts@gmail.com</strong> para ser considerado.',
-    collections_collab_note:'¿Tienes una colección propia terminada? MM Arts está abierto a presentar nuevas colecciones de otros artistas — contacta con <strong>enterprise.mm.arts@gmail.com</strong> para conversarlo.',
-    footer_collab:'¿Interesado en colaborar con MM Arts? Contacta con <strong>enterprise.mm.arts@gmail.com</strong>.',
+    ip_collab_note:'¿Es usted artista y trabaja fuera de las colecciones numeradas? MM Arts está abierto a presentar aquí piezas individuales seleccionadas de otros creadores. Contáctenos en <strong>enterprise.mm.arts@gmail.com</strong> o <a href="#" class="form-link" target="_blank" rel="noopener">rellene nuestro formulario</a> para ser considerado.',
+    collections_collab_note:'¿Tiene una colección propia ya terminada? MM Arts está abierto a presentar nuevas colecciones de otros artistas. Contáctenos en <strong>enterprise.mm.arts@gmail.com</strong> o <a href="#" class="form-link" target="_blank" rel="noopener">rellene nuestro formulario</a> para que su colección sea considerada.',
+    footer_collab:'¿Interesado en colaborar con MM Arts? Contáctenos en <strong>enterprise.mm.arts@gmail.com</strong> o <a href="#" class="form-link" target="_blank" rel="noopener">rellene nuestro formulario</a>.',
     footer_artist_rights:'Las obras permanecen bajo los derechos de autor de sus respectivos artistas.',
     legal_h3:'Privacidad y Derechos de Autor',
     legal_copyright:'MM Arts — la plataforma, su nombre e identidad visual — es © de Miguel Marques. Los derechos de autor de cada obra presentada en este sitio pertenecen al artista que la creó. Ninguna obra puede reproducirse, imprimirse o venderse sin autorización escrita de su creador.',
@@ -1437,7 +1451,7 @@ const I18N = {
     collection_detail_h2:'“EU” / “I (me)”',
     collection_detail_manifesto:'画笔将描绘言语无法诉说之物。',
     collection_detail_lede:'“EU”(葡萄牙语中意为“我”)是 Migma 的首个系列 —— 一位<strong>16岁的葡萄牙当代艺术家</strong>,同时也是 MM Arts 的创办人。该系列呈现<strong>12件原创作品</strong>,构成一段开放的视觉叙事。它不仅是一个系列,更是一份关于真实艺术的宣言。',
-    offer_price:'75欧元以上竞价',
+    offer_price:'100欧元起',
     image_pending:'图片待上传',
     ip_h2:'单件作品',
     ip_lede:'不属于任何编号系列的作品 —— 依然是艺术创作,有时来自其他艺术家,逐件供应,标价与否视情况而定。',
@@ -1446,7 +1460,7 @@ const I18N = {
     ip_card_p:'75件独立作品 —— 方形、竖版与横版。',
     view_individual:'查看作品 →',
     ip_detail_back:'← 返回单件作品',
-    ip_available:'有售', ip_unavailable:'暂不出售',
+    ip_available:'有售', ip_unavailable:'暂不出售', ip_coming_soon:'即将推出',
 
     exhibitions_h2:'展览',
     exhibitions_lede:'MM Arts 让系列作品走出屏幕,进入真实的物理空间。每场展览都提供一次<strong>直接而即时的接触</strong>,让观众感受照片无法完全传达的材质与笔触。',
@@ -1468,7 +1482,7 @@ const I18N = {
 
     shop_h2:'商店',
     shop_lede:'MM Arts 商店让“EU”系列走进日常生活 —— 版画、原作与限量作品,均可订购。',
-    shop_order_note:'如需订购,请直接联系 <strong>mmarts.globalshop@gmail.com</strong>,并注明产品名称与收货信息 —— 我们将确认库存与后续流程。',
+    shop_order_note:'如需订购,请直接联系 <strong>mmarts.globalshop@gmail.com</strong> 或 <a href="#" class="form-link" target="_blank" rel="noopener">填写表单</a>,并注明产品名称与收货信息 —— 我们将确认库存与后续流程。',
 
     video_h2:'宣传视频',
     video_lede:'了解 MM Arts 的愿景、价值观与长期目标。',
@@ -1476,13 +1490,15 @@ const I18N = {
     contact_h2:'联系方式',
     contact_lede:'如有<strong>专业咨询、艺术家投稿、合作或伙伴关系</strong>意向,请通过以下官方渠道联系我们。',
     contact_shop_label:'商店订购',
+    contact_form_label:'联系表单',
+    contact_form_sublabel:'填写表单 →',
 
     footer_rights:'版权所有',
     hero_copyright:'© MM Arts —— 创办人 Miguel Marques。作品版权归各自艺术家所有。版权所有。',
     founder_credit:'创办人:Miguel Marques',
-    ip_collab_note:'你是艺术家,作品不属于编号系列吗?MM Arts 欢迎在此展示其他创作者的精选单件作品。请联系 <strong>enterprise.mm.arts@gmail.com</strong> 争取入选机会。',
-    collections_collab_note:'你已经完成了自己的系列作品吗?MM Arts 欢迎展示其他艺术家的新系列 —— 请联系 <strong>enterprise.mm.arts@gmail.com</strong> 详谈。',
-    footer_collab:'有意与 MM Arts 合作?请联系 <strong>enterprise.mm.arts@gmail.com</strong>。',
+    ip_collab_note:'您是艺术家,作品不属于编号系列吗?MM Arts 欢迎在此展示其他创作者的精选单件作品。请通过 <strong>enterprise.mm.arts@gmail.com</strong> 联系我们,或 <a href="#" class="form-link" target="_blank" rel="noopener">填写表单</a> 争取入选机会。',
+    collections_collab_note:'您已经完成了自己的系列作品吗?MM Arts 欢迎展示其他艺术家的新系列。请通过 <strong>enterprise.mm.arts@gmail.com</strong> 联系我们,或 <a href="#" class="form-link" target="_blank" rel="noopener">填写表单</a>,以便我们考虑收录您的系列。',
+    footer_collab:'有意与 MM Arts 合作?请通过 <strong>enterprise.mm.arts@gmail.com</strong> 联系我们,或 <a href="#" class="form-link" target="_blank" rel="noopener">填写表单</a>。',
     footer_artist_rights:'作品版权归属各自艺术家所有。',
     legal_h3:'隐私与版权',
     legal_copyright:'MM Arts —— 平台本身、名称及视觉识别 —— 版权归 Miguel Marques 所有。本网站展示的每件作品的版权归创作该作品的艺术家所有。未经作者书面许可,任何作品不得被复制、印刷或出售。',
@@ -1495,6 +1511,16 @@ const I18N = {
 };
 
 let currentLang = 'en';
+
+/* Google Forms — Portuguese gets the PT form, every other language gets the EN form */
+const FORM_LINKS = {
+  pt: 'https://forms.gle/dhu3HviVLaDWLqSf7',
+  other: 'https://forms.gle/QrKHzuUozHfknUGa6'
+};
+function updateFormLinks(lang){
+  const url = lang === 'pt' ? FORM_LINKS.pt : FORM_LINKS.other;
+  document.querySelectorAll('.form-link').forEach(a=>{ a.href = url; });
+}
 
 function setLanguage(lang){
   currentLang = lang;
@@ -1516,6 +1542,7 @@ function setLanguage(lang){
   renderExhibitionGallery();
   renderShopProducts();
   updateSoundLabel();
+  updateFormLinks(lang);
 }
 
 document.querySelectorAll('.lang-btn').forEach(btn=>{
@@ -1587,10 +1614,10 @@ const exhibitionWorks = [
    (add more later following the same IP0XX pattern, up to IP999.jpg)
 ===================================================================== */
 const ipWorks = [
-  { file:'IP001.jpg', orientation:'square', artist:'Migma', title:'Piece 001', size:'', price:'', available:true },
-  { file:'IP002.jpg', orientation:'square', artist:'Migma', title:'Piece 002', size:'', price:'', available:false },
-  { file:'IP003.jpg', orientation:'square', artist:'Migma', title:'Piece 003', size:'', price:'', available:true },
-  { file:'IP004.jpg', orientation:'square', artist:'Migma', title:'Piece 004', size:'', price:'' },
+  { file:'IP001.jpg', orientation:'square',   artist:'Migma', title:'The Grids of Life', size:'~18 × 18 cm',   price:'', available:'soon' },
+  { file:'IP002.jpg', orientation:'portrait',  artist:'Migma', title:'The Fire',          size:'~17 × 18.5 cm', price:'', available:'soon' },
+  { file:'IP003.jpg', orientation:'portrait',  artist:'Migma', title:'The Wound',         size:'~15 × 16 cm',   price:'', available:'soon' },
+  { file:'IP004.jpg', orientation:'landscape', artist:'Migma', title:'The Ritual',        size:'~18 × 14 cm',   price:'', available:'soon' },
   { file:'IP005.jpg', orientation:'square', artist:'Migma', title:'Piece 005', size:'', price:'' },
   { file:'IP006.jpg', orientation:'square', artist:'Migma', title:'Piece 006', size:'', price:'' },
   { file:'IP007.jpg', orientation:'square', artist:'Migma', title:'Piece 007', size:'', price:'' },
@@ -1612,9 +1639,9 @@ const ipWorks = [
   { file:'IP023.jpg', orientation:'square', artist:'Migma', title:'Piece 023', size:'', price:'' },
   { file:'IP024.jpg', orientation:'square', artist:'Migma', title:'Piece 024', size:'', price:'' },
   { file:'IP025.jpg', orientation:'square', artist:'Migma', title:'Piece 025', size:'', price:'' },
-  { file:'IP026.jpg', orientation:'portrait', artist:'Migma', title:'Piece 026', size:'', price:'', available:true },
-  { file:'IP027.jpg', orientation:'portrait', artist:'Migma', title:'Piece 027', size:'', price:'', available:false },
-  { file:'IP028.jpg', orientation:'portrait', artist:'Migma', title:'Piece 028', size:'', price:'', available:true },
+  { file:'IP026.jpg', orientation:'portrait', artist:'Migma', title:'Piece 026', size:'', price:'', available:'yes' },
+  { file:'IP027.jpg', orientation:'portrait', artist:'Migma', title:'Piece 027', size:'', price:'', available:'no' },
+  { file:'IP028.jpg', orientation:'portrait', artist:'Migma', title:'Piece 028', size:'', price:'', available:'yes' },
   { file:'IP029.jpg', orientation:'portrait', artist:'Migma', title:'Piece 029', size:'', price:'' },
   { file:'IP030.jpg', orientation:'portrait', artist:'Migma', title:'Piece 030', size:'', price:'' },
   { file:'IP031.jpg', orientation:'portrait', artist:'Migma', title:'Piece 031', size:'', price:'' },
@@ -1637,9 +1664,9 @@ const ipWorks = [
   { file:'IP048.jpg', orientation:'portrait', artist:'Migma', title:'Piece 048', size:'', price:'' },
   { file:'IP049.jpg', orientation:'portrait', artist:'Migma', title:'Piece 049', size:'', price:'' },
   { file:'IP050.jpg', orientation:'portrait', artist:'Migma', title:'Piece 050', size:'', price:'' },
-  { file:'IP051.jpg', orientation:'landscape', artist:'Migma', title:'Piece 051', size:'', price:'', available:false },
-  { file:'IP052.jpg', orientation:'landscape', artist:'Migma', title:'Piece 052', size:'', price:'', available:true },
-  { file:'IP053.jpg', orientation:'landscape', artist:'Migma', title:'Piece 053', size:'', price:'', available:true },
+  { file:'IP051.jpg', orientation:'landscape', artist:'Migma', title:'Piece 051', size:'', price:'', available:'no' },
+  { file:'IP052.jpg', orientation:'landscape', artist:'Migma', title:'Piece 052', size:'', price:'', available:'yes' },
+  { file:'IP053.jpg', orientation:'landscape', artist:'Migma', title:'Piece 053', size:'', price:'', available:'yes' },
   { file:'IP054.jpg', orientation:'landscape', artist:'Migma', title:'Piece 054', size:'', price:'' },
   { file:'IP055.jpg', orientation:'landscape', artist:'Migma', title:'Piece 055', size:'', price:'' },
   { file:'IP056.jpg', orientation:'landscape', artist:'Migma', title:'Piece 056', size:'', price:'' },
@@ -1754,16 +1781,23 @@ function renderIndividualPieces(){
   const grid = document.getElementById('ip-gallery');
   if(!grid) return;
   grid.innerHTML = '';
+  const badgeMap = {
+    yes:  ['ip_available',    'is-yes'],
+    no:   ['ip_unavailable',  'is-no'],
+    soon: ['ip_coming_soon',  'is-soon']
+  };
   ipWorks.forEach((item, i)=>{
     const n = i + 1;
-    const priceText = item.price ? item.price : I18N[currentLang].ip_price_on_request;
     const parts = [`<span class="artist">${item.artist}</span> — ${item.title}`];
     if(item.size) parts.push(item.size);
-    parts.push(priceText);
+    parts.push('2026');
+    if(item.available !== 'soon'){
+      parts.push(item.price ? item.price : I18N[currentLang].ip_price_on_request);
+    }
     let badge = '';
-    if(item.available !== undefined){
-      const label = item.available ? I18N[currentLang].ip_available : I18N[currentLang].ip_unavailable;
-      badge = `<span class="avail-badge ${item.available ? 'is-yes' : 'is-no'}">${label}</span>`;
+    const cfg = badgeMap[item.available];
+    if(cfg){
+      badge = `<span class="avail-badge ${cfg[1]}">${I18N[currentLang][cfg[0]]}</span>`;
     }
     grid.appendChild(buildGalleryItem('individual-pieces', item, n, parts.join(' · '), badge));
   });
