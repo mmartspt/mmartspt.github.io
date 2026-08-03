@@ -1,0 +1,22 @@
+{
+  "name": "MM Arts — Independent Contemporary Art Platform",
+  "short_name": "MM Arts",
+  "description": "An independent contemporary art platform supporting emerging artists worldwide.",
+  "start_url": "https://mmartspt.github.io/",
+  "scope": "https://mmartspt.github.io/",
+  "display": "standalone",
+  "background_color": "#F0F0EA",
+  "theme_color": "#1B0FA0",
+  "icons": [
+    {
+      "src": "assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
