@@ -7,6 +7,19 @@
 <meta name="description" content="MM Arts — an independent contemporary art platform supporting emerging artists worldwide.">
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="apple-touch-icon" href="assets/images/favicon-touch.png">
+
+<!-- Open Graph / social sharing preview -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mmartspt.github.io/">
+<meta property="og:title" content="MM Arts — Independent Contemporary Art Platform">
+<meta property="og:description" content="An independent contemporary art platform supporting emerging artists worldwide.">
+<meta property="og:image" content="https://mmartspt.github.io/assets/images/og-banner.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MM Arts — Independent Contemporary Art Platform">
+<meta name="twitter:description" content="An independent contemporary art platform supporting emerging artists worldwide.">
+<meta name="twitter:image" content="https://mmartspt.github.io/assets/images/og-banner.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Space+Grotesk:wght@400;500;600&family=Work+Sans:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
@@ -195,6 +208,10 @@
     color:var(--ink-soft); border-bottom:1px solid transparent;
   }
   .hero-social a:hover{color:var(--indigo); border-color:var(--indigo);}
+  .hero-copyright{
+    margin-top:1.8rem; font-size:0.72rem; color:var(--ink-soft); opacity:0.7;
+    font-family:'Space Grotesk', sans-serif; letter-spacing:0.02em;
+  }
 
   /* ---------------- ROOM DIVIDER ---------------- */
   .room-divider{
@@ -422,6 +439,32 @@
     border-top:1px solid rgba(240,240,234,0.15); padding-top:1.5rem;
     font-size:0.75rem; opacity:0.55; font-family:'Space Grotesk', sans-serif;
   }
+  .footer-bottom p{margin:0.3rem 0;}
+  .footer-collab{
+    font-size:0.85rem; color:var(--paper); opacity:0.8; max-width:46ch;
+    margin:0 auto 1.6rem; font-family:'Work Sans', sans-serif;
+  }
+  .footer-collab strong{color:var(--paper);}
+
+  .legal-block{
+    border-top:1px solid var(--line); padding:2.4rem 0;
+  }
+  .legal-block .wrap{max-width:1160px;}
+  .legal-block h3{
+    font-size:1rem; font-weight:500; margin-bottom:0.9rem; color:var(--ink-soft);
+  }
+  .legal-block p{
+    font-size:0.82rem; color:var(--ink-soft); opacity:0.85;
+    max-width:72ch; margin-bottom:0.7rem; line-height:1.6;
+  }
+
+  .protecao-badge{
+    display:inline-block; height:56px; width:auto; margin-top:1.1rem;
+    opacity:0.92; transition:opacity 0.2s ease;
+  }
+  .protecao-badge:hover{opacity:1;}
+  /* footer sits on a dark background — flip the dark badge to light so it stays visible */
+  footer .protecao-badge{ filter:invert(1) brightness(1.6); }
 
   /* ---------------- SOUND TOGGLE ---------------- */
   .sound-toggle{
@@ -493,6 +536,14 @@
   .avail-badge.is-yes{background:var(--forest); color:var(--paper);}
   .avail-badge.is-no{background:var(--paper-2); color:var(--ink-soft); border:1px solid var(--line-hi);}
 
+  .collab-note{
+    margin-top:1.6rem; padding:1.4rem clamp(1.4rem,3vw,1.8rem);
+    border:1px solid var(--line-hi); border-left:3px solid var(--plum);
+    background:var(--paper-2); max-width:70ch;
+  }
+  .room-tint .collab-note{background:var(--paper);}
+  .collab-note p{color:var(--ink-soft); font-size:0.9rem; margin:0;}
+
   .reveal{opacity:0; transform:translateY(16px); transition:opacity 0.6s ease, transform 0.6s ease;}
   .reveal.in{opacity:1; transform:none;}
   @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none;} }
@@ -548,6 +599,10 @@
         <a href="https://www.tiktok.com/@enterprise.mm.arts" target="_blank" rel="noopener">TikTok</a>
         <a href="https://www.youtube.com/@mmarts.global" target="_blank" rel="noopener">YouTube</a>
       </div>
+      <p class="hero-copyright" data-i18n="hero_copyright">© MM Arts — Founded by Miguel Marques. All rights reserved.</p>
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener" aria-label="Licence CC BY-NC-ND 4.0">
+        <img src="assets/images/protecao.png" alt="CC BY-NC-ND 4.0" class="protecao-badge">
+      </a>
     </div>
   </section>
 
@@ -624,6 +679,9 @@
         <h2 data-i18n="collections_h2">Collections</h2>
       </div>
       <p class="room-lede" data-i18n="collections_lede">MM Arts presents collections developed around specific themes, emotions and narratives. Each collection reflects a distinct artistic direction and brings together works that engage in dialogue through form, concept and expression.</p>
+      <div class="collab-note">
+        <p data-i18n="collections_collab_note" data-i18n-html>Have a finished collection of your own? MM Arts is open to featuring new collections from other artists — get in touch at <strong>enterprise.mm.arts@gmail.com</strong> to discuss.</p>
+      </div>
 
       <div class="collections-grid">
         <button class="collection-card" onclick="openDetail('collection-one')">
@@ -673,6 +731,9 @@
         <h2 data-i18n="ip_h2">Individual Pieces</h2>
       </div>
       <p class="room-lede" data-i18n="ip_lede">Individual pieces outside the numbered collections — not part of any collection, still art, and sometimes by other artists. Available one at a time, with or without a listed price.</p>
+      <div class="collab-note">
+        <p data-i18n="ip_collab_note" data-i18n-html>Are you an artist working outside the numbered collections? MM Arts is open to featuring select individual pieces from other creators here. Reach out at <strong>enterprise.mm.arts@gmail.com</strong> to be considered.</p>
+      </div>
 
       <div class="collections-grid">
         <button class="collection-card" onclick="openDetail('individual-pieces-detail')">
@@ -816,10 +877,19 @@
 
 </main>
 
+<section id="legal" class="legal-block">
+  <div class="wrap">
+    <h3 data-i18n="legal_h3">Privacy & Copyright</h3>
+    <p data-i18n="legal_copyright" data-i18n-html>MM Arts — the platform, its name and visual identity — is © Miguel Marques. Copyright in each individual artwork shown on this site remains with the artist who created it. No artwork may be reproduced, printed or sold without written permission from its creator.</p>
+    <p data-i18n="legal_privacy">MM Arts only collects the information you choose to share by email — for example when making an inquiry or placing an order. It is used solely to respond to you and is never sold or shared with third parties. This site does not use cookies or tracking scripts. For any privacy question, contact enterprise.mm.arts@gmail.com.</p>
+  </div>
+</section>
+
 <footer>
   <div class="wrap footer-inner">
     <img src="assets/images/logo.png" alt="MM Arts logo">
     <p class="tag" data-i18n="hero_sub">Art Without Limits</p>
+    <p class="footer-collab" data-i18n="footer_collab" data-i18n-html>Interested in collaborating with MM Arts? Get in touch at <strong>enterprise.mm.arts@gmail.com</strong>.</p>
     <div class="footer-links">
       <a href="#about" data-i18n="nav_about">About</a>
       <a href="#collections" data-i18n="nav_collections">Collections</a>
@@ -827,8 +897,15 @@
       <a href="#exhibitions" data-i18n="nav_exhibitions">Exhibitions</a>
       <a href="#shop" data-i18n="nav_shop">Shop</a>
       <a href="#contact" data-i18n="nav_contact">Contact</a>
+      <a href="#legal" data-i18n="legal_h3">Privacy & Copyright</a>
     </div>
-    <div class="footer-bottom">© <span id="year"></span> MM Arts — <span data-i18n="footer_rights">All rights reserved</span></div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> MM Arts — <span data-i18n="founder_credit">Founded by Miguel Marques</span> — <span data-i18n="footer_rights">All rights reserved</span></p>
+      <p data-i18n="footer_artist_rights">Artworks remain the copyright of their respective artists.</p>
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener" aria-label="Licence CC BY-NC-ND 4.0">
+        <img src="assets/images/protecao.png" alt="CC BY-NC-ND 4.0" class="protecao-badge">
+      </a>
+    </div>
   </div>
 </footer>
 
@@ -940,6 +1017,15 @@ const I18N = {
     contact_shop_label:'Shop Orders',
 
     footer_rights:'All rights reserved',
+    hero_copyright:'© MM Arts — Founded by Miguel Marques. Artworks remain © their respective artists. All rights reserved.',
+    founder_credit:'Founded by Miguel Marques',
+    ip_collab_note:'Are you an artist working outside the numbered collections? MM Arts is open to featuring select individual pieces from other creators here. Reach out at <strong>enterprise.mm.arts@gmail.com</strong> to be considered.',
+    collections_collab_note:'Have a finished collection of your own? MM Arts is open to featuring new collections from other artists — get in touch at <strong>enterprise.mm.arts@gmail.com</strong> to discuss.',
+    footer_collab:'Interested in collaborating with MM Arts? Get in touch at <strong>enterprise.mm.arts@gmail.com</strong>.',
+    footer_artist_rights:'Artworks remain the copyright of their respective artists.',
+    legal_h3:'Privacy & Copyright',
+    legal_copyright:'MM Arts — the platform, its name and visual identity — is © Miguel Marques. Copyright in each individual artwork shown on this site remains with the artist who created it. No artwork may be reproduced, printed or sold without written permission from its creator.',
+    legal_privacy:'MM Arts only collects the information you choose to share by email — for example when making an inquiry or placing an order. It is used solely to respond to you and is never sold or shared with third parties. This site does not use cookies or tracking scripts. For any privacy question, contact enterprise.mm.arts@gmail.com.',
 
     sound_play:'Play music', sound_pause:'Pause music',
     sound_tap_again:'Tap again to play', sound_unavailable:'Music unavailable',
@@ -1032,6 +1118,15 @@ const I18N = {
     contact_shop_label:'Encomendas da Loja',
 
     footer_rights:'Todos os direitos reservados',
+    hero_copyright:'© MM Arts — Fundada por Miguel Marques. As obras mantêm-se © dos respetivos artistas. Todos os direitos reservados.',
+    founder_credit:'Fundada por Miguel Marques',
+    ip_collab_note:'És artista e trabalhas fora das coleções numeradas? A MM Arts está aberta a apresentar aqui peças individuais selecionadas de outros criadores. Contacta <strong>enterprise.mm.arts@gmail.com</strong> para seres considerado.',
+    collections_collab_note:'Tens uma coleção tua já terminada? A MM Arts está aberta a apresentar novas coleções de outros artistas — contacta <strong>enterprise.mm.arts@gmail.com</strong> para conversarmos.',
+    footer_collab:'Interessado em colaborar com a MM Arts? Contacta <strong>enterprise.mm.arts@gmail.com</strong>.',
+    footer_artist_rights:'As obras mantêm-se sob direitos de autor dos respetivos artistas.',
+    legal_h3:'Privacidade e Direitos de Autor',
+    legal_copyright:'A MM Arts — a plataforma, o nome e a identidade visual — é © de Miguel Marques. Os direitos de autor de cada obra apresentada neste site pertencem ao artista que a criou. Nenhuma obra pode ser reproduzida, impressa ou vendida sem autorização escrita do seu autor.',
+    legal_privacy:'A MM Arts só recolhe a informação que decidas partilhar por email — por exemplo ao fazeres uma pergunta ou uma encomenda. É usada apenas para te responder e nunca é vendida ou partilhada com terceiros. Este site não usa cookies nem scripts de monitorização. Para qualquer questão sobre privacidade, contacta enterprise.mm.arts@gmail.com.',
 
     sound_play:'Tocar música', sound_pause:'Pausar música',
     sound_tap_again:'Toca novamente', sound_unavailable:'Música indisponível',
@@ -1124,6 +1219,15 @@ const I18N = {
     contact_shop_label:'Commandes Boutique',
 
     footer_rights:'Tous droits réservés',
+    hero_copyright:'© MM Arts — Fondée par Miguel Marques. Les œuvres restent © de leurs artistes respectifs. Tous droits réservés.',
+    founder_credit:'Fondée par Miguel Marques',
+    ip_collab_note:'Vous êtes artiste et travaillez en dehors des collections numérotées ? MM Arts est ouvert à présenter ici des pièces individuelles sélectionnées d’autres créateurs. Contactez <strong>enterprise.mm.arts@gmail.com</strong> pour être pris en considération.',
+    collections_collab_note:'Vous avez une collection personnelle terminée ? MM Arts est ouvert à présenter de nouvelles collections d’autres artistes — contactez <strong>enterprise.mm.arts@gmail.com</strong> pour en discuter.',
+    footer_collab:'Intéressé à collaborer avec MM Arts ? Contactez <strong>enterprise.mm.arts@gmail.com</strong>.',
+    footer_artist_rights:'Les œuvres restent sous les droits d’auteur de leurs artistes respectifs.',
+    legal_h3:'Confidentialité et Droits d’Auteur',
+    legal_copyright:'MM Arts — la plateforme, son nom et son identité visuelle — est © Miguel Marques. Les droits d’auteur de chaque œuvre présentée sur ce site appartiennent à l’artiste qui l’a créée. Aucune œuvre ne peut être reproduite, imprimée ou vendue sans l’autorisation écrite de son créateur.',
+    legal_privacy:'MM Arts ne collecte que les informations que vous choisissez de partager par email — par exemple lors d’une demande ou d’une commande. Elles servent uniquement à vous répondre et ne sont jamais vendues ni partagées avec des tiers. Ce site n’utilise ni cookies ni scripts de suivi. Pour toute question de confidentialité, contactez enterprise.mm.arts@gmail.com.',
 
     sound_play:'Lire la musique', sound_pause:'Mettre en pause',
     sound_tap_again:'Appuyez à nouveau', sound_unavailable:'Musique indisponible',
@@ -1216,6 +1320,15 @@ const I18N = {
     contact_shop_label:'Pedidos de la Tienda',
 
     footer_rights:'Todos los derechos reservados',
+    hero_copyright:'© MM Arts — Fundada por Miguel Marques. Las obras siguen siendo © de sus respectivos artistas. Todos los derechos reservados.',
+    founder_credit:'Fundada por Miguel Marques',
+    ip_collab_note:'¿Eres artista y trabajas fuera de las colecciones numeradas? MM Arts está abierto a presentar aquí piezas individuales seleccionadas de otros creadores. Contacta con <strong>enterprise.mm.arts@gmail.com</strong> para ser considerado.',
+    collections_collab_note:'¿Tienes una colección propia terminada? MM Arts está abierto a presentar nuevas colecciones de otros artistas — contacta con <strong>enterprise.mm.arts@gmail.com</strong> para conversarlo.',
+    footer_collab:'¿Interesado en colaborar con MM Arts? Contacta con <strong>enterprise.mm.arts@gmail.com</strong>.',
+    footer_artist_rights:'Las obras permanecen bajo los derechos de autor de sus respectivos artistas.',
+    legal_h3:'Privacidad y Derechos de Autor',
+    legal_copyright:'MM Arts — la plataforma, su nombre e identidad visual — es © de Miguel Marques. Los derechos de autor de cada obra presentada en este sitio pertenecen al artista que la creó. Ninguna obra puede reproducirse, imprimirse o venderse sin autorización escrita de su creador.',
+    legal_privacy:'MM Arts solo recopila la información que decidas compartir por email — por ejemplo al hacer una consulta o un pedido. Se usa únicamente para responderte y nunca se vende ni se comparte con terceros. Este sitio no utiliza cookies ni scripts de seguimiento. Para cualquier duda sobre privacidad, contacta con enterprise.mm.arts@gmail.com.',
 
     sound_play:'Reproducir música', sound_pause:'Pausar música',
     sound_tap_again:'Toca de nuevo', sound_unavailable:'Música no disponible',
@@ -1308,6 +1421,15 @@ const I18N = {
     contact_shop_label:'商店订购',
 
     footer_rights:'版权所有',
+    hero_copyright:'© MM Arts —— 创办人 Miguel Marques。作品版权归各自艺术家所有。版权所有。',
+    founder_credit:'创办人:Miguel Marques',
+    ip_collab_note:'你是艺术家,作品不属于编号系列吗?MM Arts 欢迎在此展示其他创作者的精选单件作品。请联系 <strong>enterprise.mm.arts@gmail.com</strong> 争取入选机会。',
+    collections_collab_note:'你已经完成了自己的系列作品吗?MM Arts 欢迎展示其他艺术家的新系列 —— 请联系 <strong>enterprise.mm.arts@gmail.com</strong> 详谈。',
+    footer_collab:'有意与 MM Arts 合作?请联系 <strong>enterprise.mm.arts@gmail.com</strong>。',
+    footer_artist_rights:'作品版权归属各自艺术家所有。',
+    legal_h3:'隐私与版权',
+    legal_copyright:'MM Arts —— 平台本身、名称及视觉识别 —— 版权归 Miguel Marques 所有。本网站展示的每件作品的版权归创作该作品的艺术家所有。未经作者书面许可,任何作品不得被复制、印刷或出售。',
+    legal_privacy:'MM Arts 仅收集你主动通过邮件分享的信息 —— 例如咨询或下单时。这些信息仅用于回复你,绝不会被出售或与第三方共享。本网站不使用 Cookie 或追踪脚本。如有隐私相关问题,请联系 enterprise.mm.arts@gmail.com。',
 
     sound_play:'播放音乐', sound_pause:'暂停音乐',
     sound_tap_again:'请再次点击播放', sound_unavailable:'音乐暂时无法播放',
