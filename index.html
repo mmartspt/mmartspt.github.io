@@ -1757,7 +1757,7 @@ function buildGalleryItem(folder, item, n, captionHtml, extraHtml){
   fig.className = 'artwork';
   fig.innerHTML = `
     <div class="frame ${item.orientation}">
-      <img src="assets/images/${folder}/${item.file}" alt="Migma — ${item.title || ('Work ' + String(n).padStart(2,'0'))}"
+     <img src="assets/images/${folder}/${item.file}" alt="${item.title ? item.title + ' — Migma contemporary artwork' : 'Migma contemporary artwork ' + String(n).padStart(2,'0')}"
      loading="lazy" decoding="async"
      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
       <div class="placeholder" style="display:none;">
