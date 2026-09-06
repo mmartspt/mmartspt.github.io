@@ -392,8 +392,20 @@
     display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:2.2rem 1.6rem; margin-top:2.6rem;
   }
-  figure.artwork{margin:0;}
-  .frame{
+ figure.artwork{margin:0;}
+
+ figure.artwork .frame::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iMjIwIj4KICA8dGV4dCB4PSI2IiB5PSIxMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNTUpIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjggMTEwIDExMCkiIGxldHRlci1zcGFjaW5nPSIyIj5NTUFSVFM8L3RleHQ+Cjwvc3ZnPg==");
+  background-repeat:repeat;
+  mix-blend-mode:overlay;
+  pointer-events:none;
+  z-index:2;
+}
+
+.frame{
     width:100%;
     border:1px solid var(--line-hi);
     overflow:hidden; position:relative;
