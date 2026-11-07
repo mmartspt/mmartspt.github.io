@@ -1,12 +1,12 @@
 {
-  "name": "MM Arts — Independent Contemporary Art Platform",
+  "name": "MM Arts — Arte contemporânea feita em Portugal",
   "short_name": "MM Arts",
-  "description": "An independent contemporary art platform supporting emerging artists worldwide.",
+  "description": "Plataforma de arte de Migma (Miguel Marques): coleção «Eu», exposição em Oeiras e peças individuais.",
   "start_url": "https://mmartspt.github.io/",
   "scope": "https://mmartspt.github.io/",
   "display": "standalone",
   "background_color": "#F0F0EA",
-  "theme_color": "#1B0FA0",
+  "theme_color": "#0D3A24",
   "icons": [
     {
       "src": "assets/images/icon-192.png",
@@ -18,5 +18,6 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "lang": "pt-PT"
 }
