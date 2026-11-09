@@ -6,6 +6,8 @@
 <title>MM Arts — Arte contemporânea feita em Portugal</title>
 <meta name="description" content="Plataforma de arte de Migma (Miguel Marques): coleção «Eu», exposição em Oeiras e peças individuais. Art Without Limits.">
 <link rel="canonical" href="https://mmartspt.github.io/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/images/icon-192.png">
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="apple-touch-icon" href="assets/images/favicon-touch.png">
 <link rel="manifest" href="manifest.json">
@@ -31,6 +33,7 @@
 {
   "@context": "https://schema.org",
   "@graph": [
+    { "@type": "WebSite", "@id": "https://mmartspt.github.io/#website", "url": "https://mmartspt.github.io/", "name": "MM Arts", "alternateName": ["MM Arts PT", "Migma"], "inLanguage": "pt-PT", "publisher": { "@id": "https://mmartspt.github.io/#organization" } },
     {
       "@type": "Organization",
       "@id": "https://mmartspt.github.io/#organization",
@@ -52,14 +55,14 @@
       "@id": "https://mmartspt.github.io/#founder",
       "name": "Miguel Marques",
       "alternateName": "Migma",
-      "jobTitle": "Founder & Contemporary Artist",
+      "jobTitle": "Artista e fundador da MM Arts",
       "nationality": "Portuguese",
       "worksFor": { "@id": "https://mmartspt.github.io/#organization" }
     },
     {
       "@type": "ExhibitionEvent",
-      "name": "\u201cEU\u201d \u2014 Opening Exhibition",
-      "description": "The first public exhibition of Migma's debut collection \u201cEU\u201d / \u201cI (me)\u201d.",
+      "name": "\u201cEu\u201d \u2014 Exposi\u00e7\u00e3o de Abertura",
+      "description": "A primeira exposi\u00e7\u00e3o p\u00fablica da cole\u00e7\u00e3o de estreia de Migma, \u201cEu\u201d, em Oeiras, Portugal.",
       "startDate": "2026-03-01",
       "endDate": "2026-03-31",
       "location": {
@@ -1285,7 +1288,6 @@
         </form>
       </div>
       <div class="product-grid" id="shop-product-list" hidden></div>
-      <p class="shop-note" data-i18n="shop_order_note" data-i18n-html hidden>…</p>
     </div>
   </section>
 
@@ -2523,46 +2525,7 @@ const ipWorks = [
    any time — the 4 limited-edition variants below are marked "Coming Soon"
    on purpose, waiting for real pricing + measurements.
 ===================================================================== */
-const shopProducts = [
-  { name:{en:'EU Collection — Digital Edition', pt:'Coleção EU — Edição Digital', fr:'Collection EU — Édition Numérique', es:'Colección EU — Edición Digital', zh:'EU系列 —— 数字版'},
-    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
-
-  { name:{en:'EU Collection — Postcard Set (5 Designs)', pt:'Coleção EU — Conjunto de Postais (5 Modelos)', fr:'Collection EU — Lot de Cartes Postales (5 Modèles)', es:'Colección EU — Set de Postales (5 Diseños)', zh:'EU系列 —— 明信片套装(5款)'},
-    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
-
-  { name:{en:'EU Collection — Sticker Pack (Set of 3)', pt:'Coleção EU — Pack de Autocolantes (Conjunto de 3)', fr:'Collection EU — Lot d’Autocollants (Lot de 3)', es:'Colección EU — Pack de Pegatinas (Set de 3)', zh:'EU系列 —— 贴纸套装(3枚装)'},
-    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
-
-  { name:{en:'EU Collection — Open Edition Print', pt:'Coleção EU — Impressão de Edição Aberta', fr:'Collection EU — Tirage en Édition Ouverte', es:'Colección EU — Impresión de Edición Abierta', zh:'EU系列 —— 开放版画'},
-    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
-
-  { name:{en:'EU Collection — Limited Edition Print, Square (Small)', pt:'Coleção EU — Edição Limitada, Quadrado (Pequeno)', fr:'Collection EU — Édition Limitée, Carré (Petit)', es:'Colección EU — Edición Limitada, Cuadrado (Pequeño)', zh:'EU系列 —— 限量版画,方形(小)'},
-    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
-
-  { name:{en:'EU Collection — Limited Edition Print, Square (Large)', pt:'Coleção EU — Edição Limitada, Quadrado (Grande)', fr:'Collection EU — Édition Limitée, Carré (Grand)', es:'Colección EU — Edición Limitada, Cuadrado (Grande)', zh:'EU系列 —— 限量版画,方形(大)'},
-    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
-
-  { name:{en:'EU Collection — Limited Edition Print, Landscape', pt:'Coleção EU — Edição Limitada, Horizontal', fr:'Collection EU — Édition Limitée, Format Horizontal', es:'Colección EU — Edición Limitada, Horizontal', zh:'EU系列 —— 限量版画,横版'},
-    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
-
-  { name:{en:'EU Collection — Limited Edition Print, Portrait', pt:'Coleção EU — Edição Limitada, Vertical', fr:'Collection EU — Édition Limitée, Format Vertical', es:'Colección EU — Edición Limitada, Vertical', zh:'EU系列 —— 限量版画,竖版'},
-    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
-
-  { name:{en:'Original Artwork by Migma', pt:'Obra Original de Migma', fr:'Œuvre Originale de Migma', es:'Obra Original de Migma', zh:'Migma 原创作品'},
-    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
-
-  { name:{en:'Preparatory Study — One of a Kind', pt:'Estudo Preparatório — Peça Única', fr:'Étude Préparatoire — Pièce Unique', es:'Estudio Preparatorio — Pieza Única', zh:'创作草图 —— 独一无二'},
-    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
-
-  { name:{en:'Custom Commission by Migma', pt:'Encomenda Personalizada por Migma', fr:'Commande Personnalisée par Migma', es:'Encargo Personalizado por Migma', zh:'Migma 定制委托创作'},
-    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
-
-  { name:{en:'MM Arts Apparel — T-Shirt or Tote Bag', pt:'Vestuário MM Arts — T-shirt ou Tote Bag', fr:'Vêtements MM Arts — T-shirt ou Tote Bag', es:'Ropa MM Arts — Camiseta o Tote Bag', zh:'MM Arts 周边 —— T恤或帆布包'},
-    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
-
-  { name:{en:'Starter Bundle — Postcard + Sticker + Mini Print', pt:'Pack Inicial — Postal + Autocolante + Mini Impressão', fr:'Pack Découverte — Carte Postale + Autocollant + Mini Tirage', es:'Pack Inicial — Postal + Pegatina + Mini Impresión', zh:'入门礼包 —— 明信片 + 贴纸 + 迷你版画'},
-    price:{en:'Coming Soon', pt:'Em breve', fr:'Bientôt disponible', es:'Próximamente', zh:'即将推出'} },
-];
+const shopProducts = [];  /* acrescentar produtos aqui quando a loja abrir */
 
 function buildGalleryItem(folder, item, n, captionHtml, extraHtml){
   extraHtml = extraHtml || '';
